@@ -26,7 +26,7 @@ class User extends BaseUser
 	protected $apellido;
 
 	/**
-     * @ORM\ManyToMany(targetEntity="EntityBundle\Entity\UnidadDeCarga", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="UnidadCarga", mappedBy="users")
      **/
     protected $unidades;
  

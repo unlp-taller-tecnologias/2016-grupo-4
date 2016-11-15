@@ -42,11 +42,11 @@ class __TwigTemplate_f37f8711ea4af3d9b63ebcf69de64e3529c3ddd04b062c220fabdd1f8b6
                 <p>
                     <svg id=\"icon-status\" width=\"1792\" height=\"1792\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z\" fill=\"#759E1A\"/></svg>
 
-                    Your application is ready to start working on it at:
+                    Your application is now ready. You can start working on it at:
                     <code>";
         // line 15
         echo twig_escape_filter($this->env, (isset($context["base_dir"]) ? $context["base_dir"] : null), "html", null, true);
-        echo "/</code>
+        echo "</code>
                 </p>
             </div>
 
@@ -69,7 +69,7 @@ class __TwigTemplate_f37f8711ea4af3d9b63ebcf69de64e3529c3ddd04b062c220fabdd1f8b6
                             c2.8,0,5-2.4,5-5.4V17.9h3.7c1.6,0,2.9,1.4,2.9,3.1V65.1L42.1,65.1z\"/>
                     </svg>
 
-                    Read Symfony documentation to learn
+                    Read the documentation to learn
                     <a href=\"http://symfony.com/doc/";
         // line 39
         echo twig_escape_filter($this->env, twig_slice($this->env, twig_constant("Symfony\\Component\\HttpKernel\\Kernel::VERSION"), 0, 3), "html", null, true);

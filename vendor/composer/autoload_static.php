@@ -4,21 +4,20 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb4551e5021db9aa99c1574d167589fd8
+class ComposerStaticInita97ca2f55423f75be57d4dcc04a48ec2
 {
     public static $files = array (
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'edc6464955a37aa4d5fbf39d40fb6ee7' => __DIR__ . '/..' . '/symfony/polyfill-php55/bootstrap.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '3e2471375464aac821502deb0ac64275' => __DIR__ . '/..' . '/symfony/polyfill-php54/bootstrap.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
-        '472f905bdf77cacabbcae41705d5a65a' => __DIR__ . '/../..' . '/app/AppKernel.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -63,7 +62,6 @@ class ComposerStaticInitb4551e5021db9aa99c1574d167589fd8
         ),
         'D' => 
         array (
-            'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Bundle\\DoctrineCacheBundle\\' => 36,
             'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
@@ -167,10 +165,6 @@ class ComposerStaticInitb4551e5021db9aa99c1574d167589fd8
         array (
             0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
         ),
-        'Doctrine\\Instantiator\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
-        ),
         'Doctrine\\Common\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
@@ -238,6 +232,8 @@ class ComposerStaticInitb4551e5021db9aa99c1574d167589fd8
     );
 
     public static $classMap = array (
+        'AppCache' => __DIR__ . '/../..' . '/app/AppCache.php',
+        'AppKernel' => __DIR__ . '/../..' . '/app/AppKernel.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'CallbackFilterIterator' => __DIR__ . '/..' . '/symfony/polyfill-php54/Resources/stubs/CallbackFilterIterator.php',
@@ -257,11 +253,11 @@ class ComposerStaticInitb4551e5021db9aa99c1574d167589fd8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb4551e5021db9aa99c1574d167589fd8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb4551e5021db9aa99c1574d167589fd8::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitb4551e5021db9aa99c1574d167589fd8::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb4551e5021db9aa99c1574d167589fd8::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb4551e5021db9aa99c1574d167589fd8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInita97ca2f55423f75be57d4dcc04a48ec2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita97ca2f55423f75be57d4dcc04a48ec2::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInita97ca2f55423f75be57d4dcc04a48ec2::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInita97ca2f55423f75be57d4dcc04a48ec2::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInita97ca2f55423f75be57d4dcc04a48ec2::$classMap;
 
         }, null, ClassLoader::class);
     }
