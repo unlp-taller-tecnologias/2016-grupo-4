@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * TipoDocumento
  *
  * @ORM\Table(name="tipo_documento")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TipoDocumentoRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
  */
 class TipoDocumento
@@ -86,5 +86,6 @@ class TipoDocumento
     public function preUpdate()
     {
         $this->updatedAt= new \DateTime();
-    }	
+    }
+
 }

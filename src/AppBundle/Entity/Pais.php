@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Pais
  *
  * @ORM\Table(name="pais")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PaisRepository")
+ * @ORM\Entity()
   * @ORM\HasLifecycleCallbacks
  */
 class Pais
@@ -117,4 +117,10 @@ class Pais
     {
         $this->updatedAt= new \DateTime();
     }
+	
+	
+	public function __toString()
+	{
+		return $this->nombre;
+	}
 }

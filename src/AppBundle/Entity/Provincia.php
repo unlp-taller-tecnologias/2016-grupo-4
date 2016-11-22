@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Provincia
  *
  * @ORM\Table(name="provincia")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProvinciaRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
  */
 class Provincia
@@ -146,6 +146,11 @@ class Provincia
     {
         $this->updatedAt= new \DateTime();
     }	
+	
+	public function __toString()
+	{
+		return $this->nombre;
+	}
 	
 	
 }

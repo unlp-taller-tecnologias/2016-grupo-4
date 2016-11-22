@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Paciente
  *
  * @ORM\Table(name="paciente")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PacienteRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
  */
 class Paciente
@@ -56,7 +56,7 @@ class Paciente
 	protected $pais;
 
 	/**
-	* @ORM\ManyToOne(targetEntity="tipoDocumento")
+	* @ORM\ManyToOne(targetEntity="TipoDocumento")
 	*/
 	protected $tipoDocumento;
 	

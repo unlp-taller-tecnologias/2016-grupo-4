@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Unidadcarga</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ unidadCarga.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ unidadCarga.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if unidadCarga.createdAt %}{{ unidadCarga.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if unidadCarga.updatedAt %}{{ unidadCarga.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('unidadcarga_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('unidadcarga_edit', { 'id': unidadCarga.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

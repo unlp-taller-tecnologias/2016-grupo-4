@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Localidad
  *
  * @ORM\Table(name="localidad")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\LocalidadRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
  */
 class Localidad

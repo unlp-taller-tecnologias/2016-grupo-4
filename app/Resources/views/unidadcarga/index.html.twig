@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Unidadcargas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for unidadCarga in unidadCargas %}
+            <tr>
+                <td><a href="{{ path('unidadcarga_show', { 'id': unidadCarga.id }) }}">{{ unidadCarga.id }}</a></td>
+                <td>{{ unidadCarga.nombre }}</td>
+                <td>{% if unidadCarga.createdAt %}{{ unidadCarga.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if unidadCarga.updatedAt %}{{ unidadCarga.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('unidadcarga_show', { 'id': unidadCarga.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('unidadcarga_edit', { 'id': unidadCarga.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('unidadcarga_new') }}">Create a new unidadCarga</a>
+        </li>
+    </ul>
+{% endblock %}

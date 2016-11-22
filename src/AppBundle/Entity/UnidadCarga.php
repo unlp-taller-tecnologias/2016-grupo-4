@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * UnidadCarga
  *
  * @ORM\Table(name="unidad_carga")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UnidadCargaRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
  */
 class UnidadCarga

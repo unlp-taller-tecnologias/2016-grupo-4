@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Embarazo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ embarazo.id }}</td>
+            </tr>
+            <tr>
+                <th>Numerociclo</th>
+                <td>{{ embarazo.numeroCiclo }}</td>
+            </tr>
+            <tr>
+                <th>Medico</th>
+                <td>{{ embarazo.medico }}</td>
+            </tr>
+            <tr>
+                <th>Coberturaprivado</th>
+                <td>{% if embarazo.coberturaPrivado %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Coberturaobrasocial</th>
+                <td>{% if embarazo.coberturaObraSocial %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Coberturanoposee</th>
+                <td>{% if embarazo.coberturaNoPosee %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesmaternashie</th>
+                <td>{% if embarazo.complicacionesMaternasHie %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesmaternaspreclampsia</th>
+                <td>{% if embarazo.complicacionesMaternasPreclampsia %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesmaternasotras</th>
+                <td>{% if embarazo.complicacionesMaternasOtras %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesmaternascuales</th>
+                <td>{{ embarazo.complicacionesMaternasCuales }}</td>
+            </tr>
+            <tr>
+                <th>Terminacionembarazonormal</th>
+                <td>{% if embarazo.terminacionEmbarazoNormal %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Terminacionembarazoprematuro</th>
+                <td>{% if embarazo.terminacionEmbarazoPrematuro %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Terminacionembarazocesarea</th>
+                <td>{% if embarazo.terminacionEmbarazoCesarea %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Numerohijos</th>
+                <td>{{ embarazo.numeroHijos }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('embarazo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('embarazo_edit', { 'id': embarazo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
