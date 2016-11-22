@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ficha
  *
  * @ORM\Table(name="ficha")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\FichaRepository")
+ * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
  */
 class Ficha

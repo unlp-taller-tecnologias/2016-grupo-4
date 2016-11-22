@@ -8,8 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
+              
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,8 +17,7 @@
             <tr>
                 <td><a href="{{ path('unidadcarga_show', { 'id': unidadCarga.id }) }}">{{ unidadCarga.id }}</a></td>
                 <td>{{ unidadCarga.nombre }}</td>
-                <td>{% if unidadCarga.createdAt %}{{ unidadCarga.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if unidadCarga.updatedAt %}{{ unidadCarga.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                
                 <td>
                     <ul>
                         <li>

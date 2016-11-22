@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 
 /**
  * UnidadCarga
@@ -48,13 +49,13 @@ class UnidadCarga
     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="unidades")
     * @ORM\JoinTable(name="unidades_users")
     **/
-   private $users;
+   public $users;
  
     /**
      * Tag constructor.
      */
     public function __construct() {
-        $this->users = new ArrayCollection();
+        $this->set = new ArrayCollection();
 
         $this->createdAt= new \DateTime();
         $this->updatedAt= new \DateTime();
@@ -125,5 +126,10 @@ class UnidadCarga
     {
         $this->updatedAt= new \DateTime();
     }	
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 	
 }

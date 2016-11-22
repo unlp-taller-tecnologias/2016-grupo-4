@@ -448,7 +448,7 @@ class Embarazo
    * @ORM\ManyToOne(targetEntity="Paciente", inversedBy="embarazos")
    * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id")
    **/
-  private $paciente;
+  public $paciente;
   
   
    /**
@@ -495,4 +495,8 @@ class Embarazo
     {
         $this->updatedAt= new \DateTime();
     }	
+    public function __toString()
+    {
+        return 'hola'; //$this->id; después se setea solo
+    }
 }

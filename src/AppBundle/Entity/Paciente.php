@@ -264,7 +264,11 @@ class Paciente
     public function preUpdate()
     {
         $this->updatedAt= new \DateTime();
-    }	
+    }
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 	
 	
 }

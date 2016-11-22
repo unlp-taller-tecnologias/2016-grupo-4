@@ -148,5 +148,10 @@ class Localidad
         $this->updatedAt= new \DateTime();
     }	
 	
+
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 	
 }

@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fichas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tas</th>
+                <th>Tad</th>
+                <th>Talla</th>
+                <th>Peso</th>
+                <th>Glucemia</th>
+                <th>Fructosamina</th>
+                <th>Hba1c</th>
+                <th>Colesteroltotal</th>
+                <th>Colesterolhdl</th>
+                <th>Colesterolldl</th>
+                <th>Trigliceridos</th>
+                <th>Creatinina</th>
+                <th>Proteinuria</th>
+                <th>Urocultivo</th>
+                <th>Hipertensioncronica</th>
+                <th>Obesidad</th>
+                <th>Tabaquismo</th>
+                <th>Realizaactividadfisica</th>
+                <th>Numerodevecesporsemana</th>
+                <th>Minutos</th>
+                <th>Conocemetasdetratamiento</th>
+                <th>Cumpleplandealimentacion</th>
+                <th>Numerodeporcionesdefrutapordia</th>
+                <th>Sabeidentificarotratarhipoglucemias</th>
+                <th>Automonitoreoglucemico</th>
+                <th>Numerodevecespordia</th>
+                <th>Fumaactualmente</th>
+                <th>Fumoanteriormente</th>
+                <th>Cigarrillosaldia</th>
+                <th>Causahospitalizacion1</th>
+                <th>Causahospitalizacion2</th>
+                <th>Causahospitalizacion3</th>
+                <th>Diashospitalizacion1</th>
+                <th>Diashospitalizacion2</th>
+                <th>Diashospitalizacion3</th>
+                <th>Hipertensionatenolol</th>
+                <th>Hipertensionbloqueantescalcicos</th>
+                <th>Hipertensionfurosemida</th>
+                <th>Hipertensionotro</th>
+                <th>Hipertensioncual</th>
+                <th>Aas</th>
+                <th>Insulinanph</th>
+                <th>Insulinadetemir</th>
+                <th>Insulinacorriente</th>
+                <th>Insulinaaspartica</th>
+                <th>Numeroinyeccionesdia</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ficha in fichas %}
+            <tr>
+                <td><a href="{{ path('ficha_show', { 'id': ficha.id }) }}">{{ ficha.id }}</a></td>
+                <td>{{ ficha.tas }}</td>
+                <td>{{ ficha.tad }}</td>
+                <td>{{ ficha.talla }}</td>
+                <td>{{ ficha.peso }}</td>
+                <td>{{ ficha.glucemia }}</td>
+                <td>{{ ficha.fructosamina }}</td>
+                <td>{{ ficha.hba1c }}</td>
+                <td>{{ ficha.colesterolTotal }}</td>
+                <td>{{ ficha.colesterolHdl }}</td>
+                <td>{{ ficha.colesterolLdl }}</td>
+                <td>{{ ficha.trigliceridos }}</td>
+                <td>{{ ficha.creatinina }}</td>
+                <td>{{ ficha.proteinuria }}</td>
+                <td>{% if ficha.urocultivo %}Yes{% else %}No{% endif %}</td>
+                <td>{% if ficha.hipertensionCronica %}Yes{% else %}No{% endif %}</td>
+                <td>{% if ficha.obesidad %}Yes{% else %}No{% endif %}</td>
+                <td>{% if ficha.tabaquismo %}Yes{% else %}No{% endif %}</td>
+                <td>{% if ficha.realizaActividadFisica %}Yes{% else %}No{% endif %}</td>
+                <td>{{ ficha.numeroDeVecesPorSemana }}</td>
+                <td>{{ ficha.minutos }}</td>
+                <td>{% if ficha.conoceMetasDeTratamiento %}Yes{% else %}No{% endif %}</td>
+                <td>{% if ficha.cumplePlanDeAlimentacion %}Yes{% else %}No{% endif %}</td>
+                <td>{{ ficha.numerodePorcionesDeFrutaPorDia }}</td>
+                <td>{% if ficha.sabeIdentificarOTratarHipoglucemias %}Yes{% else %}No{% endif %}</td>
+                <td>{% if ficha.automonitoreoGlucemico %}Yes{% else %}No{% endif %}</td>
+                <td>{{ ficha.numeroDeVecesPorDia }}</td>
+                <td>{% if ficha.fumaActualmente %}Yes{% else %}No{% endif %}</td>
+                <td>{% if ficha.fumoAnteriorMente %}Yes{% else %}No{% endif %}</td>
+                <td>{{ ficha.cigarrillosAlDia }}</td>
+                <td>{{ ficha.causaHospitalizacion1 }}</td>
+                <td>{{ ficha.causaHospitalizacion2 }}</td>
+                <td>{{ ficha.causaHospitalizacion3 }}</td>
+                <td>{{ ficha.diasHospitalizacion1 }}</td>
+                <td>{{ ficha.diasHospitalizacion2 }}</td>
+                <td>{{ ficha.diasHospitalizacion3 }}</td>
+                <td>{{ ficha.hipertensionAtenolol }}</td>
+                <td>{{ ficha.hipertensionBloqueantesCalcicos }}</td>
+                <td>{{ ficha.hipertensionFurosemida }}</td>
+                <td>{{ ficha.hipertensionOtro }}</td>
+                <td>{{ ficha.hipertensionCual }}</td>
+                <td>{{ ficha.aas }}</td>
+                <td>{{ ficha.insulinaNph }}</td>
+                <td>{{ ficha.insulinaDetemir }}</td>
+                <td>{{ ficha.insulinaCorriente }}</td>
+                <td>{{ ficha.insulinaAspartica }}</td>
+                <td>{{ ficha.numeroInyeccionesDia }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ficha_show', { 'id': ficha.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ficha_new') }}">Create a new ficha</a>
+        </li>
+    </ul>
+{% endblock %}
