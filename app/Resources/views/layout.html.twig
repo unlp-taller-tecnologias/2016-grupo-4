@@ -37,9 +37,87 @@
   </head>
 
     <body>
-        {% block body %}
-            {{ include('menu.html.twig') }}
-        {% endblock %}
+        <!-- Contenedor del menú -->
+          <section id="container" class="">
+                
+            <header class="header dark-bg">
+                    <div class="toggle-nav">
+                        <div class="icon-reorder tooltips" data-original-title="Menú" data-placement="bottom"><i class="icon_menu"></i></div>
+                    </div>
+
+                    <a href="index.html" class="logo">QualiDiab <span class="lite">- Gest</span></a>
+
+                    <div class="top-nav notification-row">                
+                        <!-- notificatoin dropdown start-->
+                        <ul class="nav pull-right top-menu">
+                            
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                   
+                                     <i class="fa fa-user"></i>
+                                    <span class="username"> Nombre Apellido</span>
+
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu extended logout">
+                                    <div class="log-arrow-up"></div>
+                                    <li class="eborder-top">
+                                        <a href="#"><i class="fa fa-cogs"></i> Configuración </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="login.html"><i class="icon_key_alt"></i> Cerrar Sessión</a>
+                                    </li>
+                                
+                                    <li>
+                                     
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                   
+                    </div>
+              </header>      
+              <!--header end-->
+                <!--menú izquierda start-->
+              <aside>
+                  <div id="sidebar"  class="nav-collapse ">
+                      <!-- sidebar menu start-->
+                      <ul class="sidebar-menu">                
+                          <li class="active">
+                              <a class="" href="#">
+                                  <i class="icon_house_alt"></i>
+                                  <span>Unidades de carga</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a class="" href="#">
+                                  <i class="fa fa-fw fa fa-users"></i>
+                                  <span>Usuarios</span>
+                                
+                              </a>
+                          </li>
+                          
+                      </ul>
+                      <!-- sidebar menu end-->
+                  </div>
+              </aside>
+              <!--sidebar end-->
+                 <!--main content start-->
+              <section id="main-content">
+                  <section class="wrapper">            
+                      <!--overview start-->
+  
+                    {% block body %}
+                        
+                    {% endblock %}
+  
+                 </section>
+              </section>
+              <!--main content end-->
+      </section>
+      <!-- container section start -->
 
         {% block javascripts %}
                 <!-- javascripts -->
