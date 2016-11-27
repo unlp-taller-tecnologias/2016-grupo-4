@@ -31,13 +31,9 @@ class Embarazo
 
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @ORM\Column(type="datetime")
      */
-   
-	
-	    private $fechaInicio;
+	private $fechaInicio;
 
     /**
      * @var string
