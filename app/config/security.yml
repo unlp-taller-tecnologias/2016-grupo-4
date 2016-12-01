@@ -5,7 +5,9 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
+        ROLE_DATAENTRY: [ROLE_SESION, ROLE_ABMPACIENTE, ROLE_ABMFICHA]
+        ROLE_COORDINADOR: [ROLE_DATAENTRY, ROLE_ABMDATAENTRY]
+        ROLE_ADMIN: [ROLE_COORDINADOR, ROLE_MODPASSDEOTROS, ROLE_ABMUC, ROLE_EXPORTARFICHA, ROLE_ABMCOORDINADOR]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
@@ -44,3 +46,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+
+
+

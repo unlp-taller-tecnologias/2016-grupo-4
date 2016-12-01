@@ -48,7 +48,7 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="UnidadCarga", mappedBy="users")
      **/
     protected $unidades;
- 
+
 	public function __construct(){
 		parent::__construct();
 		// your own logic
@@ -107,4 +107,21 @@ class User extends BaseUser
     public function setApellido($ape) {
       return $this->apellido=$ape;
     }
+
+    public function setRol($rol) {
+        $array[] = $rol;
+        parent::setRoles($array);
+    }
+
+    public function addRol($rol) {
+        parent::addRole($rol);
+    }
+
+    public function hasRol() {
+        $rol='';
+        return parent::hasRole($rol);
+    }
+
+
+    
 }

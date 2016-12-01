@@ -134,6 +134,7 @@ abstract class User implements UserInterface, GroupableInterface
 
     public function addRole($role)
     {
+       
         $role = strtoupper($role);
         if ($role === static::ROLE_DEFAULT) {
             return $this;
@@ -531,6 +532,7 @@ abstract class User implements UserInterface, GroupableInterface
 
     public function setRoles(array $roles)
     {
+
         $this->roles = array();
 
         foreach ($roles as $role) {

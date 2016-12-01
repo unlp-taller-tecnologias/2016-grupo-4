@@ -6,12 +6,31 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+
 class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nombre');
         $builder->add('apellido');
+        $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
+              'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
+            )); 
+        /*if ($view['security']->isGranted('ROLE_ADMIN')):
+            $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
+              'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
+            )); 
+        endif; 
+
+        if ($view['security']->isGranted('ROLE_COORDINADOR')):
+            $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
+              'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
+            )); 
+        endif; */
+
+        /*$builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
+        'choices'   => array('ROLE_ADMIN' => 'ADMINISTRADOR'), 'required'  => true, 
+        ));*/
     }
 
     public function getParent()
