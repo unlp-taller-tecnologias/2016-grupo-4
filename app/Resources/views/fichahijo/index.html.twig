@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fichahijos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Complicacionesrciu</th>
+                <th>Complicacionesmacrosomia</th>
+                <th>Complicacionessinddistressprematuro</th>
+                <th>Complicacioneshipoglucemia</th>
+                <th>Complicacionesmalformacionesfetales</th>
+                <th>Complicacionesmortalidadprenatal</th>
+                <th>Complicacionesotras</th>
+                <th>Complicacionescuales</th>
+                <th>Peso</th>
+                <th>Capurro</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fichaHijo in fichaHijos %}
+            <tr>
+                <td><a href="{{ path('fichahijo_show', { 'id': fichaHijo.id }) }}">{{ fichaHijo.id }}</a></td>
+                <td>{% if fichaHijo.complicacionesRciu %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fichaHijo.complicacionesMacrosomia %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fichaHijo.complicacionesSindDistressPrematuro %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fichaHijo.complicacionesHipoglucemia %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fichaHijo.complicacionesMalformacionesFetales %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fichaHijo.complicacionesMortalidadPrenatal %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fichaHijo.complicacionesOtras %}Yes{% else %}No{% endif %}</td>
+                <td>{{ fichaHijo.complicacionesCuales }}</td>
+                <td>{{ fichaHijo.peso }}</td>
+                <td>{{ fichaHijo.capurro }}</td>
+                <td>{% if fichaHijo.createdAt %}{{ fichaHijo.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if fichaHijo.updatedAt %}{{ fichaHijo.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fichahijo_show', { 'id': fichaHijo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fichahijo_edit', { 'id': fichaHijo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fichahijo_new') }}">Create a new fichaHijo</a>
+        </li>
+    </ul>
+{% endblock %}

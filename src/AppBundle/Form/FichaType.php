@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class FichaType extends AbstractType
 {
@@ -15,6 +16,7 @@ class FichaType extends AbstractType
     {
         $builder
             ->add('tas')
+            ->add('fechaRegistro', 'birthday')
             ->add('tad')
             ->add('talla')
             ->add('peso')
@@ -59,8 +61,12 @@ class FichaType extends AbstractType
             ->add('insulinaDetemir')
             ->add('insulinaCorriente')
             ->add('insulinaAspartica')
-            ->add('numeroInyeccionesDia')
-            ->add('embarazo');
+            ->add('numeroInyeccionesDia');
+        $builder
+            ->add('fichasHijos', CollectionType::class, array(
+                    'entry_type' => FichaHijoType::class,
+                    //'allow_add' => true,
+            ));
     }
     
     /**

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fichahijo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fichaHijo.id }}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesrciu</th>
+                <td>{% if fichaHijo.complicacionesRciu %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesmacrosomia</th>
+                <td>{% if fichaHijo.complicacionesMacrosomia %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionessinddistressprematuro</th>
+                <td>{% if fichaHijo.complicacionesSindDistressPrematuro %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacioneshipoglucemia</th>
+                <td>{% if fichaHijo.complicacionesHipoglucemia %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesmalformacionesfetales</th>
+                <td>{% if fichaHijo.complicacionesMalformacionesFetales %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesmortalidadprenatal</th>
+                <td>{% if fichaHijo.complicacionesMortalidadPrenatal %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionesotras</th>
+                <td>{% if fichaHijo.complicacionesOtras %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Complicacionescuales</th>
+                <td>{{ fichaHijo.complicacionesCuales }}</td>
+            </tr>
+            <tr>
+                <th>Peso</th>
+                <td>{{ fichaHijo.peso }}</td>
+            </tr>
+            <tr>
+                <th>Capurro</th>
+                <td>{{ fichaHijo.capurro }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if fichaHijo.createdAt %}{{ fichaHijo.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if fichaHijo.updatedAt %}{{ fichaHijo.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fichahijo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fichahijo_edit', { 'id': fichaHijo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -12,7 +12,26 @@
     <br>
     {{ form_start(form, { 'attr' : {'role' : 'form'}}) }}
     <div class="row">
-
+      <div class="col-lg-12">
+          <section class="panel">
+              <header class="panel-heading">
+                  Datos del paciente
+              </header>
+              <div class="panel-body">
+                    <div class="form-group col-lg-4">
+                        <label>Nombre: </label>
+                       
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Apellido: </label>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Fecha:</label>
+                        {{ form_widget(form.fechaRegistro, { 'attr' :{ 'class' : 'input-group date', 'data-provide' : 'datepicker'}}) }}
+                    </div>   
+              </div>
+          </section>
+      </div>
       <div class="col-lg-12">
           <section class="panel">
               <header class="panel-heading">
@@ -20,7 +39,7 @@
               </header>
               <div class="panel-body">
                     <div class="form-group col-lg-4">
-                        {{ form_label(form.hipertensionCronica) }}
+                        <label>Hipertensión Crónica</label>
                         {{ form_widget(form.hipertensionCronica) }}
                     </div>
                     <div class="form-group col-lg-4">
@@ -45,59 +64,73 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             {{ form_label(form.tas) }}
-                            {{ form_widget(form.tas, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mmHg'}}) }}
+                            {{ form_widget(form.tas, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mmHg', 'min' : '0', 'max' : '250'}}) }}
+                            <span class="text-danger">{{ form_errors(form.tas) }}</span>
                         </div>
+
                         <div class="form-group">
                             {{ form_label(form.tad) }}
-                            {{ form_widget(form.tad, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mmHg'}}) }}
+                            {{ form_widget(form.tad, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mmHg', 'min' : '0', 'max' : '250'}}) }}
+                            <span class="text-danger">{{ form_errors(form.tad) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.talla) }}
-                            {{ form_widget(form.talla, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'cm'}}) }}
+                            {{ form_widget(form.talla, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'cm', 'min' : '0', 'max' : '230'}}) }}
+                            <span class="text-danger">{{ form_errors(form.talla) }}</span>
                         </div>
                         <div class="form-group">    
                             {{ form_label(form.peso) }}
-                            {{ form_widget(form.peso, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'kg'}}) }}
+                            {{ form_widget(form.peso, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'kg', 'min' : '0', 'max' : '600'}}) }}
+                            <span class="text-danger">{{ form_errors(form.peso) }}</span>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             {{ form_label(form.glucemia) }}
-                            {{ form_widget(form.glucemia, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl'}}) }}
+                            {{ form_widget(form.glucemia, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.glucemia) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.fructosamina) }}
-                            {{ form_widget(form.fructosamina, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl'}}) }}
+                            {{ form_widget(form.fructosamina, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.fructosamina) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.hba1c) }}
-                            {{ form_widget(form.hba1c, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : '%'}}) }}
+                            {{ form_widget(form.hba1c, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : '%', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.hba1c) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.colesterolTotal) }}
-                            {{ form_widget(form.colesterolTotal, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl'}}) }}
+                            {{ form_widget(form.colesterolTotal, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.colesterolTotal) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.colesterolHdl) }}
-                            {{ form_widget(form.colesterolHdl, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl'}}) }}
+                            {{ form_widget(form.colesterolHdl, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.colesterolHdl) }}</span>
                         </div>
                     </div>
                     <div class="col-lg-4">        
                         <div class="form-group">
                             {{ form_label(form.colesterolLdl) }}
-                            {{ form_widget(form.colesterolLdl, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl'}}) }}
+                            {{ form_widget(form.colesterolLdl, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.colesterolHdl) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.trigliceridos) }}
-                            {{ form_widget(form.trigliceridos, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl'}}) }}
+                            {{ form_widget(form.trigliceridos, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.trigliceridos) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.creatinina) }}
-                            {{ form_widget(form.creatinina, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl'}}) }}
+                            {{ form_widget(form.creatinina, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/dl', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.creatinina) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.proteinuria) }}
-                            {{ form_widget(form.proteinuria, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'g/día'}}) }}
+                            {{ form_widget(form.proteinuria, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'g/día', 'min' : '0', 'max' : '999'}}) }}
+                            <span class="text-danger">{{ form_errors(form.proteinuria) }}</span>
                         </div>
                         <div class="form-group">
                             {{ form_label(form.urocultivo) }}
@@ -125,12 +158,14 @@
                                 {{ form_widget(form.realizaActividadFisica) }}
                             </div>
                             <div class="form-group">
-                                {{ form_label(form.numeroDeVecesPorSemana) }}
-                                {{ form_widget(form.numeroDeVecesPorSemana, { 'attr' :{ 'class' : 'form-control round-input', 'disabled' : 'disabled'}}) }}
+                                <label>Número de veces por semana</label>
+                                {{ form_widget(form.numeroDeVecesPorSemana, { 'attr' :{ 'class' : 'form-control round-input', 'disabled' : 'disabled', 'min' : '0', 'max' : '7'}}) }}
+                                <span class="text-danger">{{ form_errors(form.numeroDeVecesPorSemana) }}</span>
                             </div>
                             <div class="form-group">
                                 {{ form_label(form.minutos) }}
-                                {{ form_widget(form.minutos, { 'attr' :{ 'class' : 'form-control round-input', 'disabled' : 'disabled', 'min' : '1'}}) }}
+                                {{ form_widget(form.minutos, { 'attr' :{ 'class' : 'form-control round-input', 'disabled' : 'disabled', 'min' : '0', 'max' : '300'}}) }}
+                                <span class="text-danger">{{ form_errors(form.minutos) }}</span>
                             </div>
                             
                         </div>
@@ -144,8 +179,9 @@
                                 {{ form_widget(form.cumplePlanDeAlimentacion) }}
                             </div>
                             <div class="form-group">
-                                {{ form_label(form.numerodePorcionesDeFrutaPorDia) }}
-                                {{ form_widget(form.numerodePorcionesDeFrutaPorDia, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0'}}) }}
+                                <label>Número de porciones de fruta por día</label>
+                                {{ form_widget(form.numerodePorcionesDeFrutaPorDia, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0', 'max' : '99'}}) }}
+                                <span class="text-danger">{{ form_errors(form.numerodePorcionesDeFrutaPorDia) }}</span>
                             </div>
                             
                         </div>
@@ -159,8 +195,9 @@
                                 {{ form_widget(form.automonitoreoGlucemico) }}
                             </div>
                             <div class="form-group">
-                                {{ form_label(form.numeroDeVecesPorDia) }}
-                                {{ form_widget(form.numeroDeVecesPorDia, { 'attr' :{ 'class' : 'form-control round-input', 'disabled' : 'disabled', 'min' : '0'}}) }}
+                                <label>Número de veces por día</label>
+                                {{ form_widget(form.numeroDeVecesPorDia, { 'attr' :{ 'class' : 'form-control round-input', 'disabled' : 'disabled', 'min' : '0', 'max' : '99'}}) }}
+                                <span class="text-danger">{{ form_errors(form.numeroDeVecesPorDia) }}</span>
                             </div>
                             
                         </div>
@@ -191,8 +228,9 @@
                     </div>
                     <div class="col-lg-4">
                             <div class="form-group">
-                                {{ form_label(form.cigarrillosAlDia) }}
-                                {{ form_widget(form.cigarrillosAlDia, { 'attr' :{ 'class' : 'form-control round-input', 'disabled' : 'disabled', 'min' : '1'}}) }}
+                                <label>Cigarrillos por día</label>
+                                {{ form_widget(form.cigarrillosAlDia, { 'attr' :{ 'class' : 'form-control round-input', 'disabled' : 'disabled', 'min' : '0', 'max' : '99'}}) }}
+                                 <span class="text-danger">{{ form_errors(form.cigarrillosAlDia) }}</span>
                             </div>
                             
                     </div>
@@ -225,18 +263,21 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>Cantidad de días de hospitalización</label>
-                            {{ form_widget(form.diasHospitalizacion1, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0'}}) }}
+                            {{ form_widget(form.diasHospitalizacion1, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0', 'max' : '180'}}) }}
+                             <span class="text-danger">{{ form_errors(form.diasHospitalizacion1) }}</span>
                         </div>
                         <div class="form-group">
                        
-                            {{ form_widget(form.diasHospitalizacion2, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0'}}) }}
+                            {{ form_widget(form.diasHospitalizacion2, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0', 'max' : '180'}}) }}
+                             <span class="text-danger">{{ form_errors(form.diasHospitalizacion2) }}</span>
                         </div>
                         <div class="form-group">
                           
-                            {{ form_widget(form.diasHospitalizacion3, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0'}}) }}
+                            {{ form_widget(form.diasHospitalizacion3, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0', 'max' : '180'}}) }}
+                             <span class="text-danger">{{ form_errors(form.diasHospitalizacion3) }}</span>
                         </div>
                     </div>    
-                    </div>
+                
 
               </div>
           </section>
@@ -253,19 +294,23 @@
                             <div class="form-group">
                                 <label>HIPERTENSIÓN</label><br><br>
                                 <label>Atenolol</label>
-                                {{ form_widget(form.hipertensionAtenolol, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día'}}) }}
+                                {{ form_widget(form.hipertensionAtenolol, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.hipertensionAtenolol) }}</span>
                             </div>
                             <div class="form-group">
                                 <label>Bloqueantes calcicos</label>
-                                {{ form_widget(form.hipertensionBloqueantesCalcicos, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día'}}) }}
+                                {{ form_widget(form.hipertensionBloqueantesCalcicos, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.hipertensionBloqueantesCalcicos) }}</span>
                             </div>
                             <div class="form-group">
                                 <label>Furosemida</label>
-                                {{ form_widget(form.hipertensionFurosemida, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día'}}) }}
+                                {{ form_widget(form.hipertensionFurosemida, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.hipertensionFurosemida) }}</span>
                             </div>
                             <div class="form-group">
                                 <label>Otro</label>
-                                {{ form_widget(form.hipertensionOtro, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día'}}) }}
+                                {{ form_widget(form.hipertensionOtro, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.hipertensionOtro) }}</span>
                             </div>
                             <div class="form-group">
                                 <label>¿Cual?</label>
@@ -277,7 +322,8 @@
                                 <br>
                                 <br>
                                 <label>ASS</label>
-                                {{ form_widget(form.aas, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día'}}) }}
+                                {{ form_widget(form.aas, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'mg/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.aas) }}</span>
                             </div>
                     </div>
                     <div class="col-lg-4">
@@ -286,27 +332,32 @@
                                 <br>
                                 <br>
                                 <label>NPH</label>
-                                {{ form_widget(form.insulinaNph, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'unidades/día'}}) }}
+                                {{ form_widget(form.insulinaNph, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'unidades/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.insulinaNph) }}</span>
                             </div>
                             <div class="form-group">
                                
                                 <label>Detemir</label>
-                                {{ form_widget(form.insulinaDetemir, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'unidades/día'}}) }}
+                                {{ form_widget(form.insulinaDetemir, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'unidades/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.insulinaDetemir) }}</span>
                             </div>
                             <div class="form-group">
                                
                                 <label>Corriente</label>
-                                {{ form_widget(form.insulinaCorriente, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'unidades/día'}}) }}
+                                {{ form_widget(form.insulinaCorriente, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'unidades/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.insulinaCorriente) }}</span>
                             </div>
                             <div class="form-group">
                                
                                 <label>Aspártica</label>
-                                {{ form_widget(form.insulinaAspartica, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'unidades/día'}}) }}
+                                {{ form_widget(form.insulinaAspartica, { 'attr' :{ 'class' : 'form-control round-input', 'placeholder' : 'unidades/día', 'min' : '0', 'max' : '9999'}}) }}
+                                <span class="text-danger">{{ form_errors(form.insulinaAspartica) }}</span>
                             </div>
                             <div class="form-group">
                                
                                 <label>Número de inyecciones por día</label>
-                                {{ form_widget(form.numeroInyeccionesDia, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0'}}) }}
+                                {{ form_widget(form.numeroInyeccionesDia, { 'attr' :{ 'class' : 'form-control round-input', 'min' : '0', 'max' : '9'}}) }}
+                                <span class="text-danger">{{ form_errors(form.numeroInyeccionesDia) }}</span>
                             </div>
                             
                     </div>
@@ -314,16 +365,29 @@
 
               </div>
           </section>
+  
+   
+          <div class="row">
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-info btn-lg btn-block">Agregar recien nacido</button>
+                    <br>
+                </div>  
+            </div>
       </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Guardar ficha</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Guardar ficha</button>
             <br>
         </div>  
     </div>
-
+    {{ form_end(form) }}
     
     
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <!--scrips-->
+    <script src="{{ asset('public/js/scriptsFicha.js') }}"></script>
 {% endblock %}

@@ -31,7 +31,7 @@
                                         {% for ficha in fichas %}
                                             <tr class="odd gradeX">
                                                 <td>{{ ficha.id }}</td>
-                                                <td>{{ ficha.created_at }}</td>
+                                                <td>{{ ficha.fechaRegistro|date("d/m/Y") }}</td>
                                                 
                                                 <td>
                                                     <ul>

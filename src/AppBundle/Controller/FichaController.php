@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ficha;
+use AppBundle\Entity\FichaHijo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +27,7 @@ class FichaController extends Controller
 
         $fichas = $em->getRepository('AppBundle:Ficha')->findAll();
 
+
         return $this->render('ficha/index.html.twig', array(
             'fichas' => $fichas,
         ));
@@ -42,6 +44,9 @@ class FichaController extends Controller
         $ficha = new Ficha();
         $form = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $form->handleRequest($request);
+        $hijo = new FichaHijo();
+        $hijo->setFicha($ficha->getId());
+        $ficha->getFichasHijos()->add($hijo);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();

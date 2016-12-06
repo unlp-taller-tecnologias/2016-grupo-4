@@ -88,13 +88,11 @@ function initializeJS() {
 
 }
 
-jQuery(document).ready(function(){
-    initializeJS();
-});
-
 
 $(document).ready(function() {
+    initializeJS();
     $('#dataTables-example').DataTable({
             responsive: true
     });
+
 });

@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Ficha
@@ -23,93 +25,126 @@ class Ficha
     private $id;
 
     /**
-     * @var string
+     * @var date
      *
-     * @ORM\Column(name="tas", type="string", length=3, nullable=true)
+     * @ORM\Column(name="fechaRegistro", type="date", nullable=false)
+     */
+
+    private $fechaRegistro;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tas", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(250)  
      */
     private $tas;
-
+    
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="tad", type="string", length=3, nullable=true)
+     * @ORM\Column(name="tad", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(250) 
      */
     private $tad;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="talla", type="string", length=3, nullable=true)
+     * @ORM\Column(name="talla", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(230) 
      */
     private $talla;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="peso", type="string", length=4, nullable=true)
+     * @ORM\Column(name="peso", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(600) 
      */
     private $peso;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="glucemia", type="string", length=3, nullable=true)
+     * @ORM\Column(name="glucemia", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999) 
      */
     private $glucemia;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="fructosamina", type="string", length=3, nullable=true)
+     * @ORM\Column(name="fructosamina", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999) 
      */
     private $fructosamina;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="hba1c", type="string", length=3, nullable=true)
+     * @ORM\Column(name="hba1c", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999) 
      */
     private $hba1c;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="colesterolTotal", type="string", length=3, nullable=true)
+     * @ORM\Column(name="colesterolTotal", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999) 
      */
     private $colesterolTotal;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="colesterolHdl", type="string", length=3, nullable=true)
+     * @ORM\Column(name="colesterolHdl", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999) 
      */
     private $colesterolHdl;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="colesterolLdl", type="string", length=3, nullable=true)
+     * @ORM\Column(name="colesterolLdl", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999) 
      */
     private $colesterolLdl;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="trigliceridos", type="string", length=3, nullable=true)
+     * @ORM\Column(name="trigliceridos", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999)    
      */
     private $trigliceridos;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="creatinina", type="string", length=3, nullable=true)
+     * @ORM\Column(name="creatinina", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999) 
      */
     private $creatinina;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="proteinuria", type="string", length=3, nullable=true)
+     * @ORM\Column(name="proteinuria", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(999) 
      */
     private $proteinuria;
 
@@ -152,6 +187,8 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="numeroDeVecesPorSemana", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(7) 
      */
     private $numeroDeVecesPorSemana;
 
@@ -159,6 +196,8 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="minutos", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(300) 
      */
     private $minutos;
 
@@ -180,6 +219,8 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="numerodePorcionesDeFrutaPorDia", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(99) 
      */
     private $numerodePorcionesDeFrutaPorDia;
 
@@ -201,6 +242,8 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="numeroDeVecesPorDia", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(99) 
      */
     private $numeroDeVecesPorDia;
 
@@ -222,6 +265,8 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="cigarrillosAlDia", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(99) 
      */
     private $cigarrillosAlDia;
 
@@ -250,6 +295,8 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="diasHospitalizacion1", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(180) 
      */
     private $diasHospitalizacion1;
 
@@ -257,6 +304,8 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="diasHospitalizacion2", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(180)
      */
     private $diasHospitalizacion2;
 
@@ -264,34 +313,44 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="diasHospitalizacion3", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(180)
      */
     private $diasHospitalizacion3;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="hipertensionAtenolol", type="string", length=5, nullable=true)
+     * @ORM\Column(name="hipertensionAtenolol", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $hipertensionAtenolol;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="hipertensionBloqueantesCalcicos", type="string", length=5, nullable=true)
+     * @ORM\Column(name="hipertensionBloqueantesCalcicos", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $hipertensionBloqueantesCalcicos;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="hipertensionFurosemida", type="string", length=5, nullable=true)
+     * @ORM\Column(name="hipertensionFurosemida", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $hipertensionFurosemida;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="hipertensionOtro", type="string", length=5, nullable=true)
+     * @ORM\Column(name="hipertensionOtro", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $hipertensionOtro;
 
@@ -303,37 +362,47 @@ class Ficha
     private $hipertensionCual;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="aas", type="string", length=5, nullable=true)
+     * @ORM\Column(name="aas", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $aas;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="insulinaNph", type="string", length=3, nullable=true)
+     * @ORM\Column(name="insulinaNph", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $insulinaNph;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="insulinaDetemir", type="string", length=3, nullable=true)
+     * @ORM\Column(name="insulinaDetemir", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $insulinaDetemir;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="insulinaCorriente", type="string", length=3, nullable=true)
+     * @ORM\Column(name="insulinaCorriente", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $insulinaCorriente;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="insulinaAspartica", type="string", length=3, nullable=true)
+     * @ORM\Column(name="insulinaAspartica", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(9999)
      */
     private $insulinaAspartica;
 
@@ -341,6 +410,8 @@ class Ficha
      * @var int
      *
      * @ORM\Column(name="numeroInyeccionesDia", type="integer", nullable=true)
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThan(99)
      */
     private $numeroInyeccionesDia;
 
@@ -359,8 +430,9 @@ class Ficha
      * @ORM\Column(type="datetime")
      */
     protected $updatedAt;
-		
-	
+
+    protected $fichasHijos;
+
 
     /**
      * Get id
@@ -372,6 +444,28 @@ class Ficha
         return $this->id;
     }
 
+    /**
+     * Set fechaRegistro
+     *
+     * @param date $fechaRegistro
+     * @return Ficha
+     */
+    public function setFechaRegistro($fechaRegistro)
+    {
+        $this->fechaRegistro = $fechaRegistro;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaRegistro
+     *
+     * @return date 
+     */
+    public function getFechaRegistro()
+    {
+        return $this->fechaRegistro;
+    }
     /**
      * Set tas
      *
@@ -1440,6 +1534,7 @@ class Ficha
         return $this->embarazo;
     }
 
+
     /**
      * Set embarazo
      *
@@ -1454,10 +1549,19 @@ class Ficha
     }
 
 	
+      /**
+     * Get fichasHijos
+     */
+    public function getFichasHijos()
+    {
+        return $this->fichasHijos;
+    }
+
 	public function __construct()
     {
         $this->createdAt= new \DateTime();
         $this->updatedAt= new \DateTime();
+        $this->fichasHijos= new ArrayCollection();
     }
 
     /**
@@ -1467,4 +1571,6 @@ class Ficha
     {
         $this->updatedAt= new \DateTime();
     }	
+
+
 }
