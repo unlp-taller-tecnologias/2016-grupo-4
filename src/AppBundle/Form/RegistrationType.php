@@ -5,32 +5,48 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 
 class RegistrationType extends AbstractType
 {
+    private $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nombre');
         $builder->add('apellido');
-        $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
-              'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
-            )); 
-        /*if ($view['security']->isGranted('ROLE_ADMIN')):
-            $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
-              'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
-            )); 
-        endif; 
 
-        if ($view['security']->isGranted('ROLE_COORDINADOR')):
-            $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
-              'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
-            )); 
-        endif; */
+        $user = $this->tokenStorage->getToken()->getUser();
 
-        /*$builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
-        'choices'   => array('ROLE_ADMIN' => 'ADMINISTRADOR'), 'required'  => true, 
-        ));*/
+        if ((!$user) || ($user === 'anon.') || ($user->hasRole('ROLE_DATAENTRY')) )
+        {
+            //throw new \LogicException(
+
+            echo('Debe iniciar sesion para registrar un nuevo usuario.(Filtrar desde la ruta)');
+
+        }else
+        {
+            
+//die($user);
+            if ($user->hasRole('ROLE_ADMIN')) {
+                $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
+                    'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
+                ));     
+            } else{
+                if ($user->hasRole('ROLE_COORDINADOR')) {
+                    $builder->add('rol', 'choice', array('label' => 'Rol', 
+                        'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY'), 'required'  => true, 
+                    ));     
+                }  
+            }
+        }    
     }
 
     public function getParent()

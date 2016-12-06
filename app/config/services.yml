@@ -9,5 +9,6 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     app.form.registration:
         class: AppBundle\Form\RegistrationType
+        arguments: ['@security.token_storage']
         tags:
             - { name: form.type, alias: app_user_registration }

@@ -117,8 +117,25 @@ class User extends BaseUser
         parent::addRole($rol);
     }
 
+    /**
+     * Never use this to check if this user has access to anything!
+     *
+     * Use the SecurityContext, or an implementation of AccessDecisionManager
+     * instead, e.g.
+     *
+     *         $securityContext->isGranted('ROLE_USER');
+     *
+     * @param string $role
+     *
+     * @return boolean
+     */
+
+    public function hasRole($rol) {
+        return parent::hasRole($rol);
+    }
+
     public function hasRol() {
-        $rol='';
+        $rol = '';
         return parent::hasRole($rol);
     }
 
