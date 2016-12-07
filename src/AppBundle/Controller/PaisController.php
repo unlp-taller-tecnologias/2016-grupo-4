@@ -40,6 +40,20 @@ class PaisController extends Controller
     public function newAction(Request $request)
     {
         $pais = new Pais();
+				
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();			
+				
+		$pais->setUsuarioModificacion($nombreUsuario);
+		$pais->setUsuarioCreacion($nombreUsuario);
+		
+		
+		
         $form = $this->createForm('AppBundle\Form\PaisType', $pais);
         $form->handleRequest($request);
 
@@ -81,6 +95,17 @@ class PaisController extends Controller
      */
     public function editAction(Request $request, Pais $pais)
     {
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();
+
+		$pais->setUsuarioModificacion($nombreUsuario);
+		
+		
         $deleteForm = $this->createDeleteForm($pais);
         $editForm = $this->createForm('AppBundle\Form\PaisType', $pais);
         $editForm->handleRequest($request);

@@ -46,6 +46,18 @@ class UnidadCarga
     protected $updatedAt;
 		
 	/**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $usuarioCreacion;	
+
+
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $usuarioModificacion;
+	
+		
+	/**
     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="unidades")
     * @ORM\JoinTable(name="unidades_users")
     **/
@@ -117,9 +129,34 @@ class UnidadCarga
     {
         return $this->localidad;
     }
-	
-	
+		
     /**
+     * Get localidad
+     *
+     * @return string 
+     */
+	public function getUsuarioCreacion()
+    {
+        return $this->usuarioCreacion;
+    }
+	
+	public function setUsuarioCreacion($user)
+    {
+        $this->usuarioCreacion = $user;
+    }
+	
+	
+	public function getUsuarioModificacion()
+    {
+        return $this->usuarioModificacion;
+    }
+	
+	public function setUsuarioModificacion($user)
+    {
+        $this->usuarioModificacion = $user;
+    }
+
+	/**
      * @ORM\PreUpdate()
      */
     public function preUpdate()
@@ -131,5 +168,4 @@ class UnidadCarga
     {
         return $this->nombre;
     }
-	
 }

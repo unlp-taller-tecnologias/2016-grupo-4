@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\UnidadCarga;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Unidadcarga controller.
@@ -21,9 +22,8 @@ class UnidadCargaController extends Controller
      * @Method("GET")
      */
     public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
+	{
+		$em = $this->getDoctrine()->getManager();
         $unidadCargas = $em->getRepository('AppBundle:UnidadCarga')->findAll();
 
         return $this->render('unidadcarga/index.html.twig', array(
@@ -40,7 +40,19 @@ class UnidadCargaController extends Controller
     public function newAction(Request $request)
     {
         $unidadCarga = new Unidadcarga();
-        $form = $this->createForm('AppBundle\Form\UnidadCargaType', $unidadCarga);
+		
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getUsername();		
+
+		
+		$unidadCarga->setUsuarioModificacion($nombreUsuario);
+		$unidadCarga->setUsuarioCreacion($nombreUsuario);
+		$form = $this->createForm('AppBundle\Form\UnidadCargaType', $unidadCarga);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -81,6 +93,19 @@ class UnidadCargaController extends Controller
      */
     public function editAction(Request $request, UnidadCarga $unidadCarga)
     {
+		//seteo el usuario que modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();
+
+		if ($user == "anon")	
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getUsername();
+
+		$unidadCarga->setUsuarioModificacion($nombreUsuario);
+		
+		
+		
         $deleteForm = $this->createDeleteForm($unidadCarga);
         $editForm = $this->createForm('AppBundle\Form\UnidadCargaType', $unidadCarga);
         $editForm->handleRequest($request);

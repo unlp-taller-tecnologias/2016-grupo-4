@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Paciente;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+// use Symfony\Component\Console\Command\Command;
 
 /**
  * Paciente controller.
@@ -40,6 +42,21 @@ class PacienteController extends Controller
     public function newAction(Request $request)
     {
         $paciente = new Paciente();
+	
+			
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();			
+			
+		$paciente->setUsuarioModificacion($nombreUsuario);
+		$paciente->setUsuarioCreacion($nombreUsuario);
+		
+		
+	
         $form = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $form->handleRequest($request);
 
@@ -81,6 +98,17 @@ class PacienteController extends Controller
      */
     public function editAction(Request $request, Paciente $paciente)
     {
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();
+	
+		$paciente->setUsuarioModificacion($nombreUsuario);
+		
+		
         $deleteForm = $this->createDeleteForm($paciente);
         $editForm = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $editForm->handleRequest($request);
@@ -108,12 +136,13 @@ class PacienteController extends Controller
     {
         $form = $this->createDeleteForm($paciente);
         $form->handleRequest($request);
+		// $dialog = $this->getHelperSet()->get('dialog');
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($paciente);
-            $em->flush($paciente);
-        }
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($paciente);
+			$em->flush($paciente);
+		}
 
         return $this->redirectToRoute('paciente_index');
     }

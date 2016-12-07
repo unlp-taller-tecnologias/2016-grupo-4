@@ -130,6 +130,19 @@ class Embarazo
     protected $updatedAt;
 	
 	
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $usuarioCreacion;	
+
+
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $usuarioModificacion;
+	
+	
+	
     /**
      * Get id
      *
@@ -495,4 +508,30 @@ class Embarazo
     {
         return 'hola'; //$this->id; después se setea solo
     }
+	
+	
+	public function getUsuarioCreacion()
+    {
+        return $this->usuarioCreacion;
+    }
+	
+	public function setUsuarioCreacion($user)
+    {
+        $this->usuarioCreacion = $user;
+    }
+	
+	
+	public function getUsuarioModificacion()
+    {
+        return $this->usuarioModificacion;
+    }
+	
+	public function setUsuarioModificacion($user)
+    {
+        $this->usuarioModificacion = $user;
+    }
+	
+	
+		
+	
 }

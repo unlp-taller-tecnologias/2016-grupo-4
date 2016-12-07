@@ -40,6 +40,20 @@ class TipoDocumentoController extends Controller
     public function newAction(Request $request)
     {
         $tipoDocumento = new Tipodocumento();
+		
+				
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();			
+		
+		$tipoDocumento->setUsuarioModificacion($nombreUsuario);
+		$tipoDocumento->setUsuarioCreacion($nombreUsuario);
+		
+			
         $form = $this->createForm('AppBundle\Form\TipoDocumentoType', $tipoDocumento);
         $form->handleRequest($request);
 
@@ -81,6 +95,17 @@ class TipoDocumentoController extends Controller
      */
     public function editAction(Request $request, TipoDocumento $tipoDocumento)
     {
+		        		
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();
+		
+		$tipoDocumento->setUsuarioModificacion($nombreUsuario);
+		
+		
         $deleteForm = $this->createDeleteForm($tipoDocumento);
         $editForm = $this->createForm('AppBundle\Form\TipoDocumentoType', $tipoDocumento);
         $editForm->handleRequest($request);

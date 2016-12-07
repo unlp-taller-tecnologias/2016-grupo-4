@@ -107,8 +107,19 @@ class FichaHijo
      * @ORM\Column(type="datetime")
      */
     protected $updatedAt;
-		
-	
+
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $usuarioCreacion;	
+
+
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
+
+	protected $usuarioModificacion;
+
     /**
      * Get id
      *
@@ -382,9 +393,29 @@ class FichaHijo
     /**
      * @ORM\PreUpdate()
      */
-    public function preUpdate()
+
+	public function preUpdate()
     {
         $this->updatedAt= new \DateTime();
-    }	
+    }
+
+	public function getUsuarioCreacion()
+    {
+        return $this->usuarioCreacion;
+    }
 	
+	public function setUsuarioCreacion($user)
+    {
+        $this->usuarioCreacion = $user;
+    }
+
+	public function getUsuarioModificacion()
+    {
+        return $this->usuarioModificacion;
+    }
+	
+	public function setUsuarioModificacion($user)
+    {
+        $this->usuarioModificacion = $user;
+    }
 }

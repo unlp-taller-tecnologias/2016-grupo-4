@@ -40,6 +40,21 @@ class ProvinciaController extends Controller
     public function newAction(Request $request)
     {
         $provincia = new Provincia();
+		
+				
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();			
+				
+		$provincia->setUsuarioModificacion($nombreUsuario);
+		$provincia->setUsuarioCreacion($nombreUsuario);
+		
+		
+		
         $form = $this->createForm('AppBundle\Form\ProvinciaType', $provincia);
         $form->handleRequest($request);
 
@@ -81,7 +96,18 @@ class ProvinciaController extends Controller
      */
     public function editAction(Request $request, Provincia $provincia)
     {
-        $deleteForm = $this->createDeleteForm($provincia);
+        		
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();
+		
+		$provincia->setUsuarioModificacion($nombreUsuario);
+		
+		
+		$deleteForm = $this->createDeleteForm($provincia);
         $editForm = $this->createForm('AppBundle\Form\ProvinciaType', $provincia);
         $editForm->handleRequest($request);
 

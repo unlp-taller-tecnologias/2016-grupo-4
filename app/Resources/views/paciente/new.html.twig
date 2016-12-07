@@ -1,16 +1,64 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Paciente creation</h1>
+    {{ parent() }}
+	<div class="main container">
+		<div class="row well" >
+			<div class="col-md-10">
+				<div class="page-header">
+					<h3>Ingrese los datos de la paciente:</h3>
+				</div>
+                {{ form_start(form, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form'} }) }}
+<!--Nombre -->
+                <div class="form-group">
+                    {{ form_label(form.nombre, 'Nombre:') }}
+                    {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese el nombre...'} }) }}
+                    <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+                </div>
+<!--Apellido -->                
+			    <div class="form-group">
+			        {{ form_label(form.apellido, 'Apellido:') }}
+			        {{ form_widget(form.apellido, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el apellido...'}}) }}
+			        <span class="text-danger">{{ form_errors(form.apellido) }}</span>
+			    </div>
+<!--Tipo de documento -->
+			    <div class="form-group">
+			        {{ form_label(form.tipoDocumento, 'Tipo de documento:') }}
+			        {{ form_widget(form.tipoDocumento, {'attr': {'class': 'form-control', 'placeholder' : 'Seleccione..'}}) }}
+			        <span class="text-danger">{{ form_errors(form.tipoDocumento) }}</span>
+			    </div>
+<!--Numero de documento-->
+			    <div class="form-group">
+			        {{ form_label(form.numeroDocumento, 'Numero de documento:') }}
+			        {{ form_widget(form.numeroDocumento, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el numero...'}}) }}
+			        <span class="text-danger">{{ form_errors(form.numeroDocumento) }}</span>
+			    </div>
+<!--Fecha de nacimiento-->
+			    <div class="form-group">
+			        {{ form_label(form.fechaNacimiento, 'Fecha de nacimiento:') }}
+			        {{ form_widget(form.fechaNacimiento, {'attr': {'class': 'form-control'}}) }}
+			        <span class="text-danger">{{ form_errors(form.fechaNacimiento) }}</span>
+			    </div>
+<!--Nacionalidad-->
+			    <div class="form-group">
+			        {{ form_label(form.nacionalidad, 'Nacionalidad:') }}
+			        {{ form_widget(form.nacionalidad, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese la nacionalidad...'}}) }}
+			        <span class="text-danger">{{ form_errors(form.nacionalidad) }}</span>
+			    </div>
+<!--Unidad de carga-->
+				<div class="form-group">
+					<!-- {{ form_label(form.unidadCarga) }} -->
+					{{ form_widget(form.unidadCarga, { 'attr' : {'hidden': 'hidden'}}) }}
+					<span class="text-danger">{{ form_errors(form.unidadCarga) }}</span>
+				</div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('paciente_index') }}">Back to the list</a>
-        </li>
-    </ul>
+		    <p>
+		        {{ form_widget(form.guardar, {'label' : 'Crear paciente', 'attr': {'class': 'btn btn-success'}}) }}
+		        {{ form_widget(form.cancelar, {'label' : 'Cancelar', 'attr': {'class': 'btn btn-danger'}}) }}
+		    </p>                
+        
+                {{ form_end(form) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

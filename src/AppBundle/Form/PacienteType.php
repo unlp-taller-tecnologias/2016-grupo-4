@@ -13,7 +13,14 @@ class PacienteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numeroDocumento')->add('apellido')->add('nombre')->add('fechaNacimiento')->add('pais')->add('tipoDocumento')->add('unidadCarga')        ;
+        $builder->add('nombre', 'text')
+		->add('apellido')
+		->add('tipoDocumento')
+		->add('numeroDocumento', 'number', array('label' => 'Numero de documento'))
+		->add('fechaNacimiento', 'birthday', array('widget' => 'single_text', 'label' => 'Fecha de nacimiento'))
+		->add('nacionalidad')
+		->add('unidadCarga')
+		->add('guardar', 'submit');
     }
     
     /**

@@ -42,6 +42,20 @@ class FichaController extends Controller
     public function newAction(Request $request)
     {
         $ficha = new Ficha();
+		
+				
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();			
+				
+		$ficha->setUsuarioModificacion($nombreUsuario);
+		$ficha->setUsuarioCreacion($nombreUsuario);
+				
+		
         $form = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $form->handleRequest($request);
         $hijo = new FichaHijo();
@@ -86,6 +100,17 @@ class FichaController extends Controller
      */
     public function editAction(Request $request, Ficha $ficha)
     {
+						//seteo el usuario que modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();
+	
+		$ficha->setUsuarioModificacion($nombreUsuario);
+		
         $deleteForm = $this->createDeleteForm($ficha);
         $editForm = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $editForm->handleRequest($request);

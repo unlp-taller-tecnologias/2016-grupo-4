@@ -1,33 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Unidadcarga</h1>
-
+      <!--overview start-->
+      <div class="row">
+        <div class="col-lg-12">
+	<h3 class="page-header"><i class="fa fa-folder-open-o" aria-hidden="true"></i> Unidades de Carga </h3>
+	<a class="btn btn-primary" href="{{ path('unidadcarga_index') }}" title="Volver"><i class="fa fa fa-reply-all" aria-hidden="true"></i>  Volver</a>
     <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ unidadCarga.id }}</td>
-            </tr>
+        <thead>
             <tr>
                 <th>Nombre</th>
-                <td>{{ unidadCarga.nombre }}</td>
+                <th>Localidad</th>				
+                <th></th>
             </tr>
-            
-        </tbody>
-    </table>
+        </thead>
+        <tbody>
+			<tr>
+				<td> {{ unidadCarga.nombre }} </td>
+				<td> {{ unidadCarga.localidad }} </td>
+                <td>
+                    <ul>
+                        <li>
+							<a href="{{ path('unidadcarga_edit', { 'id': unidadCarga.id }) }}">editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+		</tbody>
+	</table>
 
-    <ul>
-        <li>
-            <a href="{{ path('unidadcarga_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('unidadcarga_edit', { 'id': unidadCarga.id }) }}">Edit</a>
-        </li>
-        <li>
+<!-- <ul>
+		<li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <div class="row">
+					<div class="col-lg-12">
+			
+					<input type="submit" class="btn btn-danger" value="Eliminar" />
+
+
+					<br>
+				</div>  
+			</div>				
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul> -->
 {% endblock %}
