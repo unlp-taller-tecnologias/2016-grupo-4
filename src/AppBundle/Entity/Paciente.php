@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Paciente
@@ -11,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="paciente")
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity("numeroDocumento", message="Ya existe una paciente con el mismo documento.")
  */
 class Paciente
 {
@@ -52,6 +54,7 @@ class Paciente
      *
      * @ORM\Column(name="fechaNacimiento", type="date")
 	 * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $fechaNacimiento;
 
@@ -60,7 +63,6 @@ class Paciente
 	*
 	*@ORM\Column(name="nacionalidad", type="string", length=50)
 	* @Assert\NotBlank()
-
 	*/
 	protected $nacionalidad;
 
@@ -68,14 +70,15 @@ class Paciente
 	* @var integer
 	*
 	* @ORM\ManyToOne(targetEntity="TipoDocumento")
+	* @Assert\NotBlank()	
 	*/
+	
 	protected $tipoDocumento;	
 	
-
-
 	/**
 	* @ORM\ManyToOne(targetEntity="UnidadCarga")
 	*/
+	
 	protected $unidadCarga;	
 
 	/**

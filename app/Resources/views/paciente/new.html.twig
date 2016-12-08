@@ -24,7 +24,7 @@
 <!--Tipo de documento -->
 			    <div class="form-group">
 			        {{ form_label(form.tipoDocumento, 'Tipo de documento:') }}
-			        {{ form_widget(form.tipoDocumento, {'attr': {'class': 'form-control', 'placeholder' : 'Seleccione..'}}) }}
+			        {{ form_widget(form.tipoDocumento, {'attr': {'class': 'form-control'}}) }}
 			        <span class="text-danger">{{ form_errors(form.tipoDocumento) }}</span>
 			    </div>
 <!--Numero de documento-->
@@ -45,18 +45,10 @@
 			        {{ form_widget(form.nacionalidad, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese la nacionalidad...'}}) }}
 			        <span class="text-danger">{{ form_errors(form.nacionalidad) }}</span>
 			    </div>
-<!--Unidad de carga-->
-				<div class="form-group">
-					<!-- {{ form_label(form.unidadCarga) }} -->
-					{{ form_widget(form.unidadCarga, { 'attr' : {'hidden': 'hidden'}}) }}
-					<span class="text-danger">{{ form_errors(form.unidadCarga) }}</span>
-				</div>
-
-		    <p>
-		        {{ form_widget(form.guardar, {'label' : 'Crear paciente', 'attr': {'class': 'btn btn-success'}}) }}
-		        {{ form_widget(form.cancelar, {'label' : 'Cancelar', 'attr': {'class': 'btn btn-danger'}}) }}
-		    </p>                
-        
+<!--Unidad de carga lo seteo en el controlador -->
+				
+				{{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }}
+				{{ form_widget(form.cancel, {'attr': {'class': 'btn btn-info'}}) }}       
                 {{ form_end(form) }}
 			</div>
 		</div>

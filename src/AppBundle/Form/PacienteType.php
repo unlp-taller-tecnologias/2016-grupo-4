@@ -5,6 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PacienteType extends AbstractType
 {
@@ -15,12 +17,14 @@ class PacienteType extends AbstractType
     {
         $builder->add('nombre', 'text')
 		->add('apellido')
-		->add('tipoDocumento')
+		->add('tipoDocumento', null, array('placeholder' => 'Seleccione el tipo...',))
 		->add('numeroDocumento', 'number', array('label' => 'Numero de documento'))
 		->add('fechaNacimiento', 'birthday', array('widget' => 'single_text', 'label' => 'Fecha de nacimiento'))
 		->add('nacionalidad')
-		->add('unidadCarga')
-		->add('guardar', 'submit');
+		->add('unidadCarga', 'hidden', array ('attr' => array('disabled' => 'disabled')))
+		->add('save', SubmitType::class, array('label' => 'Guardar'))
+		->add('cancel', SubmitType::class, array('label' => 'Cancelar'))
+		->getForm();
     }
     
     /**

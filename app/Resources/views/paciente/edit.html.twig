@@ -1,21 +1,54 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Paciente edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a  class="btn btn-success" href="{{ path('paciente_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    {{ parent() }}
+	<div class="main container">
+		<div class="row well" >
+			<div class="col-md-10">
+				<div class="page-header">
+					<h1>Editar paciente:</h1>
+				</div>
+                {{ form_start(edit_form, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form'} }) }}
+<!--Nombre -->
+                <div class="form-group">
+                    {{ form_label(edit_form.nombre, 'Nombre:') }}
+                    {{ form_widget(edit_form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese el nombre...'} }) }}
+                    <span class="text-danger">{{ form_errors(edit_form.nombre) }}</span>
+                </div>
+<!--Apellido -->                
+			    <div class="form-group">
+			        {{ form_label(edit_form.apellido, 'Apellido:') }}
+			        {{ form_widget(edit_form.apellido, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el apellido...'}}) }}
+			        <span class="text-danger">{{ form_errors(edit_form.apellido) }}</span>
+			    </div>
+<!--Tipo de documento -->
+			    <div class="form-group">
+			        {{ form_label(edit_form.tipoDocumento, 'Tipo de documento:') }}
+			        {{ form_widget(edit_form.tipoDocumento, {'attr': {'class': 'form-control'}}) }}
+			        <span class="text-danger">{{ form_errors(edit_form.tipoDocumento) }}</span>
+			    </div>
+<!--Numero de documento-->
+			    <div class="form-group">
+			        {{ form_label(edit_form.numeroDocumento, 'Numero de documento:') }}
+			        {{ form_widget(edit_form.numeroDocumento, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el numero...'}}) }}
+			        <span class="text-danger">{{ form_errors(edit_form.numeroDocumento) }}</span>
+			    </div>
+<!--Fecha de nacimiento-->
+			    <div class="form-group">
+			        {{ form_label(edit_form.fechaNacimiento, 'Fecha de nacimiento:') }}
+			        {{ form_widget(edit_form.fechaNacimiento, {'attr': {'class': 'form-control'}}) }}
+			        <span class="text-danger">{{ form_errors(edit_form.fechaNacimiento) }}</span>
+			    </div>
+<!--Nacionalidad-->
+			    <div class="form-group">
+			        {{ form_label(edit_form.nacionalidad, 'Nacionalidad:') }}
+			        {{ form_widget(edit_form.nacionalidad, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese la nacionalidad...'}}) }}
+			        <span class="text-danger">{{ form_errors(edit_form.nacionalidad) }}</span>
+			    </div>
+				{{ form_widget(edit_form.save, {'attr': {'class': 'btn btn-success'}}) }}
+				{{ form_widget(edit_form.cancel, {'attr': {'class': 'btn btn-info'}}) }}
+                {{ form_end(edit_form) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}
