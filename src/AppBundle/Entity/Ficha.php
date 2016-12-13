@@ -28,6 +28,7 @@ class Ficha
      * @var date
      *
      * @ORM\Column(name="fechaRegistro", type="date", nullable=false)
+     * @Assert\Date(message = "El valor ingresado no es una fecha")
      */
 
     private $fechaRegistro;

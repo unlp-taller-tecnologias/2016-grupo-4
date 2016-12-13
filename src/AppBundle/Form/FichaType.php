@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class FichaType extends AbstractType
 {
@@ -17,6 +18,7 @@ class FichaType extends AbstractType
         $builder
             ->add('tas')
             ->add('fechaRegistro', 'birthday')
+            ->add('fechaRegistro', DateType::class, array('required' => true,'widget' => 'single_text','attr' => array('class' => 'form-control')))
             ->add('tad')
             ->add('talla')
             ->add('peso')
