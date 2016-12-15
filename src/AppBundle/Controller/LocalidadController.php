@@ -40,6 +40,20 @@ class LocalidadController extends Controller
     public function newAction(Request $request)
     {
         $localidad = new Localidad();
+		
+		
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();			
+			
+		$localidad->setUsuarioModificacion($nombreUsuario);
+		$localidad->setUsuarioCreacion($nombreUsuario);
+		
+				
         $form = $this->createForm('AppBundle\Form\LocalidadType', $localidad);
         $form->handleRequest($request);
 
@@ -81,6 +95,16 @@ class LocalidadController extends Controller
      */
     public function editAction(Request $request, Localidad $localidad)
     {
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();
+	
+		$localidad->setUsuarioModificacion($nombreUsuario);
+		
+		
         $deleteForm = $this->createDeleteForm($localidad);
         $editForm = $this->createForm('AppBundle\Form\LocalidadType', $localidad);
         $editForm->handleRequest($request);

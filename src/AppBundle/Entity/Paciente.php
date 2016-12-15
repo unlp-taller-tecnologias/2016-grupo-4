@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Paciente
@@ -10,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="paciente")
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity("numeroDocumento", message="Ya existe una paciente con el mismo documento.")
  */
 class Paciente
 {
@@ -26,6 +29,7 @@ class Paciente
      * @var int
      *
      * @ORM\Column(name="numeroDocumento", type="bigint", unique=true)
+	 * @Assert\NotBlank()
      */
     private $numeroDocumento;
 
@@ -33,6 +37,7 @@ class Paciente
      * @var string
      *
      * @ORM\Column(name="apellido", type="string", length=50)
+	 * @Assert\NotBlank()
      */
     private $apellido;
 
@@ -40,31 +45,40 @@ class Paciente
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=50)
+	 * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="fechaNacimiento", type="datetime")
+     * @ORM\Column(name="fechaNacimiento", type="date")
+	 * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $fechaNacimiento;
 
 	/**
-	* @ORM\ManyToOne(targetEntity="Pais")
+	* @var string
+	*
+	*@ORM\Column(name="nacionalidad", type="string", length=50)
+	* @Assert\NotBlank()
 	*/
-	protected $pais;
+	protected $nacionalidad;
 
 	/**
+	* @var integer
+	*
 	* @ORM\ManyToOne(targetEntity="TipoDocumento")
+	* @Assert\NotBlank()	
 	*/
-	protected $tipoDocumento;
 	
-	
+	protected $tipoDocumento;	
 	
 	/**
 	* @ORM\ManyToOne(targetEntity="UnidadCarga")
 	*/
+	
 	protected $unidadCarga;	
 
 	/**
@@ -77,13 +91,25 @@ class Paciente
      */
     protected $updatedAt;
 		
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $usuarioCreacion;
+
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $usuarioModificacion;
 	
+
 	/**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
+
+
+	public function getId()
     {
         return $this->id;
     }
@@ -181,33 +207,38 @@ class Paciente
     }
 	
 		 /**
-     * Set pais
+     * Set nacionalidad
+
      *
-     * @param string $pais
-     * @return Pais
+     * @param string $nacionalidad
+     * @return nacionalidad
+
      */
-    public function setPais($pais)
+    public function setNacionalidad($nacionalidad)
     {
-        $this->pais = $pais;
+        $this->nacionalidad = $nacionalidad;
+
 
         return $this;
     }
 
     /**
-     * Get pais
+     * Get nacionalidad
+
      *
      * @return string 
      */
-    public function getPais()
+    public function getNacionalidad()
     {
-        return $this->pais;
+        return $this->nacionalidad;
     }
 	
 	/**
      * Set tipoDocumento
      *
-     * @param string $pais
-     * @return Pais
+     * @param string $tipoDocumento
+     * @return tipoDocumento
+
      */
     public function setTipoDocumento($tipoDocumento)
     {
@@ -269,6 +300,25 @@ class Paciente
     {
         return $this->nombre;
     }
+
+	public function getUsuarioCreacion()
+    {
+        return $this->usuarioCreacion;
+    }
+	
+	public function setUsuarioCreacion($user)
+    {
+        $this->usuarioCreacion = $user;
+    }
 	
 	
+	public function getUsuarioModificacion()
+    {
+        return $this->usuarioModificacion;
+    }
+	
+	public function setUsuarioModificacion($user)
+    {
+        $this->usuarioModificacion = $user;
+    }
 }

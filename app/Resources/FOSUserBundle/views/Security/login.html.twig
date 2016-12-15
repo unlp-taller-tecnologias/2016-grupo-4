@@ -30,7 +30,7 @@
     		<label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
     	
     	
-            <span class="pull-right"> <a href="#"> ¿Olvidó su contraseña?</a></span>
+            <span class="pull-right"> <a href="{{ path('fos_user_resetting_request') }}"> ¿Olvidó su contraseña?</a></span>
       </label>
 
     	<input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />

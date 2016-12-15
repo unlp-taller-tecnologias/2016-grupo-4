@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Paciente;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * Paciente controller.
@@ -40,9 +42,26 @@ class PacienteController extends Controller
     public function newAction(Request $request)
     {
         $paciente = new Paciente();
+	
+			
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();			
+			
+		$paciente->setUsuarioModificacion($nombreUsuario);
+		$paciente->setUsuarioCreacion($nombreUsuario);
+		
+		
+	
         $form = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $form->handleRequest($request);
-
+		if($form->isSubmitted() && $form->get('cancel')->isClicked()){
+			return $this->redirectToRoute('paciente_index', array('id' => $paciente->getId()));
+		}
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($paciente);
@@ -81,14 +100,26 @@ class PacienteController extends Controller
      */
     public function editAction(Request $request, Paciente $paciente)
     {
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();
+	
+		$paciente->setUsuarioModificacion($nombreUsuario);
+		
+		
         $deleteForm = $this->createDeleteForm($paciente);
         $editForm = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $editForm->handleRequest($request);
-
+		if($editForm->get('cancel')->isClicked()){
+			return $this->redirectToRoute('paciente_index', array('id' => $paciente->getId()));
+		}
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('paciente_edit', array('id' => $paciente->getId()));
+			$this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('paciente_show', array('id' => $paciente->getId()));
         }
 
         return $this->render('paciente/edit.html.twig', array(
@@ -102,18 +133,18 @@ class PacienteController extends Controller
      * Deletes a paciente entity.
      *
      * @Route("/{id}", name="paciente_delete")
-     * @Method("DELETE")
+	 * @Method({"DELETE", "POST"})
      */
     public function deleteAction(Request $request, Paciente $paciente)
     {
-        $form = $this->createDeleteForm($paciente);
+		// exit("nada");
+		$form = $this->createDeleteForm($paciente);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($paciente);
-            $em->flush($paciente);
-        }
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($paciente);
+			$em->flush($paciente);
+		}
 
         return $this->redirectToRoute('paciente_index');
     }
@@ -130,6 +161,8 @@ class PacienteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('paciente_delete', array('id' => $paciente->getId())))
             ->setMethod('DELETE')
+			->add('delete', SubmitType::class, array('label' => 'Eliminar', 
+			'attr' => array('onClick' => 'javascript: return confirm("¿Estas seguro?");')))
             ->getForm()
         ;
     }

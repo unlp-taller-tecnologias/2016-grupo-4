@@ -18,6 +18,7 @@ class DefaultController extends Controller
             return $this->redirect($ruta);
             
         }
+
         /*return $this->render('FOSUserBundle::Security/login.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         )); 

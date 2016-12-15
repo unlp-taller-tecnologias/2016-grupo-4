@@ -31,7 +31,8 @@ class Ficha
      * @Assert\Date(message = "El valor ingresado no es una fecha")
      */
 
-    private $fechaRegistro;
+	private $fechaRegistro;
+
     /**
      * @var int
      *
@@ -40,8 +41,8 @@ class Ficha
      * @Assert\LessThan(250)  
      */
     private $tas;
-    
-    /**
+
+	/**
      * @var int
      *
      * @ORM\Column(name="tad", type="integer", nullable=true)
@@ -431,9 +432,19 @@ class Ficha
      * @ORM\Column(type="datetime")
      */
     protected $updatedAt;
+		
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
 
-    protected $fichasHijos;
+	protected $usuarioCreacion;
 
+	/**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $usuarioModificacion;
+
+	protected $fichasHijos;
 
     /**
      * Get id
@@ -1534,8 +1545,6 @@ class Ficha
     {
         return $this->embarazo;
     }
-
-
     /**
      * Set embarazo
      *
@@ -1549,8 +1558,7 @@ class Ficha
         return $this;
     }
 
-	
-      /**
+	/**
      * Get fichasHijos
      */
     public function getFichasHijos()
@@ -1572,6 +1580,24 @@ class Ficha
     {
         $this->updatedAt= new \DateTime();
     }	
-
-
+	public function getUsuarioCreacion()
+    {
+        return $this->usuarioCreacion;
+    }
+	
+	public function setUsuarioCreacion($user)
+    {
+        $this->usuarioCreacion = $user;
+    }
+	
+	
+	public function getUsuarioModificacion()
+    {
+        return $this->usuarioModificacion;
+    }
+	
+	public function setUsuarioModificacion($user)
+    {
+        $this->usuarioModificacion = $user;
+    }
 }

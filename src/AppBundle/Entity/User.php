@@ -135,10 +135,7 @@ class User extends BaseUser
     }
 
     public function hasRol() {
-        $rol = '';
-        return parent::hasRole($rol);
+		$rol = '';
+		return parent::hasRole($rol);
     }
-
-
-    
 }

@@ -1,45 +1,61 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Paciente</h1>
+    {{ parent() }}
+	<div class="main container">
+		<div class="row well" >
+			<div class="col-md-10">
+				<div class="page-header">
+					<h3>Paciente:</h3>
+				</div>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Nombre:</th>
+							<td>{{ paciente.nombre }}</td>
+						</tr>
+						<tr>
+							<th>Apellido:</th>
+							<td>{{ paciente.apellido }}</td>
+						</tr>
+						<tr>
+							<th>Tipo de documento:</th>
+							<td>{{ paciente.tipoDocumento }}</td>
+						</tr>
+						<tr>
+							<th>Numero de documento:</th>
+							<td>{{ paciente.numeroDocumento }}</td>
+						</tr>
+						<tr>
+							<th>Fecha de nacimiento:</th>
+							<td>
+							{% if paciente.fechaNacimiento %}
+								{{ paciente.fechaNacimiento|date('d/m/Y') }}
+							{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<th>Nacionalidad:</th>
+							<td>{% if paciente.nacionalidad %}{{ paciente.nacionalidad }}{% endif %}</td>
+						</tr>
+						<tr>
+							<th>Unidad de carga:</th>
+							<td>{% if paciente.unidadCarga %}{{ paciente.unidadCarga }}{% endif %}</td>
+						</tr>
+						
+					</tbody>
+				</table>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ paciente.id }}</td>
-            </tr>
-            <tr>
-                <th>Numerodocumento</th>
-                <td>{{ paciente.numeroDocumento }}</td>
-            </tr>
-            <tr>
-                <th>Apellido</th>
-                <td>{{ paciente.apellido }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ paciente.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Fechanacimiento</th>
-                <td>{% if paciente.fechaNacimiento %}{{ paciente.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('paciente_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('paciente_edit', { 'id': paciente.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+				<ul>
+					<li>
+						{{ form_start(delete_form) }}
+							<a class="btn btn-info" href="{{ path('paciente_index') }}">Listado de pacientes</a>
+							<a class="btn btn-success" href="{{ path('paciente_edit', { 'id': paciente.id }) }}">Editar</a>
+						{{ form_widget(delete_form.delete, {'attr': {'class': 'btn btn-danger'}}) }}
+						{{ form_end(delete_form) }}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 {% endblock %}

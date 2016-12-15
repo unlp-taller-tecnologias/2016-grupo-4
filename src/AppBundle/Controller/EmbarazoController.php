@@ -40,6 +40,19 @@ class EmbarazoController extends Controller
     public function newAction(Request $request)
     {
         $embarazo = new Embarazo();
+		
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		if ($user == "anon")
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();			
+				
+		$embarazo->setUsuarioModificacion($nombreUsuario);
+		$embarazo->setUsuarioCreacion($nombreUsuario);
+		
+		
         $form = $this->createForm('AppBundle\Form\EmbarazoType', $embarazo);
         $form->handleRequest($request);
 
@@ -81,6 +94,18 @@ class EmbarazoController extends Controller
      */
     public function editAction(Request $request, Embarazo $embarazo)
     {
+		
+				//seteo el usuario que modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();
+		
+		if ($user == "anon")	
+			$nombreUsuario = "Anonimo";				
+		else
+			$nombreUsuario = $user->getNombre();
+		
+		$embarazo->setUsuarioModificacion($nombreUsuario);
+		
         $deleteForm = $this->createDeleteForm($embarazo);
         $editForm = $this->createForm('AppBundle\Form\EmbarazoType', $embarazo);
         $editForm->handleRequest($request);
