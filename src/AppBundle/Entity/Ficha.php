@@ -444,9 +444,85 @@ class Ficha
      */
     protected $usuarioModificacion;
 
+	/**
+     * @ORM\OneToMany(targetEntity="FichaHijo", mappedBy="fichasHijos", cascade={"persist"})
+     * @ORM\JoinColumn(name="ficha_id", referencedColumnName="id")
+     */
+
 	protected $fichasHijos;
 
-    /**
+	/**
+     * @ORM\ManyToOne(targetEntity="Paciente", inversedBy="fichas", cascade={"persist"})
+     * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id")
+     */
+	protected $paciente;	
+	
+	/**
+     *
+     * @ORM\Column(name="coberturaPrivado", type="boolean", nullable=true)
+     */
+	protected $coberturaPrivado;
+	/**
+     *
+     * @ORM\Column(name="coberturaObraSocial", type="boolean", nullable=true)
+     */
+	protected $coberturaObraSocial;
+	/**
+     *
+     * @ORM\Column(name="coberturaNinguna", type="boolean", nullable=true)
+     */
+	protected $coberturaNinguna;
+	/**
+     *
+     * @ORM\Column(name="medico", type="string", nullable=true)
+     */
+	protected $medico;
+	/**
+     * @var int
+     *
+     * @ORM\Column(name="numeroHijos", type="integer", nullable=true)
+     */
+	protected $numeroHijos;
+	/**
+     * @var int
+     *
+     * @ORM\Column(name="partoNormal", type="boolean", nullable=true)
+     */
+	protected $partoNormal;
+	/**
+     *
+     * @ORM\Column(name="partoPrematuro", type="boolean", nullable=true)
+     */
+	protected $partoPrematuro;
+	/**
+     * @var int
+     *
+     * @ORM\Column(name="partoCesarea", type="boolean", nullable=true)
+     */
+	protected $partoCesarea;
+	/**
+     *
+     * @ORM\Column(name="cmHie", type="boolean", nullable=true)
+     */
+	protected $cmHie;
+	/**
+     *
+     * @ORM\Column(name="cmPreclampsia", type="boolean", nullable=true)
+     */
+	protected $cmPreclampsia;
+	/**
+     *
+     * @ORM\Column(name="cmOtras", type="boolean", nullable=true)
+     */
+	protected $cmOtras;
+	/**
+     *
+     * @ORM\Column(name="cmCuales", type="string", length=255, nullable=true)
+     */
+	protected $cmCuales;
+	// hacer getters t setters
+	
+	/**
      * Get id
      *
      * @return integer 
@@ -1566,13 +1642,13 @@ class Ficha
         return $this->fichasHijos;
     }
 
-	public function __construct()
+    public function setFichasHijos($fh)
     {
-        $this->createdAt= new \DateTime();
-        $this->updatedAt= new \DateTime();
-        $this->fichasHijos= new ArrayCollection();
-    }
-
+        $this->fichasHijos->add($fh);
+		return $this;
+    }	
+	
+	
     /**
      * @ORM\PreUpdate()
      */
@@ -1600,4 +1676,164 @@ class Ficha
     {
         $this->usuarioModificacion = $user;
     }
+	
+	public function getPaciente()
+    {
+        return $this->paciente;
+    }
+	
+	public function setPaciente($paciente)
+    {
+        $this->paciente = $paciente;
+		return $this;
+    }
+		
+
+	public function getCoberturaPrivado()
+	{
+		return $this->coberturaPrivado;
+	}
+		
+	public function setCoberturaPrivado($coberturaPrivado)
+	{
+		$this->coberturaPrivado = $coberturaPrivado;
+		return $this;		
+	}
+
+	public function getCoberturaObraSocial()
+	{
+		return $this->coberturaObraSocial;
+	}
+		
+	public function setCoberturaObraSocial($coberturaObraSocial)
+	{
+		$this->coberturaObraSocial = $coberturaObraSocial;
+		return $this;		
+	}
+
+
+	public function getCoberturaNinguna()
+	{
+		return $this->coberturaNinguna;
+	}
+		
+	public function setCoberturaNinguna($coberturaNinguna)
+	{
+		$this->coberturaNinguna = $coberturaNinguna;
+		return $this;		
+	}
+
+
+	public function getMedico()
+	{
+		return $this->medico;
+	}
+		
+	public function setMedico($medico)
+	{
+		$this->medico = $medico;
+		return $this;		
+	}
+
+	public function getNumeroHijos()
+	{
+		return $this->numeroHijos;
+	}
+		
+	public function setNumeroHijos($numeroHijos)
+	{
+		$this->numeroHijos = $numeroHijos;
+		return $this;		
+	}
+
+	public function getPartoNormal()
+	{
+		return $this->partoNormal;
+	}
+		
+	public function setPartoNormal($partoNormal)
+	{
+		$this->partoNormal = $partoNormal;
+		return $this;		
+	}
+
+
+	public function getPartoPrematuro()
+	{
+		return $this->partoPrematuro;
+	}
+		
+	public function setPartoPrematuro($partoPrematuro)
+	{
+		$this->partoPrematuro = $partoPrematuro;
+		return $this;		
+	}
+
+	public function getPartoCesarea()
+	{
+		return $this->partoCesarea;
+	}
+		
+	public function setPartoCesarea($partoCesarea)
+	{
+		$this->partoCesarea = $partoCesarea;
+		return $this;		
+	}
+
+
+	public function getCmHie()
+	{
+		return $this->cmHie;
+	}
+		
+	public function setCmHie($cmHie)
+	{
+		$this->cmHie = $cmHie;
+		return $this;		
+	}
+
+
+	public function getCmPreclampsia()
+	{
+		return $this->cmPreclampsia;
+	}
+		
+	public function setCmPreclampsia($cmPreclampsia)
+	{
+		$this->cmPreclampsia = $cmPreclampsia;
+		return $this;		
+	}
+	
+
+	public function getCmOtras()
+	{
+		return $this->cmOtras;
+	}
+		
+	public function setCmOtras($cmOtras)
+	{
+		$this->cmOtras = $cmOtras;
+		return $this;		
+	}
+	
+
+	public function getCmCuales()
+	{
+		return $this->cmCuales;
+	}
+		
+	public function setCmCuales($cmCuales)
+	{
+		$this->cmCuales = $cmCuales;
+		return $this;		
+	}
+	
+
+	public function __construct()
+    {
+        $this->createdAt= new \DateTime();
+        $this->updatedAt= new \DateTime();
+        $this->fichasHijos= new ArrayCollection();
+    }
+	
 }

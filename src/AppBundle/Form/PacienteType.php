@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class PacienteType extends AbstractType
 {
@@ -15,7 +16,8 @@ class PacienteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombre', 'text')
+        $builder
+		->add('nombre', 'text')
 		->add('apellido')
 		->add('tipoDocumento', null, array('placeholder' => 'Seleccione el tipo...',))
 		->add('numeroDocumento', 'number', array('label' => 'Numero de documento'))
@@ -24,6 +26,10 @@ class PacienteType extends AbstractType
 		->add('unidadCarga', 'hidden', array ('attr' => array('disabled' => 'disabled')))
 		->add('save', SubmitType::class, array('label' => 'Guardar'))
 		->add('cancel', SubmitType::class, array('label' => 'Cancelar'))
+/* 		->add('fichas', CollectionType::class, array(
+                    'entry_type' => FichaType::class,
+                    'allow_add' => true,
+            )) */
 		->getForm();
     }
     

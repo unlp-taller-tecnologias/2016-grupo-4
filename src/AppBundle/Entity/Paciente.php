@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Paciente
@@ -80,6 +81,11 @@ class Paciente
 	*/
 	
 	protected $unidadCarga;	
+
+    /**
+     *@ORM\OneToMany(targetEntity="Ficha", mappedBy="paciente", cascade={"persist"})
+     */
+	protected $fichas;
 
 	/**
      * @ORM\Column(type="datetime")
@@ -283,12 +289,6 @@ class Paciente
     }
 
 	
-	public function __construct()
-    {
-        $this->createdAt= new \DateTime();
-        $this->updatedAt= new \DateTime();
-    }
-
     /**
      * @ORM\PreUpdate()
      */
@@ -320,5 +320,26 @@ class Paciente
 	public function setUsuarioModificacion($user)
     {
         $this->usuarioModificacion = $user;
+		return $this;
+    }
+	
+	public function getFichas()
+	{
+		return $this->fichas;		
+	}
+	
+	//agrega una ficha
+	public function setFichas($ficha)
+	{
+		$this->fichas->add($ficha);
+		return $this;
+	}
+	
+	
+	public function __construct()
+    {
+        $this->createdAt= new \DateTime();
+        $this->updatedAt= new \DateTime();
+		$this->fichas = new ArrayCollection();
     }
 }

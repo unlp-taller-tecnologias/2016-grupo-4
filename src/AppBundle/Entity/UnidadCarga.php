@@ -61,7 +61,7 @@ class UnidadCarga
     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="unidades")
     * @ORM\JoinTable(name="unidades_users")
     **/
-   public $users;
+   protected $users;
  
     /**
      * Tag constructor.

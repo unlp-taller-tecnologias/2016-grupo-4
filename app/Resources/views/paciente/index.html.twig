@@ -38,6 +38,8 @@
                                                         <li>
                                                             <a class="btn btn-info" href="{{ path('paciente_show', { 'id': paciente.id }) }}" title="Ver paciente">  Ver</a>
                                                             <a class="btn btn-success" href="{{ path('paciente_edit', { 'id': paciente.id }) }}" title="Editar paciente">  Editar</a>
+															<a class="btn btn-success" href="{{ path('ficha_add', { 'id': paciente.id }) }}" title="Agregar Ficha">  Agregar</a>
+															<a class="btn btn-success" href="{{ path('ficha_buscar', { 'id': paciente.id }) }}" title="Buscar Ficha">  Buscar</a>
                                                             <!-- <a class="btn btn-danger" href="{{ path('paciente_delete', { 'id': paciente.id }) }}" title="Eliminar paciente">  Eliminar</a> -->
                                                         </li>
                                                     </ul>

@@ -10,7 +10,10 @@
         </div>
     </div>
     <br>
+	
     {{ form_start(form, { 'attr' : {'role' : 'form'}}) }}
+
+
     <div class="row">
 		<div class="col-lg-12">
           <section class="panel">
@@ -19,16 +22,42 @@
               </header>
               <div class="panel-body">
                     <div class="form-group col-lg-4">
-                        <label>Nombre: </label>
-                       
+                        <label>Documento: {{ form.vars.value.paciente.numeroDocumento }} </label>                       
                     </div>
                     <div class="form-group col-lg-4">
-                        <label>Apellido: </label>
+                        <label>Nombre: {{ form.vars.value.paciente.nombre }} </label>                       
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Apellido: {{ form.vars.value.paciente.apellido }} </label>
                     </div>
                     <div class="form-group col-lg-4">
                         <label>Fecha:</label>
                         {{ form_widget(form.fechaRegistro, { 'attr' :{ 'class' : 'input-group date', 'data-provide' : 'datepicker'}}) }}
-                    </div>   
+                    </div> 
+					
+					<div class="form-group col-lg-4">
+                        <label>Médico:</label>
+                        {{ form_widget(form.medico) }}
+                    </div> 
+					
+					<label>Cobertura:</label>
+					<div class="form-group col-lg-4">
+					   <label>Privado:</label>
+                        {{ form_widget(form.coberturaPrivado) }}
+                    </div> 
+					
+					<div class="form-group col-lg-4">
+					   <label>Obra Social:</label>
+                        {{ form_widget(form.coberturaObraSocial) }}
+                    </div> 
+					
+					<div class="form-group col-lg-4">
+					   <label>No Posee:</label>
+                        {{ form_widget(form.coberturaNinguna) }}
+                    </div> 
+										
+					
+					
               </div>
           </section>
       </div>
@@ -365,14 +394,59 @@
 
               </div>
           </section>
+		  
+		  
+         <section class="panel">
+              <header class="panel-heading">
+                  Recien Nacido(s)
+              </header>
+              <div class="panel-body">
+                    <div class="col-lg-4">        
+                            <div class="form-group">
+								{{ form_row(form.numeroHijos) }}								
+							</div>	
+							 <label>Forma de Terminación del Embarazo: </label>
+                            <div class="form-group">
+								{{ form_row(form.partoNormal) }}								
+							</div>	
+                            <div class="form-group">
+								{{ form_row(form.partoPrematuro) }}								
+							</div>	
+                            <div class="form-group">
+								{{ form_row(form.partoCesarea) }}								
+							</div>	
+                            <div class="form-group">
+								{{ form_row(form.numeroHijos) }}								
+							</div>	
+
+							
+							
+							 <label>Complicaciones Durante el Embarazo: </label>
+                            <div class="form-group">
+								{{ form_row(form.cmHie) }}								
+							</div>	
+                            <div class="form-group">
+								{{ form_row(form.cmPreclampsia) }}								
+							</div>	
+                            <div class="form-group">
+								{{ form_row(form.cmOtras) }}								
+							</div>	
+                            <div class="form-group">
+								{{ form_row(form.cmCuales) }}								
+							</div>	
+                    </div>
   
-   
+
+              </div>
+          </section>
           <div class="row">
                 <div class="col-lg-12">
                     <button type="submit" class="btn btn-info btn-lg btn-block">Agregar recien nacido</button>
                     <br>
                 </div>  
             </div>
+			
+	
       </div>
     </div>
     <div class="row">

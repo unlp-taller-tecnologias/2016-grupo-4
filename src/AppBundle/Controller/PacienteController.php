@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Paciente;
+use AppBundle\Entity\Ficha;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -41,21 +42,22 @@ class PacienteController extends Controller
      */
     public function newAction(Request $request)
     {
-        $paciente = new Paciente();
-	
-			
-		//seteo el usuario que creó y modificó
-		
+        $paciente = new Paciente();		
 		$user = $this->container->get('security.context')->getToken()->getUser();	
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
 			$nombreUsuario = $user->getNombre();			
-			
+		
 		$paciente->setUsuarioModificacion($nombreUsuario);
 		$paciente->setUsuarioCreacion($nombreUsuario);
+	
+/* 		$ficha = new Ficha();
+		$ficha ->setUsuarioModificacion($nombreUsuario);
+		$ficha ->setUsuarioCreacion($nombreUsuario);	
 		
-		
+		$paciente ->setFichas($ficha);
+		$ficha->setPaciente($paciente);		 */
 	
         $form = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $form->handleRequest($request);
@@ -166,4 +168,5 @@ class PacienteController extends Controller
             ->getForm()
         ;
     }
+	
 }

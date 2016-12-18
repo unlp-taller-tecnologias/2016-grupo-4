@@ -4,9 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ficha;
 use AppBundle\Entity\FichaHijo;
+use AppBundle\Entity\Paciente;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Ficha controller.
@@ -41,8 +44,7 @@ class FichaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $ficha = new Ficha();
-		
+		$ficha = new Ficha();	
 				
 		//seteo el usuario que creó y modificó
 		
@@ -54,7 +56,14 @@ class FichaController extends Controller
 				
 		$ficha->setUsuarioModificacion($nombreUsuario);
 		$ficha->setUsuarioCreacion($nombreUsuario);
-				
+			
+
+		$p = $this->getDoctrine()
+        ->getRepository('AppBundle:Paciente')
+        ->find('1');		
+		
+		$ficha->setPaciente($p);
+		
 		
         $form = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $form->handleRequest($request);
@@ -118,7 +127,7 @@ class FichaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('ficha_edit', array('id' => $ficha->getId()));
+            return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
         return $this->render('ficha/edit.html.twig', array(
@@ -163,4 +172,67 @@ class FichaController extends Controller
             ->getForm()
         ;
     }
+
+	/**
+	*@Route("/add/{id}", name="ficha_add")
+	*@Method({"GET", "POST"})
+	*/	
+	public function addFichaAction(Request $request, $id)
+	{	
+		$ficha = new Ficha();	
+				
+		//seteo el usuario que creó y modificó
+		
+		$user = $this->container->get('security.context')->getToken()->getUser();	
+		$nombreUsuario = $user->getNombre();
+
+				
+		$ficha->setUsuarioModificacion($nombreUsuario);
+		$ficha->setUsuarioCreacion($nombreUsuario);
+			
+	
+		//seteo el paciente
+		$p = $this->getDoctrine()
+        ->getRepository('AppBundle:Paciente')
+        ->find($id);		
+		
+		$p->setFichas($ficha);
+		$ficha->setPaciente($p);
+		
+        $form = $this->createForm('AppBundle\Form\FichaType', $ficha);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+			
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ficha);
+            $em->flush($ficha);
+
+            return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
+        }
+
+        return $this->render('ficha/new.html.twig', array(
+            'ficha' => $ficha,
+            'form' => $form->createView(),
+        ));
+	}
+	
+	/**
+	* @Route("/buscar/{id}", name="ficha_buscar")
+	*@Method({"GET", "POST"})
+	*/	
+	
+	public function getFichasByPaciente($id)
+	{
+		$fichas = new ArrayCollection();		
+		$em = $this->getDoctrine()->getManager();        
+		$paciente = $em->getRepository('AppBundle:Paciente')->findById($id);
+		$paciente = $paciente[0];
+		$fichas = $paciente->getFichas();
+        return $this->render('ficha/index.html.twig', array(
+            'fichas' => $fichas,
+        ));	
+		
+	}
+	
 }

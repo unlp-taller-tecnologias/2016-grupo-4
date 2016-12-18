@@ -18,7 +18,7 @@ class FichaType extends AbstractType
         $builder
             ->add('tas')
             ->add('fechaRegistro', 'birthday')
-            ->add('fechaRegistro', DateType::class, array('required' => true,'widget' => 'single_text','attr' => array('class' => 'form-control')))
+            //->add('fechaRegistro', DateType::class, array('required' => true,'widget' => 'single_text','attr' => array('class' => 'form-control')))
             ->add('tad')
             ->add('talla')
             ->add('peso')
@@ -63,12 +63,26 @@ class FichaType extends AbstractType
             ->add('insulinaDetemir')
             ->add('insulinaCorriente')
             ->add('insulinaAspartica')
-            ->add('numeroInyeccionesDia');
-        $builder
+            ->add('numeroInyeccionesDia')
+			->add('medico')
+			->add('coberturaPrivado')
+			->add('coberturaObraSocial')
+			->add('coberturaNinguna')
+			->add('numeroHijos')
+			->add('partoNormal')
+			->add('partoPrematuro')
+			->add('partoCesarea')
+			->add('cmHie')			
+			->add('cmPreclampsia')
+			->add('cmOtras')
+			->add('cmCuales')
+		
+			;
+     /*    $builder
             ->add('fichasHijos', CollectionType::class, array(
-                    'entry_type' => FichaHijoType::class,
+                  'entry_type' => FichaHijoType::class,
                     //'allow_add' => true,
-            ));
+            )); */
     }
     
     /**
