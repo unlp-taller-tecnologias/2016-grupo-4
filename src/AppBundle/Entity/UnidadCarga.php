@@ -47,13 +47,11 @@ class UnidadCarga
      * @ORM\Column(type="string", length=50)
      */
     protected $usuarioModificacion;
-    
-        
+
     /**
-    * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="unidades")
-    * @ORM\JoinTable(name="unidades_users")
-    **/
-   public $users;
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="unidades")
+     **/
+    protected $users;
  
     /**
      * Tag constructor.
@@ -62,6 +60,7 @@ class UnidadCarga
         $this->set = new ArrayCollection();
         $this->createdAt= new \DateTime();
         $this->updatedAt= new \DateTime();
+        $this->users = new ArrayCollection();
     }
     
     /**
@@ -73,6 +72,43 @@ class UnidadCarga
     {
         return $this->id;
     }
+
+    /**
+     * @param User $user
+     */
+    public function addUser(User $user)
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addTag($this);
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function getUsers()
+    {
+        return $this->users->toArray();
+    }
+     
+    /**
+     * @param User $user
+     */
+    public function removeUser(User $user)
+    {
+        if (!$this->users->contains($user)) {
+            return;
+        }
+        $this->users->removeElement($user);
+        $user->removeTag($this);
+    }
+     
+    public function removeAllUsers()
+    {
+        $this->users->clear();
+    }
+
     /**
      * Set nombre
      *

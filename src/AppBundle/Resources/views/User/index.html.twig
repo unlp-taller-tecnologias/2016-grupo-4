@@ -21,16 +21,16 @@
 								<tr>
 									<th>Nombre de Usuario</th>
 									<th>Email</th>		
-                                    {% if is_granted('ROLE_ADMIN') %}								
+                                <!--     {% if is_granted('ROLE_ADMIN') %}								
 									  <th>Acciones</th>
                                     {% endif %}
 								</tr>
-							</thead>
+							</thead> -->
 							<tbody>
 								{% for usuario in Usuarios %}
 								<tr class="odd gradeX">
 									<td>{{ usuario.username }}</td>
-									<td>{{ usuario.email }}</td>
+									<td>{{ usuario.email }}</td><!-- 
                                     {% if is_granted('ROLE_ADMIN') %}   
                						<td>
                    					<ul>
@@ -39,7 +39,7 @@
                         			</li>
                     				</ul>
                 					</td>  
-                                    {% endif %}
+                                    {% endif %}-->
 		 						</tr>	
         						{% endfor %}
         					</tbody>

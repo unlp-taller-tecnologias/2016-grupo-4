@@ -22,6 +22,7 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nombre');
         $builder->add('apellido');
+        $builder->add('unidades');
 
         $user = $this->tokenStorage->getToken()->getUser();
 
@@ -33,8 +34,6 @@ class RegistrationType extends AbstractType
 
         }else
         {
-            
-//die($user);
             if ($user->hasRole('ROLE_ADMIN')) {
                 $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
                     'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 

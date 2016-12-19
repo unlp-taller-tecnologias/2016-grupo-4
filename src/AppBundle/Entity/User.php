@@ -44,53 +44,17 @@ class User extends BaseUser
      */
 	protected $apellido;
 
-	/**
-     * @ORM\ManyToMany(targetEntity="UnidadCarga", mappedBy="users")
-     **/
-    protected $unidades;
+    /**
+    * @ORM\ManyToMany(targetEntity="UnidadCarga", inversedBy="users")
+    * @ORM\JoinTable(name="unidades_users")
+    **/
+   public $unidades;
 
 	public function __construct(){
 		parent::__construct();
 		// your own logic
-		$this->unidades = new ArrayCollection();
+		
 	}
-
-
-    /**
-     * @param UnidadCarga $unidad
-     */
-    public function addUnidad(UnidadCarga $unidad)
-    {
-        if (!$this->unidades->contains($unidad)) {
-            $this->unidades->add($unidad);
-            $unidad->addTag($this);
-        }
-    }
-     
-    /**
-     * @return array
-     */
-    public function getUnidades()
-    {
-        return $this->unidades->toArray();
-    }
-     
-    /**
-     * @param UnidadCarga $unidad
-     */
-    public function removeUnidad(UnidadCarga $unidad)
-    {
-        if (!$this->unidades->contains($unidad)) {
-            return;
-        }
-        $this->unidades->removeElement($unidad);
-        $unidad->removeTag($this);
-    }
-     
-    public function removeAllUnidades()
-    {
-        $this->unidades->clear();
-    }
 
     public function getNombre() {
       return $this->nombre;
