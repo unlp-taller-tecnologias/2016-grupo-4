@@ -12,3 +12,8 @@ services:
         arguments: ['@security.token_storage']
         tags:
             - { name: form.type, alias: app_user_registration }
+
+    auth_listener:
+        class: AppBundle\AuthListener
+        tags:
+            - { name: kernel.event_subscriber }

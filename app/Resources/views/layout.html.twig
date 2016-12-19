@@ -56,7 +56,7 @@
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                    
                                      <i class="fa fa-user"></i>
-                                    <span class="username">{{ app.user.username }}</span> 
+                                    <span class="username"> {{ app.user.username }} </span>
 
                                     <b class="caret"></b>
                                 </a>
@@ -92,13 +92,16 @@
                                   <span>Unidades de carga</span>
                               </a>
                           </li>
+
+                          {% if is_granted('ROLE_COORDINADOR') or is_granted('ROLE_ADMIN') %}
                           <li>
-                              <a class="" href="#">
+                              <a class="" href="{{ path('user_index') }}">
                                   <i class="fa fa-fw fa fa-users"></i>
                                   <span>Usuarios</span>
-                                
                               </a>
                           </li>
+                          {% endif %}
+
                           <li>
                               <a class="" href="{{ path('paciente_index') }}">
                                   <i class="fa fa-female" aria-hidden="true"></i>
