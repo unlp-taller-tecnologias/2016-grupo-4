@@ -1,11 +1,8 @@
 <?php
-
 namespace AppBundle\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 class UnidadCargaType extends AbstractType
 {
     /**
@@ -25,7 +22,6 @@ class UnidadCargaType extends AbstractType
             'data_class' => 'AppBundle\Entity\UnidadCarga'
         ));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -33,6 +29,4 @@ class UnidadCargaType extends AbstractType
     {
         return 'appbundle_unidadcarga';
     }
-
-
 }

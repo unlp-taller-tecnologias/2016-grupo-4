@@ -1,10 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
-
 /**
  * UnidadCarga
  *
@@ -22,57 +19,51 @@ class UnidadCarga
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=50)
      */
     private $nombre;
-
-	/**
-	* @ORM\ManyToOne(targetEntity="Localidad")
-	*/
-	protected $localidad;	
-	
-	/**
+    /**
+    * @ORM\ManyToOne(targetEntity="Localidad")
+    */
+    protected $localidad;   
+    
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $createdAt;
-
     /**
      * @ORM\Column(type="datetime")
      */
     protected $updatedAt;
-		
-	/**
+        
+    /**
      * @ORM\Column(type="string", length=50)
      */
-    protected $usuarioCreacion;	
-
-
-	/**
+    protected $usuarioCreacion; 
+    /**
      * @ORM\Column(type="string", length=50)
      */
     protected $usuarioModificacion;
-	
-		
-	/**
+    
+        
+    /**
     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="unidades")
     * @ORM\JoinTable(name="unidades_users")
     **/
-   protected $users;
+   public $users;
  
     /**
      * Tag constructor.
      */
     public function __construct() {
         $this->set = new ArrayCollection();
-
         $this->createdAt= new \DateTime();
         $this->updatedAt= new \DateTime();
     }
-	
+    
     /**
      * Get id
      *
@@ -82,7 +73,6 @@ class UnidadCarga
     {
         return $this->id;
     }
-
     /**
      * Set nombre
      *
@@ -92,10 +82,8 @@ class UnidadCarga
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-
         return $this;
     }
-
     /**
      * Get nombre
      *
@@ -105,9 +93,9 @@ class UnidadCarga
     {
         return $this->nombre;
     }
-	
-	
-	 /**
+    
+    
+     /**
      * Set localidad
      *
      * @param string $localidad
@@ -116,10 +104,8 @@ class UnidadCarga
     public function setLocalidad($localidad)
     {
         $this->nombre = $localidad;
-
         return $this;
     }
-
     /**
      * Get localidad
      *
@@ -129,41 +115,39 @@ class UnidadCarga
     {
         return $this->localidad;
     }
-		
+        
     /**
      * Get localidad
      *
      * @return string 
      */
-	public function getUsuarioCreacion()
+    public function getUsuarioCreacion()
     {
         return $this->usuarioCreacion;
     }
-	
-	public function setUsuarioCreacion($user)
+    
+    public function setUsuarioCreacion($user)
     {
         $this->usuarioCreacion = $user;
     }
-	
-	
-	public function getUsuarioModificacion()
+    
+    
+    public function getUsuarioModificacion()
     {
         return $this->usuarioModificacion;
     }
-	
-	public function setUsuarioModificacion($user)
+    
+    public function setUsuarioModificacion($user)
     {
         $this->usuarioModificacion = $user;
     }
-
-	/**
+    /**
      * @ORM\PreUpdate()
      */
     public function preUpdate()
     {
         $this->updatedAt= new \DateTime();
-    }	
-
+    }   
     public function __toString()
     {
         return $this->nombre;
