@@ -13,7 +13,7 @@ class FichaHijoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('complicacionesRciu')->add('complicacionesMacrosomia')->add('complicacionesSindDistressPrematuro')->add('complicacionesHipoglucemia')->add('complicacionesMalformacionesFetales')->add('complicacionesMortalidadPrenatal')->add('complicacionesOtras')->add('complicacionesCuales')->add('peso')->add('capurro')->add('createdAt')->add('updatedAt')->add('ficha')        ;
+        $builder->add('complicacionesRciu')->add('complicacionesMacrosomia')->add('complicacionesSindDistressPrematuro')->add('complicacionesHipoglucemia')->add('complicacionesMalformacionesFetales')->add('complicacionesMortalidadPrenatal')->add('complicacionesOtras')->add('complicacionesCuales')->add('peso')->add('capurro')->add('agregar');
     }
     
     /**

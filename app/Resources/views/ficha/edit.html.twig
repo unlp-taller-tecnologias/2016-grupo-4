@@ -15,8 +15,7 @@
 	
     {{ form_start(edit_form) }}
 	
-
-    <div class="row">
+   <div class="row">
 		<div class="col-lg-12">
           <section class="panel">
               <header class="panel-heading">
@@ -437,6 +436,29 @@
 								{{ form_row(edit_form.cmCuales) }}								
 							</div>	
                     </div>
+					
+					
+					                  <div class="col-lg-4"> 
+						<h3>Hijos</h3>
+						<ul class="fichasHijos">
+							{# iterate over each existing tag and render its only field: name #}
+							{% for h in edit_form.fichasHijos %}
+							<div class="form-group">
+							{{ form_row(h.agregar) }}
+							</div>
+								<div class="form-group">{{ form_row(h.complicacionesRciu) }}</div>
+								<div class="form-group">{{ form_row(h.complicacionesMacrosomia) }}</div>
+								<div class="form-group">{{ form_row(h.complicacionesSindDistressPrematuro) }}</div>
+								<div class="form-group">{{ form_row(h.complicacionesHipoglucemia) }}</div>
+								<div class="form-group">{{ form_row(h.complicacionesMalformacionesFetales) }}</div>
+								<div class="form-group">{{ form_row(h.complicacionesMortalidadPrenatal) }}</div>
+								<div class="form-group">{{ form_row(h.complicacionesOtras) }}</div>
+								<div class="form-group">{{ form_row(h.complicacionesCuales) }}</div>
+								<div class="form-group">{{ form_row(h.peso) }}</div>
+								<div class="form-group">{{ form_row(h.capurro) }}</div>
+							{% endfor %}
+						</ul> 
+					
   
 
               </div>
@@ -451,6 +473,7 @@
 	
       </div>
     </div>
+	
     <div class="row">
         <div class="col-lg-12">
             <button type="submit" value="Edit" class="btn btn-success btn-lg btn-block">Editar ficha</button>
@@ -464,10 +487,10 @@
         <li>
             <a href="{{ path('ficha_index') }}">Back to the list</a>
         </li>
-        <li>
+<!--         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
+        </li> -->
     </ul>
 {% endblock %}

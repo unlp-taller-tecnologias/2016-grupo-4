@@ -2,53 +2,61 @@
 
 {% block body %}
     {{ parent() }}
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-female" aria-hidden="true"></i> Nueva paciente</h3>
+          	<a class="btn btn-primary" href="{{ path('paciente_index') }}" title="Volver"><i class="fa fa fa-reply-all" aria-hidden="true"></i>  Volver</a> 
+        </div>
+    </div>
+    <br>
 	<div class="main container">
 		<div class="row well" >
-			<div class="col-md-10">
-				<div class="page-header">
-					<h3>Ingrese los datos de la paciente:</h3>
-				</div>
-                {{ form_start(form, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form'} }) }}
+			<div class="col-md-12">
+				
+                {{ form_start(form, { 'attr' : { 'role' : 'form'} }) }}
 <!--Nombre -->
-                <div class="form-group">
+                <div class="form-group col-lg-4">
                     {{ form_label(form.nombre, 'Nombre:') }}
                     {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese el nombre...'} }) }}
                     <span class="text-danger">{{ form_errors(form.nombre) }}</span>
                 </div>
 <!--Apellido -->                
-			    <div class="form-group">
+			    <div class="form-group col-lg-4">
 			        {{ form_label(form.apellido, 'Apellido:') }}
 			        {{ form_widget(form.apellido, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el apellido...'}}) }}
 			        <span class="text-danger">{{ form_errors(form.apellido) }}</span>
 			    </div>
 <!--Tipo de documento -->
-			    <div class="form-group">
+			    <div class="form-group col-lg-4">
 			        {{ form_label(form.tipoDocumento, 'Tipo de documento:') }}
 			        {{ form_widget(form.tipoDocumento, {'attr': {'class': 'form-control'}}) }}
 			        <span class="text-danger">{{ form_errors(form.tipoDocumento) }}</span>
 			    </div>
 <!--Numero de documento-->
-			    <div class="form-group">
+			    <div class="form-group col-lg-4">
 			        {{ form_label(form.numeroDocumento, 'Numero de documento:') }}
 			        {{ form_widget(form.numeroDocumento, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el numero...'}}) }}
 			        <span class="text-danger">{{ form_errors(form.numeroDocumento) }}</span>
 			    </div>
 <!--Fecha de nacimiento-->
-			    <div class="form-group">
+			    <div class="form-group col-lg-4">
 			        {{ form_label(form.fechaNacimiento, 'Fecha de nacimiento:') }}
 			        {{ form_widget(form.fechaNacimiento, {'attr': {'class': 'form-control'}}) }}
 			        <span class="text-danger">{{ form_errors(form.fechaNacimiento) }}</span>
 			    </div>
 <!--Nacionalidad-->
-			    <div class="form-group">
+			    <div class="form-group col-lg-4">
 			        {{ form_label(form.nacionalidad, 'Nacionalidad:') }}
 			        {{ form_widget(form.nacionalidad, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese la nacionalidad...'}}) }}
 			        <span class="text-danger">{{ form_errors(form.nacionalidad) }}</span>
 			    </div>
 <!--Unidad de carga lo seteo en el controlador -->
+			
+					{{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-lg btn-block'}}) }}
+					{{ form_widget(form.cancel, {'attr': {'class': 'btn btn-info btn-lg btn-block'}}) }}       
+                  
+              
 				
-				{{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }}
-				{{ form_widget(form.cancel, {'attr': {'class': 'btn btn-info'}}) }}       
                 {{ form_end(form) }}
 			</div>
 		</div>

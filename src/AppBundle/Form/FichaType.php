@@ -75,14 +75,9 @@ class FichaType extends AbstractType
 			->add('cmHie')			
 			->add('cmPreclampsia')
 			->add('cmOtras')
-			->add('cmCuales')
-		
+			->add('cmCuales')		
+            ->add('fichasHijos', CollectionType::class, array('entry_type' => FichaHijoType::class))
 			;
-     /*    $builder
-            ->add('fichasHijos', CollectionType::class, array(
-                  'entry_type' => FichaHijoType::class,
-                    //'allow_add' => true,
-            )); */
     }
     
     /**

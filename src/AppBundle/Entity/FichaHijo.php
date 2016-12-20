@@ -25,6 +25,13 @@ class FichaHijo
     /**
      * @var bool
      *
+     * @ORM\Column(name="agregar", type="boolean", nullable=true)
+     */
+    public $agregar;	
+	
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="complicacionesRciu", type="boolean", nullable=true)
      */
     private $complicacionesRciu;
@@ -418,4 +425,16 @@ class FichaHijo
     {
         $this->usuarioModificacion = $user;
     }
+	
+	
+	public function getAgregar()
+    {
+        return $this->agregar;
+    }
+	
+	public function setAgregar($agregar)
+    {
+        $this->agregar = $agregar;
+    }
+	
 }

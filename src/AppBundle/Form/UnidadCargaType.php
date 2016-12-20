@@ -10,7 +10,9 @@ class UnidadCargaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombre')->add('localidad');
+        $builder
+        ->add('nombre')
+        ->add('localidad');
     }
     
     /**

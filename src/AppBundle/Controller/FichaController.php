@@ -46,7 +46,7 @@ class FichaController extends Controller
     {
 		$ficha = new Ficha();	
 				
-		//seteo el usuario que creÃ³ y modificÃ³
+		//seteo el usuario que creó y modificó
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();	
 		if ($user == "anon")
@@ -109,8 +109,7 @@ class FichaController extends Controller
      */
     public function editAction(Request $request, Ficha $ficha)
     {
-						//seteo el usuario que modificÃ³
-		
+						//seteo el usuario que modificó
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		
 		if ($user == "anon")
@@ -126,11 +125,31 @@ class FichaController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+			
+			
+			$em = $this->getDoctrine()->getManager();
+			foreach($ficha->getFichasHijos() as $hijo)
+			{
+				if( $hijo->getAgregar() == 1)
+				{
+					$hijo->setUsuarioModificacion($nombreUsuario);
+					$hijo->setUsuarioCreacion($nombreUsuario);					
+					$em->persist($hijo);
+					$em->flush($hijo);	
+				}
+			}	
+
+			
 
             return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
-        return $this->render('ficha/edit.html.twig', array(
+	
+		//fin modificado
+		
+		
+		
+		return $this->render('ficha/edit.html.twig', array(
             'ficha' => $ficha,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -181,7 +200,7 @@ class FichaController extends Controller
 	{	
 		$ficha = new Ficha();	
 				
-		//seteo el usuario que creÃ³ y modificÃ³
+		//seteo el usuario que creó y modificó
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();	
 		$nombreUsuario = $user->getNombre();
@@ -199,16 +218,44 @@ class FichaController extends Controller
 		$p->setFichas($ficha);
 		$ficha->setPaciente($p);
 		
+		$fh1 = new FichaHijo();
+		$fh2 = new FichaHijo();
+		
+		$fh1->setUsuarioModificacion($nombreUsuario);
+		$fh1->setUsuarioCreacion($nombreUsuario);
+		
+		$fh2->setUsuarioModificacion($nombreUsuario);
+		$fh2->setUsuarioCreacion($nombreUsuario);
+		
+		$ficha->setFichasHijos($fh1);
+		$ficha->setFichasHijos($fh2);
+		
+		//seteo los hijos solo si estan cargados
+		
+		//$hijos = $ficha->getFichasHijos();
+		
+		//$ficha->getFichasHijos()
+		
         $form = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $form->handleRequest($request);
-
+		
         if ($form->isSubmitted() && $form->isValid()) {
-			
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ficha);
-            $em->flush($ficha);
 
-            return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($ficha);
+			$em->flush($ficha);		
+		
+			foreach($ficha->getFichasHijos() as $hijo)
+			{
+				if( $hijo->getAgregar() == 1)
+				{
+					$hijo->setFicha($ficha);
+					$em->persist($hijo);
+					$em->flush($hijo);	
+				}			
+			}	
+
+			return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
         return $this->render('ficha/new.html.twig', array(

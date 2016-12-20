@@ -1,16 +1,42 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Unidadcarga creation</h1>
+ {{ parent() }}
+    <div class="main container">
+        <div class="row well" >
+            <div class="col-md-10">
+                <div class="page-header">
+                    <h3><i class="icon_house_alt" aria-hidden="true"></i> Nueva Unidad de Carga</h3>
+                    <br>
+                    <a class="btn btn-danger" href="{{ path('unidadcarga_index') }}">Volver</a>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('unidadcarga_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                {{ form_start(form, { 'attr' : { 'role' : 'form'} }) }}
+                     <div class="form-group">
+                        {{ form_label(form.nombre, 'Nombre:') }}
+                        {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese el nombre...'} }) }}
+                        <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+                    </div>
+                     <div class="form-group">
+                    {{ form_label(form.localidad, 'Localidad:') }}
+                    {{ form_widget(form.localidad, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese la localidad...'} }) }}
+                    <span class="text-danger">{{ form_errors(form.localidad) }}</span>
+                </div>
+                    {{ form_widget(form) }}
+               
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Crear unidad de carga</button>
+
+              
+                {{ form_end(form) }}
+
+            <ul>
+                <li>
+                    <a href="{{ path('unidadcarga_index') }}">Back to the list</a>
+                </li>
+            </ul>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

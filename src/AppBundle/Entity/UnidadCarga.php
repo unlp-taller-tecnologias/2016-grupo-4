@@ -26,9 +26,11 @@ class UnidadCarga
      */
     private $nombre;
     /**
-    * @ORM\ManyToOne(targetEntity="Localidad")
-    */
-    protected $localidad;   
+     * @var string
+     *
+     * @ORM\Column(name="localidad", type="string", length=50)
+     */
+    private $localidad;   
     
     /**
      * @ORM\Column(type="datetime")
