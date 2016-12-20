@@ -32,7 +32,7 @@ class PacienteController extends Controller
         if ($user->hasRole('ROLE_ADMIN')) { 
             $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
         }else{
-            if ($user->hasRole('ROLE_COORDINADOR')) { 
+            if ($user->hasRole('ROLE_COORDINADOR') || $user->hasRole('ROLE_DATAENTRY')) { 
                 $idUnidad = $user->getUnidades()->getId();
                 $repository = $this->getDoctrine()->getRepository('AppBundle:Paciente');
                 $pacientes = $repository->findByUnidadCarga($idUnidad);
