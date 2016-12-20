@@ -60,11 +60,14 @@
                              {{ form_widget(form.rol, { 'attr' :{ 'class' : 'form-control'}}) }}
                              <span class="form_error_field">{{ form_errors(form.rol) }}</span>
                         </div>  
+                        
                         <div class="form-group col-lg-4">
                              {{ 'Unidad de carga'|trans({}, 'FOSUserBundle') }}
                              {{ form_widget(form.unidades, { 'attr' :{ 'class' : 'form-control'}}) }}
                              <span class="form_error_field">{{ form_errors(form.unidades) }}</span>
                         </div> 
+                    
+                        
                     </div>
                 </section>
 

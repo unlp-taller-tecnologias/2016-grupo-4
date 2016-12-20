@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use Doctrine\ORM\EntityRepository;
+//use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationType extends AbstractType
 {
@@ -18,34 +20,51 @@ class RegistrationType extends AbstractType
         $this->tokenStorage = $tokenStorage;
     }
 
+    public function getUnid()
+    {
+         $user = $this->tokenStorage->getToken()->getUser();
+         return $user->getUnidades()->getId(); 
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nombre');
         $builder->add('apellido');
-        $builder->add('unidades');
-
         $user = $this->tokenStorage->getToken()->getUser();
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $builder->add('unidades', 'entity', array(
+                    'class' => 'AppBundle\Entity\UnidadCarga', 'multiple'  => true, 'required' => true,                     
+                ));
+        } else{
+            if ($user->hasRole('ROLE_COORDINADOR')) {
+                $builder->add('unidades', 'entity', array(
+                    'class' => 'AppBundle\Entity\UnidadCarga', 'multiple'  => true, 'required' => true,
+                    'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                    ->where('u.id = :idUnid')
+                    ->setParameter( 'idUnid', $this->getUnid() )  
+                    ;
+                   
+                     },
 
-        if ((!$user) || ($user === 'anon.') || ($user->hasRole('ROLE_DATAENTRY')) )
-        {
-            //throw new \LogicException(
+                     
+                ));
+            }  
+        }   
 
-            echo('Debe iniciar sesion para registrar un nuevo usuario.(Filtrar desde la ruta)');
-
-        }else
-        {
-            if ($user->hasRole('ROLE_ADMIN')) {
-                $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
-                    'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $builder->add('rol', 'choice', array('label' => 'Rol', 'empty_value' => 'Seleccione un Rol', 
+                   'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY', 'ROLE_COORDINADOR' => 'COORDINADOR'), 'required'  => true, 
+            ));     
+        } else{
+            if ($user->hasRole('ROLE_COORDINADOR')) {
+                $builder->add('rol', 'choice', array('label' => 'Rol', 
+                      'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY'), 'required'  => true, 
                 ));     
-            } else{
-                if ($user->hasRole('ROLE_COORDINADOR')) {
-                    $builder->add('rol', 'choice', array('label' => 'Rol', 
-                        'choices'   => array('ROLE_DATAENTRY' => 'DATAENTRY'), 'required'  => true, 
-                    ));     
-                }  
-            }
-        }    
+            }  
+        }
+            
     }
 
     public function getParent()
