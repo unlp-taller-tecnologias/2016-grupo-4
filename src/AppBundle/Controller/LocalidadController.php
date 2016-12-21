@@ -48,7 +48,7 @@ class LocalidadController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();			
+			$nombreUsuario = $user->getUsername();			
 			
 		$localidad->setUsuarioModificacion($nombreUsuario);
 		$localidad->setUsuarioCreacion($nombreUsuario);
@@ -100,7 +100,7 @@ class LocalidadController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();
+			$nombreUsuario = $user->getUsername();
 	
 		$localidad->setUsuarioModificacion($nombreUsuario);
 		

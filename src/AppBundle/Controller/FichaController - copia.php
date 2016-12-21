@@ -54,7 +54,7 @@ class FichaController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getUsername();			
+			$nombreUsuario = $user->getNombre();			
 				
 		$ficha->setUsuarioModificacion($nombreUsuario);
 		$ficha->setUsuarioCreacion($nombreUsuario);
@@ -117,7 +117,7 @@ class FichaController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getUsername();
+			$nombreUsuario = $user->getNombre();
 	
 		$ficha->setUsuarioModificacion($nombreUsuario);
 		
@@ -205,7 +205,7 @@ class FichaController extends Controller
 		//seteo el usuario que creó y modificó
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();	
-		$nombreUsuario = $user->getUsername();
+		$nombreUsuario = $user->getNombre();
 
 				
 		$ficha->setUsuarioModificacion($nombreUsuario);
@@ -317,16 +317,11 @@ class FichaController extends Controller
 		if ($rol == 'ROLE_COORDINADOR' ) 			
 		{
 			
-			$id_unidad_carga = $user->getUnidades()->getId();
-			$fichas = $em->getRepository('AppBundle:Ficha')->findAll();	
-			$query = $em->createQueryBuilder();
- 
-			$fichas = $query->select(['ficha','paciente'])
-			->from('AppBundle:Ficha', 'ficha')
-				->innerJoin('ficha.paciente','paciente')
-			->where($query->expr()->eq('paciente.unidadCarga',':id'))
-			->setParameters(['id' => $id_unidad_carga])
-			->getQuery()->getResult();			
+			print_r($user->getUnidades()->getId());
+			die;
+			
+			
+			$fichas = $em->getRepository('AppBundle:Ficha')->findAll();			
 		}
 		
 

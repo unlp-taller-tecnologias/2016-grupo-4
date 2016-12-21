@@ -48,7 +48,7 @@ class TipoDocumentoController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();			
+			$nombreUsuario = $user->getUsername();			
 		
 		$tipoDocumento->setUsuarioModificacion($nombreUsuario);
 		$tipoDocumento->setUsuarioCreacion($nombreUsuario);
@@ -101,7 +101,7 @@ class TipoDocumentoController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();
+			$nombreUsuario = $user->getUsername();
 		
 		$tipoDocumento->setUsuarioModificacion($nombreUsuario);
 		

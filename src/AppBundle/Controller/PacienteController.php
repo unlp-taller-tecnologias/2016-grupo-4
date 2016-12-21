@@ -57,7 +57,7 @@ class PacienteController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();			
+			$nombreUsuario = $user->getUsername();			
 		
 		$paciente->setUsuarioModificacion($nombreUsuario);
 		$paciente->setUsuarioCreacion($nombreUsuario);
@@ -118,7 +118,7 @@ class PacienteController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();
+			$nombreUsuario = $user->getUsername();
 	
 		$paciente->setUsuarioModificacion($nombreUsuario);
 		
