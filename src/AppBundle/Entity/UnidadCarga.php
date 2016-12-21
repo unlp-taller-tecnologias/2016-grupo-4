@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 /**
  * UnidadCarga
@@ -23,6 +25,7 @@ class UnidadCarga
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=50)
+      * @Assert\NotBlank()
      */
     private $nombre;
     /**
@@ -141,7 +144,7 @@ class UnidadCarga
      */
     public function setLocalidad($localidad)
     {
-        $this->nombre = $localidad;
+        $this->localidad = $localidad;
         return $this;
     }
     /**

@@ -1,212 +1,219 @@
 {% extends 'layout.html.twig' %}
 
+
 {% block body %}
-    <h1>Ficha</h1>
+    {{ parent() }}
+    <div class="main container">
+        <div class="row well" >
+            <div class="col-md-10">
+                <div class="page-header">
+                    <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Ficha {{ ficha.id }}</h3>
+                </div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                        <th>TAS</th>
+                        <td>{{ ficha.tas }}</td>
+                        </tr>
+                        <tr>
+                            <th>TAD</th>
+                            <td>{{ ficha.tad }}</td>
+                        </tr>
+                        <tr>
+                            <th>Talla</th>
+                            <td>{{ ficha.talla }}</td>
+                        </tr>
+                        <tr>
+                            <th>Peso</th>
+                            <td>{{ ficha.peso }}</td>
+                        </tr>
+                        <tr>
+                            <th>Glucemia</th>
+                            <td>{{ ficha.glucemia }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fructosamina</th>
+                            <td>{{ ficha.fructosamina }}</td>
+                        </tr>
+                        <tr>
+                            <th>Hba1c</th>
+                            <td>{{ ficha.hba1c }}</td>
+                        </tr>
+                        <tr>
+                            <th>Colesterol total</th>
+                            <td>{{ ficha.colesterolTotal }}</td>
+                        </tr>
+                        <tr>
+                            <th>Colesterol HDL</th>
+                            <td>{{ ficha.colesterolHdl }}</td>
+                        </tr>
+                        <tr>
+                            <th>Colesterol LDL</th>
+                            <td>{{ ficha.colesterolLdl }}</td>
+                        </tr>
+                        <tr>
+                            <th>Triglicéridos</th>
+                            <td>{{ ficha.trigliceridos }}</td>
+                        </tr>
+                        <tr>
+                            <th>Creatinina</th>
+                            <td>{{ ficha.creatinina }}</td>
+                        </tr>
+                        <tr>
+                            <th>Proteinuria</th>
+                            <td>{{ ficha.proteinuria }}</td>
+                        </tr>
+                        <tr>
+                            <th>Urocultivo</th>
+                            <td>{% if ficha.urocultivo %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Hipertensioncronica</th>
+                            <td>{% if ficha.hipertensionCronica %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Obesidad</th>
+                            <td>{% if ficha.obesidad %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Tabaquismo</th>
+                            <td>{% if ficha.tabaquismo %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Realiza actividad física</th>
+                            <td>{% if ficha.realizaActividadFisica %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Número de veces por semana</th>
+                            <td>{{ ficha.numeroDeVecesPorSemana }}</td>
+                        </tr>
+                        <tr>
+                            <th>Minutos</th>
+                            <td>{{ ficha.minutos }}</td>
+                        </tr>
+                        <tr>
+                            <th>Conoce metas de tratamiento</th>
+                            <td>{% if ficha.conoceMetasDeTratamiento %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Cumple plan de alimentación</th>
+                            <td>{% if ficha.cumplePlanDeAlimentacion %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Número de porciones de fruta por día</th>
+                            <td>{{ ficha.numerodePorcionesDeFrutaPorDia }}</td>
+                        </tr>
+                        <tr>
+                            <th>Sabe identificar otra TAR hipoglucemias</th>
+                            <td>{% if ficha.sabeIdentificarOTratarHipoglucemias %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Automonitoreo glucemico</th>
+                            <td>{% if ficha.automonitoreoGlucemico %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Número de veces por día</th>
+                            <td>{{ ficha.numeroDeVecesPorDia }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fuma actualmente</th>
+                            <td>{% if ficha.fumaActualmente %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Fumó anteriormente</th>
+                            <td>{% if ficha.fumoAnteriorMente %}Si{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Cigarrillos al día</th>
+                            <td>{{ ficha.cigarrillosAlDia }}</td>
+                        </tr>
+                        <tr>
+                            <th>Causa hospitalización</th>
+                            <td>{{ ficha.causaHospitalizacion1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Causa hospitalización</th>
+                            <td>{{ ficha.causaHospitalizacion2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Causa hospitalización</th>
+                            <td>{{ ficha.causaHospitalizacion3 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Días hospitalización</th>
+                            <td>{{ ficha.diasHospitalizacion1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Días hospitalización</th>
+                            <td>{{ ficha.diasHospitalizacion2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Días hospitalización</th>
+                            <td>{{ ficha.diasHospitalizacion3 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Hipertensión atenolol</th>
+                            <td>{{ ficha.hipertensionAtenolol }}</td>
+                        </tr>
+                        <tr>
+                            <th>Hipertensión bloqueantes cálcicos</th>
+                            <td>{{ ficha.hipertensionBloqueantesCalcicos }}</td>
+                        </tr>
+                        <tr>
+                            <th>Hipertensión furosemida</th>
+                            <td>{{ ficha.hipertensionFurosemida }}</td>
+                        </tr>
+                        <tr>
+                            <th>Hipertensión otro</th>
+                            <td>{{ ficha.hipertensionOtro }}</td>
+                        </tr>
+                        <tr>
+                            <th>Hipertensión ¿cual?</th>
+                            <td>{{ ficha.hipertensionCual }}</td>
+                        </tr>
+                        <tr>
+                            <th>AAS</th>
+                            <td>{{ ficha.aas }}</td>
+                        </tr>
+                        <tr>
+                            <th>Insulina NPH</th>
+                            <td>{{ ficha.insulinaNph }}</td>
+                        </tr>
+                        <tr>
+                            <th>Insulina detemir</th>
+                            <td>{{ ficha.insulinaDetemir }}</td>
+                        </tr>
+                        <tr>
+                            <th>Insulina corriente</th>
+                            <td>{{ ficha.insulinaCorriente }}</td>
+                        </tr>
+                        <tr>
+                            <th>Insulina aspartica</th>
+                            <td>{{ ficha.insulinaAspartica }}</td>
+                        </tr>
+                        <tr>
+                            <th>Número inyecciones por día</th>
+                            <td>{{ ficha.numeroInyeccionesDia }}</td>
+                        </tr>
+                        
+                        
+                    </tbody>
+                </table>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ficha.id }}</td>
-            </tr>
-            <tr>
-                <th>Tas</th>
-                <td>{{ ficha.tas }}</td>
-            </tr>
-            <tr>
-                <th>Tad</th>
-                <td>{{ ficha.tad }}</td>
-            </tr>
-            <tr>
-                <th>Talla</th>
-                <td>{{ ficha.talla }}</td>
-            </tr>
-            <tr>
-                <th>Peso</th>
-                <td>{{ ficha.peso }}</td>
-            </tr>
-            <tr>
-                <th>Glucemia</th>
-                <td>{{ ficha.glucemia }}</td>
-            </tr>
-            <tr>
-                <th>Fructosamina</th>
-                <td>{{ ficha.fructosamina }}</td>
-            </tr>
-            <tr>
-                <th>Hba1c</th>
-                <td>{{ ficha.hba1c }}</td>
-            </tr>
-            <tr>
-                <th>Colesteroltotal</th>
-                <td>{{ ficha.colesterolTotal }}</td>
-            </tr>
-            <tr>
-                <th>Colesterolhdl</th>
-                <td>{{ ficha.colesterolHdl }}</td>
-            </tr>
-            <tr>
-                <th>Colesterolldl</th>
-                <td>{{ ficha.colesterolLdl }}</td>
-            </tr>
-            <tr>
-                <th>Trigliceridos</th>
-                <td>{{ ficha.trigliceridos }}</td>
-            </tr>
-            <tr>
-                <th>Creatinina</th>
-                <td>{{ ficha.creatinina }}</td>
-            </tr>
-            <tr>
-                <th>Proteinuria</th>
-                <td>{{ ficha.proteinuria }}</td>
-            </tr>
-            <tr>
-                <th>Urocultivo</th>
-                <td>{% if ficha.urocultivo %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Hipertensioncronica</th>
-                <td>{% if ficha.hipertensionCronica %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Obesidad</th>
-                <td>{% if ficha.obesidad %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Tabaquismo</th>
-                <td>{% if ficha.tabaquismo %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Realizaactividadfisica</th>
-                <td>{% if ficha.realizaActividadFisica %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Numerodevecesporsemana</th>
-                <td>{{ ficha.numeroDeVecesPorSemana }}</td>
-            </tr>
-            <tr>
-                <th>Minutos</th>
-                <td>{{ ficha.minutos }}</td>
-            </tr>
-            <tr>
-                <th>Conocemetasdetratamiento</th>
-                <td>{% if ficha.conoceMetasDeTratamiento %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Cumpleplandealimentacion</th>
-                <td>{% if ficha.cumplePlanDeAlimentacion %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Numerodeporcionesdefrutapordia</th>
-                <td>{{ ficha.numerodePorcionesDeFrutaPorDia }}</td>
-            </tr>
-            <tr>
-                <th>Sabeidentificarotratarhipoglucemias</th>
-                <td>{% if ficha.sabeIdentificarOTratarHipoglucemias %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Automonitoreoglucemico</th>
-                <td>{% if ficha.automonitoreoGlucemico %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Numerodevecespordia</th>
-                <td>{{ ficha.numeroDeVecesPorDia }}</td>
-            </tr>
-            <tr>
-                <th>Fumaactualmente</th>
-                <td>{% if ficha.fumaActualmente %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Fumoanteriormente</th>
-                <td>{% if ficha.fumoAnteriorMente %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Cigarrillosaldia</th>
-                <td>{{ ficha.cigarrillosAlDia }}</td>
-            </tr>
-            <tr>
-                <th>Causahospitalizacion1</th>
-                <td>{{ ficha.causaHospitalizacion1 }}</td>
-            </tr>
-            <tr>
-                <th>Causahospitalizacion2</th>
-                <td>{{ ficha.causaHospitalizacion2 }}</td>
-            </tr>
-            <tr>
-                <th>Causahospitalizacion3</th>
-                <td>{{ ficha.causaHospitalizacion3 }}</td>
-            </tr>
-            <tr>
-                <th>Diashospitalizacion1</th>
-                <td>{{ ficha.diasHospitalizacion1 }}</td>
-            </tr>
-            <tr>
-                <th>Diashospitalizacion2</th>
-                <td>{{ ficha.diasHospitalizacion2 }}</td>
-            </tr>
-            <tr>
-                <th>Diashospitalizacion3</th>
-                <td>{{ ficha.diasHospitalizacion3 }}</td>
-            </tr>
-            <tr>
-                <th>Hipertensionatenolol</th>
-                <td>{{ ficha.hipertensionAtenolol }}</td>
-            </tr>
-            <tr>
-                <th>Hipertensionbloqueantescalcicos</th>
-                <td>{{ ficha.hipertensionBloqueantesCalcicos }}</td>
-            </tr>
-            <tr>
-                <th>Hipertensionfurosemida</th>
-                <td>{{ ficha.hipertensionFurosemida }}</td>
-            </tr>
-            <tr>
-                <th>Hipertensionotro</th>
-                <td>{{ ficha.hipertensionOtro }}</td>
-            </tr>
-            <tr>
-                <th>Hipertensioncual</th>
-                <td>{{ ficha.hipertensionCual }}</td>
-            </tr>
-            <tr>
-                <th>Aas</th>
-                <td>{{ ficha.aas }}</td>
-            </tr>
-            <tr>
-                <th>Insulinanph</th>
-                <td>{{ ficha.insulinaNph }}</td>
-            </tr>
-            <tr>
-                <th>Insulinadetemir</th>
-                <td>{{ ficha.insulinaDetemir }}</td>
-            </tr>
-            <tr>
-                <th>Insulinacorriente</th>
-                <td>{{ ficha.insulinaCorriente }}</td>
-            </tr>
-            <tr>
-                <th>Insulinaaspartica</th>
-                <td>{{ ficha.insulinaAspartica }}</td>
-            </tr>
-            <tr>
-                <th>Numeroinyeccionesdia</th>
-                <td>{{ ficha.numeroInyeccionesDia }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('ficha_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <ul>
+                    <li>
+                        
+                            <a class="btn btn-info" href="{{ path('paciente_index') }}">Listado de pacientes</a>
+                            <a class="btn btn-success" href="{{ path('ficha_edit', { 'id': ficha.id }) }}">Editar</a>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+    
+
+
+        

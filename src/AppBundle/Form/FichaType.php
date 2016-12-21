@@ -17,8 +17,7 @@ class FichaType extends AbstractType
     {
         $builder
             ->add('tas')
-            ->add('fechaRegistro', 'birthday')
-            //->add('fechaRegistro', DateType::class, array('required' => true,'widget' => 'single_text','attr' => array('class' => 'form-control')))
+            ->add('fechaRegistro', 'birthday', array('widget' => 'single_text', 'label' => 'Fecha de nacimiento'))
             ->add('tad')
             ->add('talla')
             ->add('peso')

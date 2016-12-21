@@ -56,6 +56,8 @@ class UnidadCargaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //var_dump($_POST[]);
+            //die;
             $em = $this->getDoctrine()->getManager();
             $em->persist($unidadCarga);
             $em->flush($unidadCarga);
@@ -113,7 +115,7 @@ class UnidadCargaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('unidadcarga_edit', array('id' => $unidadCarga->getId()));
+            return $this->redirectToRoute('unidadcarga_show', array('id' => $unidadCarga->getId()));
         }
 
         return $this->render('unidadcarga/edit.html.twig', array(

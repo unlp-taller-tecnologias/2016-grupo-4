@@ -2,39 +2,36 @@
 
 {% block body %}
  {{ parent() }}
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="icon_house_alt" aria-hidden="true"></i> Nueva Unidad de Carga</h3>
+            
+            <a class="btn btn-primary" href="{{ path('unidadcarga_index') }}" title="Volver"><i class="fa fa fa-reply-all" aria-hidden="true"></i>  Volver</a> 
+        </div>
+    </div>
+    <br>
     <div class="main container">
         <div class="row well" >
             <div class="col-md-10">
-                <div class="page-header">
-                    <h3><i class="icon_house_alt" aria-hidden="true"></i> Nueva Unidad de Carga</h3>
-                    <br>
-                    <a class="btn btn-danger" href="{{ path('unidadcarga_index') }}">Volver</a>
-
-                </div>
 
                 {{ form_start(form, { 'attr' : { 'role' : 'form'} }) }}
                      <div class="form-group">
                         {{ form_label(form.nombre, 'Nombre:') }}
-                        {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese el nombre...'} }) }}
+                        {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese el nombre...', 'required' : 'required'} }) }}
                         <span class="text-danger">{{ form_errors(form.nombre) }}</span>
                     </div>
                      <div class="form-group">
                     {{ form_label(form.localidad, 'Localidad:') }}
-                    {{ form_widget(form.localidad, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese la localidad...'} }) }}
+                    {{ form_widget(form.localidad, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese la localidad...', 'required' : 'required'} }) }}
                     <span class="text-danger">{{ form_errors(form.localidad) }}</span>
                 </div>
                     {{ form_widget(form) }}
-               
+                        
                         <button type="submit" class="btn btn-success btn-lg btn-block">Crear unidad de carga</button>
 
               
                 {{ form_end(form) }}
 
-            <ul>
-                <li>
-                    <a href="{{ path('unidadcarga_index') }}">Back to the list</a>
-                </li>
-            </ul>
 
             </div>
         </div>

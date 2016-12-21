@@ -445,7 +445,7 @@ class Ficha
     protected $usuarioModificacion;
 
 	/**
-     * @ORM\OneToMany(targetEntity="FichaHijo", mappedBy="ficha")
+     * @ORM\OneToMany(targetEntity="FichaHijo", mappedBy="ficha", cascade={"persist"})
      * @ORM\JoinColumn(name="ficha_id", referencedColumnName="id")
      */
 
