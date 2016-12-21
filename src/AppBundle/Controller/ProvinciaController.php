@@ -48,7 +48,7 @@ class ProvinciaController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();			
+			$nombreUsuario = $user->getUsername();			
 				
 		$provincia->setUsuarioModificacion($nombreUsuario);
 		$provincia->setUsuarioCreacion($nombreUsuario);
@@ -102,7 +102,7 @@ class ProvinciaController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();
+			$nombreUsuario = $user->getUsername();
 		
 		$provincia->setUsuarioModificacion($nombreUsuario);
 		

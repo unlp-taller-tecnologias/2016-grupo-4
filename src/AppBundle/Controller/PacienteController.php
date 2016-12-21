@@ -27,7 +27,17 @@ class PacienteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if ($user->hasRole('ROLE_ADMIN')) { 
+            $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
+        }else{
+            if ($user->hasRole('ROLE_COORDINADOR') || $user->hasRole('ROLE_DATAENTRY')) { 
+                $idUnidad = $user->getUnidades()->getId();
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Paciente');
+                $pacientes = $repository->findByUnidadCarga($idUnidad);
+            }
+        }
 
         return $this->render('paciente/index.html.twig', array(
             'pacientes' => $pacientes,
@@ -47,7 +57,7 @@ class PacienteController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();			
+			$nombreUsuario = $user->getUsername();			
 		
 		$paciente->setUsuarioModificacion($nombreUsuario);
 		$paciente->setUsuarioCreacion($nombreUsuario);
@@ -61,9 +71,9 @@ class PacienteController extends Controller
 	
         $form = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $form->handleRequest($request);
-		if($form->isSubmitted() && $form->get('cancel')->isClicked()){
+		/*if($form->isSubmitted() && $form->get('cancel')->isClicked()){
 			return $this->redirectToRoute('paciente_index', array('id' => $paciente->getId()));
-		}
+		}*/
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($paciente);
@@ -108,7 +118,7 @@ class PacienteController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();
+			$nombreUsuario = $user->getUsername();
 	
 		$paciente->setUsuarioModificacion($nombreUsuario);
 		

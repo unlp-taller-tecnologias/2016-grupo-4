@@ -47,7 +47,7 @@ class PaisController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();			
+			$nombreUsuario = $user->getUsername();			
 				
 		$pais->setUsuarioModificacion($nombreUsuario);
 		$pais->setUsuarioCreacion($nombreUsuario);
@@ -101,7 +101,7 @@ class PaisController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();
+			$nombreUsuario = $user->getUsername();
 
 		$pais->setUsuarioModificacion($nombreUsuario);
 		

@@ -56,6 +56,14 @@ class User extends BaseUser
 		
 	}
 
+    public function unidades() {
+      return $this->unidades;
+    }
+
+    public function getUnidades() {
+      return $this->unidades[0];
+    }
+
     public function getNombre() {
       return $this->nombre;
     }

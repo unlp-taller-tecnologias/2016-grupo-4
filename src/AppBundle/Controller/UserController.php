@@ -28,20 +28,15 @@ class UserController extends Controller
             $usuarios = $em->getRepository('AppBundle:User')->findAll();
         }else{
             if ($user->hasRole('ROLE_COORDINADOR')) { 
-                $repository = $this->getDoctrine()->getRepository('AppBundle:User');
 
-                $query = $repository->createQueryBuilder('p')
-                ->where('p.roles = :nombre')
-                ->setParameter('nombre', 'a:1:{i:0;s:16:"ROLE_COORDINADOR";}')
-                ->getQuery();
+                $unidad = $this->getDoctrine()
+                ->getRepository('AppBundle:UnidadCarga')
+                ->find($user->getUnidades());
  
-                $usuarios = $query->getResult();
+                $usuarios = $unidad->getUsers();
 
-                //$usuarios = $em->getRepository('AppBundle:User')->findAll();
             }
-        }
-
-        //var_dump($usuarios[1]);      
+        }      
 
         return $this->render('AppBundle:User:index.html.twig', array(
             'Usuarios' => $usuarios,

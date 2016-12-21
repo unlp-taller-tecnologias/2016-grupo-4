@@ -8,9 +8,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class PacienteType extends AbstractType
 {
+    
+    private $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
+
+    public function getUnid()
+    {
+         $user = $this->tokenStorage->getToken()->getUser();
+         return $user->getUnidades(); 
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -23,9 +40,9 @@ class PacienteType extends AbstractType
 		->add('numeroDocumento', 'number', array('label' => 'Numero de documento'))
 		->add('fechaNacimiento', 'birthday', array('widget' => 'single_text', 'label' => 'Fecha de nacimiento'))
 		->add('nacionalidad')
-		->add('unidadCarga', 'hidden', array ('attr' => array('disabled' => 'disabled')))
+		->add('unidadCarga', 'hidden', array ('attr' => array('disabled' => 'disabled'), 'empty_data' => $this->getUnid()))
 		->add('save', SubmitType::class, array('label' => 'Guardar'))
-		->add('cancel', SubmitType::class, array('label' => 'Cancelar'))
+		
 /* 		->add('fichas', CollectionType::class, array(
                     'entry_type' => FichaType::class,
                     'allow_add' => true,

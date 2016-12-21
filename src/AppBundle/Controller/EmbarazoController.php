@@ -47,7 +47,7 @@ class EmbarazoController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();			
+			$nombreUsuario = $user->getUsername();			
 				
 		$embarazo->setUsuarioModificacion($nombreUsuario);
 		$embarazo->setUsuarioCreacion($nombreUsuario);
@@ -102,7 +102,7 @@ class EmbarazoController extends Controller
 		if ($user == "anon")	
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getNombre();
+			$nombreUsuario = $user->getUsername();
 		
 		$embarazo->setUsuarioModificacion($nombreUsuario);
 		
