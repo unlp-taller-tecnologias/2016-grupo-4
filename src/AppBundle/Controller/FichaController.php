@@ -111,7 +111,26 @@ class FichaController extends Controller
      */
     public function editAction(Request $request, Ficha $ficha)
     {
-						//seteo el usuario que modificó
+		
+		if (sizeof($ficha->getFichasHijos()) == 0) 
+		{
+			$fh1 = new FichaHijo();
+			$fh1->setFicha($ficha);
+			$fh2 = new FichaHijo();
+			$fh2->setFicha($ficha);
+			$ficha->setFichasHijos($fh1);
+			$ficha->setFichasHijos($fh2);
+			
+		}
+		
+		if (sizeof($ficha->getFichasHijos()) == 1) 
+		{
+			$fh2 = new FichaHijo();	
+			$fh2->setFicha($ficha);	
+			$ficha->setFichasHijos($fh2);
+			
+		}
+		//seteo el usuario que modificó
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		
 		if ($user == "anon")
@@ -120,29 +139,30 @@ class FichaController extends Controller
 			$nombreUsuario = $user->getUsername();
 	
 		$ficha->setUsuarioModificacion($nombreUsuario);
+		$ficha->setUsuarioCreacion($nombreUsuario);
 		
         $deleteForm = $this->createDeleteForm($ficha);
         $editForm = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-			
-			
-			$em = $this->getDoctrine()->getManager();
+            
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
+				$hijo->setUsuarioModificacion($nombreUsuario);
+				$hijo->setUsuarioCreacion($nombreUsuario);									
+				/*
 				if( $hijo->getAgregar() == 1)
 				{
-					$hijo->setUsuarioModificacion($nombreUsuario);
-					$hijo->setUsuarioCreacion($nombreUsuario);					
+					$hijo->setFicha($ficha);
 					$em->persist($hijo);
 					$em->flush($hijo);	
 				}
+				*/
 			}	
 
-			
-
+			$this->getDoctrine()->getManager()->flush($ficha);
+			$em = $this->getDoctrine()->getManager();
             return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
