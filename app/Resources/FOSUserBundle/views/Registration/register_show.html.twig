@@ -1,0 +1,62 @@
+{% extends "layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+ 
+    <div class="main container">
+        <div class="row well" >
+            <div class="col-md-10">
+                <div class="page-header">
+                   <h3 class="page-header"><i class="icon_house_alt" aria-hidden="true"></i>Nuevo Usuario</h3>
+                </div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Nombre de Usuario:</th>
+                            <td> {{ nuevo_usuario.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre:</th>
+                            <td>{{ nuevo_usuario.nombre }}</td>
+                        </tr>
+                        <tr>
+                            <th>Apellido:</th>
+                            <td> {{ nuevo_usuario.apellido }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td> {{ nuevo_usuario.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Rol:</th>
+                            {% if  nuevo_usuario.roles[0] == 'ROLE_DATAENTRY' %}
+                                <td> DATAENTRY </td>
+                            {% else %}    
+                                <td> COORDINADOR </td>
+                            {% endif %}
+                            
+                            
+                        </tr>
+                        <tr>
+                        <th>Unidad de carga:</th>
+                            <td> {{ nuevo_usuario.unidades[0] }}</td>
+                        </tr>
+                        
+                        
+                    </tbody>
+                </table>
+
+                <ul>
+                    <li>
+                        
+                        <a class="btn btn-info" href="{{ path('user_index') }}">Listado de Usuarios</a>
+                        <a class="btn btn-success" href="{{  path('fos_user_registration_register') }}">Nuevo Usuario</a>    
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+     
+
+{% endblock %}

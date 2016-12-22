@@ -23,3 +23,9 @@ services:
         class: AppBundle\AuthListener
         tags:
             - { name: kernel.event_subscriber }
+
+    registration_complet:
+        class: AppBundle\RegistrationConfirmListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }

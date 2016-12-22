@@ -12,8 +12,8 @@ class AuthListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FOSUserEvents::REGISTRATION_COMPLETED => 'registration',
-            FOSUserEvents::REGISTRATION_CONFIRMED => 'registration'
+            FOSUserEvents::REGISTRATION_COMPLETED => 'registration'
+           // FOSUserEvents::REGISTRATION_CONFIRMED => 'registration'
         );
     }
 

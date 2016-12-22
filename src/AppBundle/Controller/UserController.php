@@ -53,4 +53,28 @@ class UserController extends Controller
         ));
     }
 
+    /**
+     * @Route("/show",  name="user_show")
+     */
+    public function showAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+
+
+
+        $usuario = $em->createQueryBuilder()
+            ->select('e')
+            ->from('AppBundle:User', 'e')
+            ->orderBy('e.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $this->render('FOSUserBundle:Registration:register_show.html.twig', array(
+            'nuevo_usuario' => $usuario
+        ));
+    }
+
+
 }

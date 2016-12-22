@@ -14,9 +14,14 @@ class DefaultController extends Controller
             $ruta = $this->generateUrl('fos_user_security_login');
             return $this->redirect($ruta);
         }else{
-            $ruta = $this->generateUrl('paciente_index');
-            return $this->redirect($ruta);
-            
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            if ($user->hasRole('ROLE_ADMIN')) {
+                $ruta = $this->generateUrl('user_index');
+                return $this->redirect($ruta);
+            }else{
+                $ruta = $this->generateUrl('paciente_index');
+                return $this->redirect($ruta);
+            }   
         }
         /*return $this->render('FOSUserBundle::Security/login.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
