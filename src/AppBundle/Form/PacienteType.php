@@ -42,12 +42,12 @@ class PacienteType extends AbstractType
 		->add('nacionalidad')
 		->add('unidadCarga', 'hidden', array ('attr' => array('disabled' => 'disabled'), 'empty_data' => $this->getUnid()))
 		->add('save', SubmitType::class, array('label' => 'Guardar'))
-		
+		->getForm();
 /* 		->add('fichas', CollectionType::class, array(
                     'entry_type' => FichaType::class,
                     'allow_add' => true,
             )) */
-		->getForm();
+		
     }
     
     /**

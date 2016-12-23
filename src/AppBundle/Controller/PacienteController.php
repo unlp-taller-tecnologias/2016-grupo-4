@@ -71,9 +71,6 @@ class PacienteController extends Controller
 	
         $form = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $form->handleRequest($request);
-		/*if($form->isSubmitted() && $form->get('cancel')->isClicked()){
-			return $this->redirectToRoute('paciente_index', array('id' => $paciente->getId()));
-		}*/
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($paciente);
@@ -126,9 +123,6 @@ class PacienteController extends Controller
         $deleteForm = $this->createDeleteForm($paciente);
         $editForm = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $editForm->handleRequest($request);
-		if($editForm->get('cancel')->isClicked()){
-			return $this->redirectToRoute('paciente_index', array('id' => $paciente->getId()));
-		}
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 			$this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('paciente_show', array('id' => $paciente->getId()));
@@ -149,7 +143,6 @@ class PacienteController extends Controller
      */
     public function deleteAction(Request $request, Paciente $paciente)
     {
-		// exit("nada");
 		$form = $this->createDeleteForm($paciente);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
