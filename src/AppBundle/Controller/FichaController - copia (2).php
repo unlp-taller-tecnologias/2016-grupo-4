@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ficha;
-use AppBundle\Entity\Embarazo;
 use AppBundle\Entity\FichaHijo;
 use AppBundle\Entity\Paciente;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -240,8 +239,7 @@ class FichaController extends Controller
 		
 		$p->setFichas($ficha);
 		$ficha->setPaciente($p);
-
-		//seteo hijos		
+		
 		$fh1 = new FichaHijo();
 		$fh2 = new FichaHijo();
 		
@@ -250,51 +248,35 @@ class FichaController extends Controller
 		
 		$fh2->setUsuarioModificacion($nombreUsuario);
 		$fh2->setUsuarioCreacion($nombreUsuario);
-
+		
 		$ficha->setFichasHijos($fh1);
 		$ficha->setFichasHijos($fh2);
 		
-
-
-		$form = $this->createForm('AppBundle\Form\FichaType', $ficha);
+		//seteo los hijos solo si estan cargados
+		
+		//$hijos = $ficha->getFichasHijos();
+		
+		//$ficha->getFichasHijos()
+		
+		
+		// seteo el embarazo
+		
+		$ue = $p->getUltimoEmbarazo();
+		print_r($ue);
+		die;
+		
+		
+		//fin del seteo embarazo
+		
+		
+        $form = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $form->handleRequest($request);
 		
         if ($form->isSubmitted() && $form->isValid()) {
 
-			//seteo el embarazo
-			$ue = $p->getUltimoEmbarazo();		
-		
-			//si no hay ultimo embarazo
-			if ($ue==null) {
-				echo "entró por el null";
-				$ue = new Embarazo();			
-				$p->setEmbarazos($ue);
-				$ue->setPaciente($p);
-				$ue->setFechaInicio($ficha->getFechaRegistro());
-			}
-		
-			//si transcurrieron más de 12 meses del ultimo embarazo		
-			$fecha_embarazo = $ue->getFechaInicio();
-			$fecha_registro = $ficha->getFechaRegistro();
-			
-			$intervalo=$fecha_embarazo->diff($fecha_registro);
-			$diferencia_meses = $intervalo->format("%m");
-
-			//creo un nuevo embarazo y seteo la ficha con él
-			if ($diferencia_meses > 12) {
-				echo "entró por el 12";
-				$ue = new Embarazo();
-				$p->setEmbarazos($ue);
-				$ue->setPaciente($p);
-				$ue->setFechaInicio($ficha->getFechaRegistro());
-			}
-			
-			$ue->setFichas($ficha);
-			$ue->setUsuarioModificacion($ficha->getUsuarioModificacion());
-			$ue->setUsuarioCreacion($ficha->getUsuarioCreacion());
-			$ficha->setEmbarazo($ue);
-				
-			//fin seteo embarazo		
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($ficha);
+			$em->flush($ficha);		
 		
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
@@ -304,12 +286,8 @@ class FichaController extends Controller
 					$em->persist($hijo);
 					$em->flush($hijo);	
 				}			
-			}
+			}	
 
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($ficha);
-			$em->flush($ficha);		
-		
 			return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 

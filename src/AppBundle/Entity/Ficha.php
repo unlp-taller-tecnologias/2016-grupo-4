@@ -417,12 +417,6 @@ class Ficha
      */
     private $numeroInyeccionesDia;
 
-	
-	/**
-	* @ORM\ManyToOne(targetEntity="Embarazo")
-	*/
-	protected $embarazo;	
-
 	/**
      * @ORM\Column(type="datetime")
      */
@@ -455,7 +449,14 @@ class Ficha
      * @ORM\ManyToOne(targetEntity="Paciente", inversedBy="fichas", cascade={"persist"})
      * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id")
      */
-	protected $paciente;	
+	protected $paciente;
+
+	/**
+     * @ORM\ManyToOne(targetEntity="Embarazo", inversedBy="fichas", cascade={"persist"})
+     * @ORM\JoinColumn(name="embarazo_id", referencedColumnName="id")
+     */
+
+	protected $embarazo;	
 	
 	/**
      *
@@ -520,7 +521,10 @@ class Ficha
      * @ORM\Column(name="cmCuales", type="string", length=255, nullable=true)
      */
 	protected $cmCuales;
-	// hacer getters t setters
+		
+	
+
+	
 	
 	/**
      * Get id
@@ -1612,28 +1616,6 @@ class Ficha
         return $this->numeroInyeccionesDia;
     }
 	
-	   /**
-     * Get embarazo
-     *
-     * @return integer 
-     */
-    public function getEmbarazo()
-    {
-        return $this->embarazo;
-    }
-    /**
-     * Set embarazo
-     *
-     * @param string $embarazo
-     * @return embarazo
-     */
-    public function setEmbarazo($embarazo)
-    {
-        $this->embarazo = $embarazo;
-
-        return $this;
-    }
-
 	/**
      * Get fichasHijos
      */
@@ -1828,6 +1810,17 @@ class Ficha
 		return $this;		
 	}
 	
+	
+	public function getEmbarazo()
+    {
+        return $this->embarazo;
+    }
+	
+	public function setEmbarazo($embarazo)
+    {
+        $this->embarazo = $embarazo;
+		return $this;
+    }
 
 	public function __construct()
     {
