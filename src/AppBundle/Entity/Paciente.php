@@ -87,6 +87,11 @@ class Paciente
      */
 	protected $fichas;
 
+    /**
+     *@ORM\OneToMany(targetEntity="Embarazo", mappedBy="paciente", cascade={"persist"})
+     */
+	protected $embarazos;	
+
 	/**
      * @ORM\Column(type="datetime")
      */
@@ -334,12 +339,30 @@ class Paciente
 		$this->fichas->add($ficha);
 		return $this;
 	}
+
+	public function getEmbarazos()
+	{
+		return $this->embarazos;		
+	}
 	
+	//agrega una ficha
+	public function setEmbarazos($embarazo)
+	{
+		$this->embarazos->add($embarazo);
+		return $this;
+	}
+	
+	public function getUltimoEmbarazo()
+	{
+		return $this->embarazos->last();
+	}
+		
 	
 	public function __construct()
     {
         $this->createdAt= new \DateTime();
         $this->updatedAt= new \DateTime();
 		$this->fichas = new ArrayCollection();
+		$this->embarazos = new ArrayCollection();
     }
 }
