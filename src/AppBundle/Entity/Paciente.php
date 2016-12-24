@@ -31,6 +31,7 @@ class Paciente
      *
      * @ORM\Column(name="numeroDocumento", type="bigint", unique=true)
 	 * @Assert\NotBlank()
+	 * @Assert\Length(min=8)
      */
     private $numeroDocumento;
 
@@ -39,6 +40,8 @@ class Paciente
      *
      * @ORM\Column(name="apellido", type="string", length=50)
 	 * @Assert\NotBlank()
+	 * @Assert\Length(min=3, minMessage="El apellido debe tener 3 o mas caracteres."))
+	 * @Assert\Type(type="alpha", message="Este atributo no debe contener numeros.")
      */
     private $apellido;
 
@@ -47,6 +50,8 @@ class Paciente
      *
      * @ORM\Column(name="nombre", type="string", length=50)
 	 * @Assert\NotBlank()
+	 * @Assert\Length(min=3, minMessage="El nombre debe contener 3 o mas caracteres.")
+	 * @Assert\Type(type="alpha", message="Este atributo no debe contener numeros.")
      */
     private $nombre;
 
@@ -56,6 +61,7 @@ class Paciente
      * @ORM\Column(name="fechaNacimiento", type="date")
 	 * @Assert\NotBlank()
      * @Assert\Date()
+	 * @Assert\LessThanOrEqual("today", message="La fecha debe ser anterior o igual al dia de hoy.")
      */
     private $fechaNacimiento;
 
@@ -64,6 +70,8 @@ class Paciente
 	*
 	*@ORM\Column(name="nacionalidad", type="string", length=50)
 	* @Assert\NotBlank()
+	* @Assert\Length(min=3, minMessage="La nacionalidad debe contener 3 o mas caracteres.")
+	* @Assert\Type(type="alpha", message="Este atributo no debe contener numeros.")
 	*/
 	protected $nacionalidad;
 
@@ -71,7 +79,7 @@ class Paciente
 	* @var integer
 	*
 	* @ORM\ManyToOne(targetEntity="TipoDocumento")
-	* @Assert\NotBlank()	
+	* @Assert\NotBlank()
 	*/
 	
 	protected $tipoDocumento;	

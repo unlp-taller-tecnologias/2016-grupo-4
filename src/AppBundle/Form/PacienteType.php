@@ -34,7 +34,7 @@ class PacienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-		->add('nombre', 'text')
+		->add('nombre')
 		->add('apellido')
 		->add('tipoDocumento', null, array('placeholder' => 'Seleccione el tipo...',))
 		->add('numeroDocumento', 'number', array('label' => 'Numero de documento'))
