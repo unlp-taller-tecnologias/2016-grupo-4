@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -154,35 +155,35 @@ class Ficha
      *
      * @ORM\Column(name="urocultivo", type="boolean", nullable=true)
      */
-    private $urocultivo;
+    private $urocultivo=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="hipertensionCronica", type="boolean", nullable=true)
      */
-    private $hipertensionCronica;
+    private $hipertensionCronica=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="obesidad", type="boolean", nullable=true)
      */
-    private $obesidad;
+    private $obesidad=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="tabaquismo", type="boolean", nullable=true)
      */
-    private $tabaquismo;
+    private $tabaquismo=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="realizaActividadFisica", type="boolean", nullable=true)
      */
-    private $realizaActividadFisica;
+    private $realizaActividadFisica=false;
 
     /**
      * @var int
@@ -207,14 +208,14 @@ class Ficha
      *
      * @ORM\Column(name="conoceMetasDeTratamiento", type="boolean", nullable=true)
      */
-    private $conoceMetasDeTratamiento;
+    private $conoceMetasDeTratamiento=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="cumplePlanDeAlimentacion", type="boolean", nullable=true)
      */
-    private $cumplePlanDeAlimentacion;
+    private $cumplePlanDeAlimentacion=false;
 
     /**
      * @var int
@@ -230,14 +231,14 @@ class Ficha
      *
      * @ORM\Column(name="sabeIdentificarOTratarHipoglucemias", type="boolean", nullable=true)
      */
-    private $sabeIdentificarOTratarHipoglucemias;
+    private $sabeIdentificarOTratarHipoglucemias=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="automonitoreoGlucemico", type="boolean", nullable=true)
      */
-    private $automonitoreoGlucemico;
+    private $automonitoreoGlucemico=false;
 
     /**
      * @var int
@@ -253,14 +254,14 @@ class Ficha
      *
      * @ORM\Column(name="fumaActualmente", type="boolean", nullable=true)
      */
-    private $fumaActualmente;
+    private $fumaActualmente=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="fumoAnteriorMente", type="boolean", nullable=true)
      */
-    private $fumoAnteriorMente;
+    private $fumoAnteriorMente=false;
 
     /**
      * @var int
@@ -461,17 +462,17 @@ class Ficha
      *
      * @ORM\Column(name="coberturaPrivado", type="boolean", nullable=true)
      */
-	protected $coberturaPrivado;
+	protected $coberturaPrivado=false;
 	/**
      *
      * @ORM\Column(name="coberturaObraSocial", type="boolean", nullable=true)
      */
-	protected $coberturaObraSocial;
+	protected $coberturaObraSocial=false;
 	/**
      *
      * @ORM\Column(name="coberturaNinguna", type="boolean", nullable=true)
      */
-	protected $coberturaNinguna;
+	protected $coberturaNinguna=false;
 	/**
      *
      * @ORM\Column(name="medico", type="string", nullable=true)
@@ -488,33 +489,33 @@ class Ficha
      *
      * @ORM\Column(name="partoNormal", type="boolean", nullable=true)
      */
-	protected $partoNormal;
+	protected $partoNormal=false;
 	/**
      *
      * @ORM\Column(name="partoPrematuro", type="boolean", nullable=true)
      */
-	protected $partoPrematuro;
+	protected $partoPrematuro=false;
 	/**
      * @var int
      *
      * @ORM\Column(name="partoCesarea", type="boolean", nullable=true)
      */
-	protected $partoCesarea;
+	protected $partoCesarea=false;
 	/**
      *
      * @ORM\Column(name="cmHie", type="boolean", nullable=true)
      */
-	protected $cmHie;
+	protected $cmHie=false;
 	/**
      *
      * @ORM\Column(name="cmPreclampsia", type="boolean", nullable=true)
      */
-	protected $cmPreclampsia;
+	protected $cmPreclampsia=false;
 	/**
      *
      * @ORM\Column(name="cmOtras", type="boolean", nullable=true)
      */
-	protected $cmOtras;
+	protected $cmOtras=false;
 	/**
      *
      * @ORM\Column(name="cmCuales", type="string", length=255, nullable=true)

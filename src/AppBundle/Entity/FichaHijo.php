@@ -27,56 +27,56 @@ class FichaHijo
      *
      * @ORM\Column(name="agregar", type="boolean", nullable=true)
      */
-    public $agregar;	
+    public $agregar=false;	
 	
     /**
      * @var bool
      *
      * @ORM\Column(name="complicacionesRciu", type="boolean", nullable=true)
      */
-    private $complicacionesRciu;
+    private $complicacionesRciu=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="complicacionesMacrosomia", type="boolean", nullable=true)
      */
-    private $complicacionesMacrosomia;
+    private $complicacionesMacrosomia=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="complicacionesSindDistressPrematuro", type="boolean", nullable=true)
      */
-    private $complicacionesSindDistressPrematuro;
+    private $complicacionesSindDistressPrematuro=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="complicacionesHipoglucemia", type="boolean", nullable=true)
      */
-    private $complicacionesHipoglucemia;
+    private $complicacionesHipoglucemia=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="complicacionesMalformacionesFetales", type="boolean", nullable=true)
      */
-    private $complicacionesMalformacionesFetales;
+    private $complicacionesMalformacionesFetales=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="complicacionesMortalidadPrenatal", type="boolean", nullable=true)
      */
-    private $complicacionesMortalidadPrenatal;
+    private $complicacionesMortalidadPrenatal=false;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="complicacionesOtras", type="boolean", nullable=true)
      */
-    private $complicacionesOtras;
+    private $complicacionesOtras=false;
 
     /**
      * @var string
@@ -101,7 +101,7 @@ class FichaHijo
 
 
 	/**
-	* @ORM\ManyToOne(targetEntity="Ficha")
+	* @ORM\ManyToOne(targetEntity="Ficha", cascade={"persist"})
 	*/
 	protected $ficha;	
 	

@@ -294,7 +294,8 @@ class FichaController extends Controller
 			$ue->setUsuarioCreacion($ficha->getUsuarioCreacion());
 			$ficha->setEmbarazo($ue);
 				
-			//fin seteo embarazo		
+			//fin seteo embarazo	
+			$em = $this->getDoctrine()->getManager();			
 		
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
