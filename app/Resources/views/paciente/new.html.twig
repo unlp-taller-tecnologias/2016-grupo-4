@@ -17,37 +17,37 @@
 <!--Nombre -->
                 <div class="form-group col-lg-4">
                     {{ form_label(form.nombre, 'Nombre:') }}
-                    {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese el nombre...'} }) }}
+                    {{ form_widget(form.nombre, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese el nombre...', 'required' : 'required'} }) }}
                     <span class="text-danger">{{ form_errors(form.nombre) }}</span>
                 </div>
 <!--Apellido -->                
 			    <div class="form-group col-lg-4">
 			        {{ form_label(form.apellido, 'Apellido:') }}
-			        {{ form_widget(form.apellido, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el apellido...'}}) }}
+			        {{ form_widget(form.apellido, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el apellido...', 'required' : 'required'}}) }}
 			        <span class="text-danger">{{ form_errors(form.apellido) }}</span>
 			    </div>
 <!--Tipo de documento -->
 			    <div class="form-group col-lg-4">
 			        {{ form_label(form.tipoDocumento, 'Tipo de documento:') }}
-			        {{ form_widget(form.tipoDocumento, {'attr': {'class': 'form-control'}}) }}
+			        {{ form_widget(form.tipoDocumento, {'attr': {'class': 'form-control', 'required' : 'required'}}) }}
 			        <span class="text-danger">{{ form_errors(form.tipoDocumento) }}</span>
 			    </div>
 <!--Numero de documento-->
 			    <div class="form-group col-lg-4">
 			        {{ form_label(form.numeroDocumento, 'Numero de documento:') }}
-			        {{ form_widget(form.numeroDocumento, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el numero...'}}) }}
+			        {{ form_widget(form.numeroDocumento, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese el numero...', 'required' : 'required'}}) }}
 			        <span class="text-danger">{{ form_errors(form.numeroDocumento) }}</span>
 			    </div>
 <!--Fecha de nacimiento-->
 			    <div class="form-group col-lg-4">
 			        {{ form_label(form.fechaNacimiento, 'Fecha de nacimiento:') }}
-			        {{ form_widget(form.fechaNacimiento, {'attr': {'class': 'form-control'}}) }}
+			        {{ form_widget(form.fechaNacimiento, {'attr': {'class': 'form-control', 'required' : 'required'}}) }}
 			        <span class="text-danger">{{ form_errors(form.fechaNacimiento) }}</span>
 			    </div>
 <!--Nacionalidad-->
 			    <div class="form-group col-lg-4">
 			        {{ form_label(form.nacionalidad, 'Nacionalidad:') }}
-			        {{ form_widget(form.nacionalidad, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese la nacionalidad...'}}) }}
+			        {{ form_widget(form.nacionalidad, {'attr': {'class': 'form-control', 'placeholder' : 'Ingrese la nacionalidad...', 'required' : 'required'}}) }}
 			        <span class="text-danger">{{ form_errors(form.nacionalidad) }}</span>
 			    </div>
 <!--Unidad de carga lo seteo en form\pacienteType -->

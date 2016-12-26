@@ -5,67 +5,154 @@
     {{ parent() }}
     <div class="main container">
         <div class="row well" >
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="page-header">
                     <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Ficha {{ ficha.id }}</h3>
                 </div>
                 <table class="table">
                     <tbody>
+                        
                         <tr>
-                        <th>TAS</th>
-                        <td>{{ ficha.tas }}</td>
+                           
+                            <th>TAS</th>
+                            <td>
+                                {% if ficha.tas %}
+                                    {{ficha.tas}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                       
                         </tr>
+                        
                         <tr>
+                         
                             <th>TAD</th>
-                            <td>{{ ficha.tad }}</td>
+                            <td>
+                                {% if ficha.tad %}
+                                    {{ficha.tad}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                       
                         </tr>
                         <tr>
+                          
                             <th>Talla</th>
-                            <td>{{ ficha.talla }}</td>
+                            <td>
+                                {% if ficha.talla %}
+                                    {{ficha.talla}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+
                         </tr>
                         <tr>
                             <th>Peso</th>
-                            <td>{{ ficha.peso }}</td>
+                            <td>
+                                {% if ficha.peso %}
+                                    {{ficha.peso}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Glucemia</th>
-                            <td>{{ ficha.glucemia }}</td>
+                            <td>
+                                {% if ficha.glucemia %}
+                                    {{ficha.glucemia}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Fructosamina</th>
-                            <td>{{ ficha.fructosamina }}</td>
+                            <td>
+                                {% if ficha.fructosamina %}
+                                    {{ficha.fructosamina}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Hba1c</th>
-                            <td>{{ ficha.hba1c }}</td>
+                            <td>
+                                {% if ficha.hba1c %}
+                                    {{ficha.hba1c}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Colesterol total</th>
-                            <td>{{ ficha.colesterolTotal }}</td>
+                            <td>
+                                {% if ficha.colesterolTotal %}
+                                    {{ficha.colesterolTotal}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Colesterol HDL</th>
-                            <td>{{ ficha.colesterolHdl }}</td>
+                            <td>
+                                {% if ficha.colesterolHdl %}
+                                    {{ficha.colesterolHdl}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Colesterol LDL</th>
-                            <td>{{ ficha.colesterolLdl }}</td>
+                            <td>
+                                {% if ficha.colesterolLdl %}
+                                    {{ficha.colesterolLdl}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Triglicéridos</th>
-                            <td>{{ ficha.trigliceridos }}</td>
+                            <td>
+                                {% if ficha.trigliceridos %}
+                                    {{ficha.trigliceridos}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Creatinina</th>
-                            <td>{{ ficha.creatinina }}</td>
+                            <td>
+                                {% if ficha.creatinina %}
+                                    {{ficha.creatinina}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Proteinuria</th>
-                            <td>{{ ficha.proteinuria }}</td>
+                            <td>
+                                {% if ficha.proteinuria %}
+                                    {{ficha.proteinuria}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Urocultivo</th>
-                            <td>{% if ficha.urocultivo %}Si{% else %}No{% endif %}</td>
+                            <td>{% if ficha.urocultivo %}Si{% else %}No{% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Hipertensioncronica</th>
@@ -85,11 +172,23 @@
                         </tr>
                         <tr>
                             <th>Número de veces por semana</th>
-                            <td>{{ ficha.numeroDeVecesPorSemana }}</td>
+                            <td>
+                                {% if ficha.numeroDeVecesPorSemana %}
+                                    {{ficha.numeroDeVecesPorSemana}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Minutos</th>
-                            <td>{{ ficha.minutos }}</td>
+                            <td>
+                                {% if ficha.minutos %}
+                                    {{ficha.minutos}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Conoce metas de tratamiento</th>
@@ -101,7 +200,13 @@
                         </tr>
                         <tr>
                             <th>Número de porciones de fruta por día</th>
-                            <td>{{ ficha.numerodePorcionesDeFrutaPorDia }}</td>
+                            <td>
+                                {% if ficha.numerodePorcionesDeFrutaPorDia %}
+                                    {{ficha.numerodePorcionesDeFrutaPorDia}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Sabe identificar otra TAR hipoglucemias</th>
@@ -113,7 +218,13 @@
                         </tr>
                         <tr>
                             <th>Número de veces por día</th>
-                            <td>{{ ficha.numeroDeVecesPorDia }}</td>
+                            <td>
+                                {% if ficha.numeroDeVecesPorDia %}
+                                    {{ficha.numeroDeVecesPorDia}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Fuma actualmente</th>
@@ -125,75 +236,194 @@
                         </tr>
                         <tr>
                             <th>Cigarrillos al día</th>
-                            <td>{{ ficha.cigarrillosAlDia }}</td>
+                            <td>
+                                {% if ficha.cigarrillosAlDia %}
+                                    {{ficha.cigarrillosAlDia}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Causa hospitalización</th>
-                            <td>{{ ficha.causaHospitalizacion1 }}</td>
+                            <td>
+                                {% if ficha.causaHospitalizacion1 %}
+                                    {{ficha.causaHospitalizacion1}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Causa hospitalización</th>
-                            <td>{{ ficha.causaHospitalizacion2 }}</td>
+                            <td>
+                                {% if ficha.causaHospitalizacion2 %}
+                                    {{ficha.causaHospitalizacion2}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Causa hospitalización</th>
-                            <td>{{ ficha.causaHospitalizacion3 }}</td>
+                            <td>
+                                {% if ficha.causaHospitalizacion3 %}
+                                    {{ficha.causaHospitalizacion3}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Días hospitalización</th>
-                            <td>{{ ficha.diasHospitalizacion1 }}</td>
+                            <td>
+                                {% if ficha.diasHospitalizacion1 %}
+                                    {{ficha.diasHospitalizacion1}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Días hospitalización</th>
-                            <td>{{ ficha.diasHospitalizacion2 }}</td>
+                            <td>
+                                {% if ficha.diasHospitalizacion2 %}
+                                    {{ficha.diasHospitalizacion2}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Días hospitalización</th>
-                            <td>{{ ficha.diasHospitalizacion3 }}</td>
+                            <td>
+                                {% if ficha.diasHospitalizacion3 %}
+                                    {{ficha.diasHospitalizacion3}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Hipertensión atenolol</th>
-                            <td>{{ ficha.hipertensionAtenolol }}</td>
+                            <td>
+                                {% if ficha.hipertensionAtenolol %}
+                                    {{ficha.hipertensionAtenolol}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Hipertensión bloqueantes cálcicos</th>
-                            <td>{{ ficha.hipertensionBloqueantesCalcicos }}</td>
+                            <td>
+                                {% if ficha.hipertensionBloqueantesCalcicos %}
+                                    {{ficha.hipertensionBloqueantesCalcicos}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Hipertensión furosemida</th>
-                            <td>{{ ficha.hipertensionFurosemida }}</td>
+                            <td>
+                                {% if ficha.hipertensionFurosemida %}
+                                    {{ficha.hipertensionFurosemida}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Hipertensión otro</th>
-                            <td>{{ ficha.hipertensionOtro }}</td>
+                            <td>
+                                {% if ficha.hipertensionOtro %}
+                                    {{ficha.hipertensionOtro}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Hipertensión ¿cual?</th>
-                            <td>{{ ficha.hipertensionCual }}</td>
+                            <td>
+                                {% if ficha.hipertensionCual %}
+                                    {{ficha.hipertensionCual}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>AAS</th>
-                            <td>{{ ficha.aas }}</td>
+                            <td>
+                                {% if ficha.aas %}
+                                    {{ficha.aas}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Insulina NPH</th>
-                            <td>{{ ficha.insulinaNph }}</td>
+                            <td>
+                                {% if ficha.insulinaNph %}
+                                    {{ficha.insulinaNph}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Insulina detemir</th>
-                            <td>{{ ficha.insulinaDetemir }}</td>
+                            <td>
+                                {% if ficha.insulinaDetemir %}
+                                    {{ficha.insulinaDetemir}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Insulina corriente</th>
-                            <td>{{ ficha.insulinaCorriente }}</td>
+                            <td>
+                                {% if ficha.insulinaCorriente %}
+                                    {{ficha.insulinaCorriente}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Insulina aspartica</th>
-                            <td>{{ ficha.insulinaAspartica }}</td>
+                            <td>
+                                {% if ficha.insulinaAspartica %}
+                                    {{ficha.insulinaAspartica}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Número inyecciones por día</th>
-                            <td>{{ ficha.numeroInyeccionesDia }}</td>
+                            <td>
+                                {% if ficha.numeroInyeccionesDia %}
+                                    {{ficha.numeroInyeccionesDia}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                        </tr>
+                       
+                        <tr>
+                            <th>Número inyecciones por día</th>
+                            <td>
+                                {% if ficha.numeroInyeccionesDia %}
+                                    {{ficha.numeroInyeccionesDia}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
                         </tr>
                         
                         

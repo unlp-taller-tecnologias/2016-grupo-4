@@ -11,60 +11,55 @@
     <br>
 
 
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="main container">
+        <div class="row well" >
+            <div class="col-md-12">
             {{ form_start(form, {'attr': {'class': 'fos_user_registration_register', 'id': 'register-form'} }) }}
-                <section class="panel">
-                    <header class="panel-heading">
-                        Registrar
-                    </header>
-
-                    
-                        <div class="form_errors_change_pwd">
+                
                             {{ form_errors(form) }}
-                        </div>
+                  
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('intention') }}">
                                
                         <div class="form-group col-lg-4">
-                            {{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}
-                            {{ form_widget(form.username, { 'attr' :{ 'class' : 'form-control'}}) }}
-                            <span class="form_error_field">{{ form_errors(form.username) }}</span>
+                            <label>Nombre:</label>
+                            {{ form_widget(form.username, { 'attr' :{ 'class' : 'form-control', 'placeholder' : 'Ingrese el nombre de usuario...', 'required' : 'required'}}) }}
+                            <span class="text-danger">{{ form_errors(form.username) }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                             {{ 'form.password'|trans({}, 'FOSUserBundle') }}
-                             {{ form_widget(form.plainPassword.first, { 'attr' :{ 'class' : 'form-control'}}) }}
-                             <span class="form_error_field">{{ form_errors(form.plainPassword.first) }}</span>
+                             <label>Contraseña:</label>
+                             {{ form_widget(form.plainPassword.first, { 'attr' :{ 'class' : 'form-control', 'placeholder' : 'Ingrese la contraseña...', 'required' : 'required'}}) }}
+                             <span class="text-danger">{{ form_errors(form.plainPassword.first) }}</span>
                         </div>   
                         <div class="form-group col-lg-4">
-                            {{ 'form.password_confirmation'|trans({}, 'FOSUserBundle') }}
-                             {{ form_widget(form.plainPassword.second, { 'attr' :{ 'class' : 'form-control'}}) }}
-                            <span class="form_error_field">{{ form_errors(form.plainPassword.second) }}</span>
+                             <label>Repita la contraseña:</label>
+                             {{ form_widget(form.plainPassword.second, { 'attr' :{ 'class' : 'form-control', 'placeholder' : 'Repita la contraseña...', 'required' : 'required'}}) }}
+                            <span class="text-danger">{{ form_errors(form.plainPassword.second) }}</span>
                         </div>
                         <div class="form-group col-lg-4">
-                            {{ 'Nombre'|trans({}, 'FOSUserBundle') }}
-                            {{ form_widget(form.nombre, { 'attr' :{ 'class' : 'form-control'}}) }}
-                            <span class="form_error_field">{{ form_errors(form.nombre) }}</span>           
+                            <label>Nombre:</label>
+                            {{ form_widget(form.nombre, { 'attr' :{ 'class' : 'form-control','placeholder' : 'Ingrese el nombre...', 'required' : 'required'}}) }}
+                            <span class="text-danger">{{ form_errors(form.nombre) }}</span>           
                         </div>
                         <div class="form-group col-lg-4">
-                             {{ 'Apellido'|trans({}, 'FOSUserBundle') }}
-                             {{ form_widget(form.apellido, { 'attr' :{ 'class' : 'form-control'}}) }}
-                             <span class="form_error_field">{{ form_errors(form.apellido) }}</span>
+                             <label>Apellido:</label>
+                             {{ form_widget(form.apellido, { 'attr' :{ 'class' : 'form-control', 'placeholder' : 'Ingrese el apellido...', 'required' : 'required'}}) }}
+                             <span class="text-danger">{{ form_errors(form.apellido) }}</span>
                         </div>  
                         <div class="form-group col-lg-4">
-                            {{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}
-                            {{ form_widget(form.email, { 'attr' :{ 'class' : 'form-control'}}) }}
-                            <span class="form_error_field">{{ form_errors(form.email) }}</span>           
+                            <label>Email:</label>
+                            {{ form_widget(form.email, { 'attr' :{ 'class' : 'form-control','placeholder' : 'Ingrese el email...', 'required' : 'required'}}) }}
+                            <span class="text-danger">{{ form_errors(form.email) }}</span>           
                         </div>
                         <div class="form-group col-lg-4">
-                             {{ 'Rol'|trans({}, 'FOSUserBundle') }}
-                             {{ form_widget(form.rol, { 'attr' :{ 'class' : 'form-control'}}) }}
-                             <span class="form_error_field">{{ form_errors(form.rol) }}</span>
+                             <label>Rol:</label>
+                             {{ form_widget(form.rol, { 'attr' :{ 'class' : 'form-control', 'required' : 'required'}}) }}
+                             <span class="text-danger">{{ form_errors(form.rol) }}</span>
                         </div>  
                         
                         <div class="form-group col-lg-4">
-                             {{ 'Unidad de carga'|trans({}, 'FOSUserBundle') }}
-                             {{ form_widget(form.unidades, { 'attr' :{ 'class' : 'form-control'}}) }}
-                             <span class="form_error_field">{{ form_errors(form.unidades) }}</span>
+                            <label>Unidad de carga:</label>
+                             {{ form_widget(form.unidades, { 'attr' :{ 'class' : 'form-control', 'required' : 'required'}}) }}
+                             <span class="text-danger">{{ form_errors(form.unidades) }}</span>
                         </div> 
 
                   
@@ -72,9 +67,8 @@
 
                     
                         
-                    </div>
+            </div>
 
-                </section>
 
          
                    
