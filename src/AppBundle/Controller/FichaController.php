@@ -346,7 +346,7 @@ class FichaController extends Controller
 
 			$phpExcelObject->getProperties()->setCreator("Grupo4")
            ->setLastModifiedBy("Admin")
-           ->setTitle("Exportación de Fichas")
+           ->setTitle("Exportacion de Fichas")
            ->setSubject("Office 2005 XLSX Test Document")
            ->setDescription("Test document for Office 2005 XLSX, generated using PHP classes.")
            ->setKeywords("office 2005 openxml php")
@@ -441,7 +441,7 @@ class FichaController extends Controller
 			->setCellValue('BD1', 'Complicaciones Maternas Hie')
 			->setCellValue('BE1', 'Complicaciones Maternas Preclampsia')
 			->setCellValue('BF1', 'Complicaciones Maternas Otras')
-			->setCellValue('BE1', 'Complicaciones Maternas Cuales');
+			->setCellValue('BG1', 'Complicaciones Maternas Cuales');
 
 	   			//seteo los valores de las fichas
 
@@ -524,7 +524,7 @@ class FichaController extends Controller
 			// create the response
 			$response = $this->get('phpexcel')->createStreamedResponse($writer);
 			// adding headers
-			$dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'cenexa.xlsx');
+			$dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'Exportar'. date("dmY") .'.xlsx');
 			$response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
 			$response->headers->set('Pragma', 'public');
 			$response->headers->set('Cache-Control', 'maxage=1');
