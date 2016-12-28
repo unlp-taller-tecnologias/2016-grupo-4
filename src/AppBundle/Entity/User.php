@@ -89,6 +89,9 @@ class User extends BaseUser
         parent::addRole($rol);
     }
 
+    public function getRol() {
+      return $this->roles[0];
+    }
     /**
      * Never use this to check if this user has access to anything!
      *

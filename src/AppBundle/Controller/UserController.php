@@ -60,16 +60,14 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-
-
-
-        $usuario = $em->createQueryBuilder()
+            $usuario = $em->createQueryBuilder()
             ->select('e')
             ->from('AppBundle:User', 'e')
             ->orderBy('e.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getOneOrNullResult();           
+
 
         return $this->render('FOSUserBundle:Registration:register_show.html.twig', array(
             'nuevo_usuario' => $usuario
