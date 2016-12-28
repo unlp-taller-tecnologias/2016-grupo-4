@@ -266,7 +266,6 @@ class FichaController extends Controller
 		
 			//si no hay ultimo embarazo
 			if ($ue==null) {
-				echo "entró por el null";
 				$ue = new Embarazo();			
 				$p->setEmbarazos($ue);
 				$ue->setPaciente($p);
@@ -282,7 +281,6 @@ class FichaController extends Controller
 
 			//creo un nuevo embarazo y seteo la ficha con él
 			if ($diferencia_meses > 12) {
-				echo "entró por el 12";
 				$ue = new Embarazo();
 				$p->setEmbarazos($ue);
 				$ue->setPaciente($p);
@@ -299,12 +297,10 @@ class FichaController extends Controller
 		
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
-				if( $hijo->getAgregar() == 1)
-				{
 					$hijo->setFicha($ficha);
 					$em->persist($hijo);
 					$em->flush($hijo);	
-				}			
+			
 			}
 
 			$em = $this->getDoctrine()->getManager();
