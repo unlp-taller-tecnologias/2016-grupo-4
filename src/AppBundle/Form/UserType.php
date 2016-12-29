@@ -24,8 +24,8 @@ class UserType extends  AbstractType
         }
         if('modi' != $options['accion']){
         $builder
-            ->add('nombre',null, array('attr' => array('class' => 'form-control', 'minlength' => '3', 'maxlength' => '30')))
-            ->add('apellido',null, array('attr' => array('class' => 'form-control','minlength' => '3', 'maxlength' => '30')))
+            ->add('nombre',null, array('attr' => array('class' => 'form-control', 'minlength' => '3', 'maxlength' => '50')))
+            ->add('apellido',null, array('attr' => array('class' => 'form-control','minlength' => '3', 'maxlength' => '50')))
             ->add('email','email', array('attr' => array('class' => 'form-control','minlength' => '3', 'maxlength' => '50')));
         }
 

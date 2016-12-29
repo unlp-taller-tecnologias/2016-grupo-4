@@ -28,6 +28,7 @@ class User extends BaseUser
      *     maxMessage="Su nombre es muy largo.",
      *     groups={"Registration", "Profile"}
      * )
+	 * @Assert\Type(type="alpha", message="El nombre no debe contener numeros.")
      */
 	protected $nombre;
     /**
@@ -41,12 +42,17 @@ class User extends BaseUser
      *     maxMessage="Su apellido es muy largo.",
      *     groups={"Registration", "Profile"}
      * )
+	 * @Assert\Type(type="alpha", message="El apellido no debe contener numeros.")
      */
 	protected $apellido;
 
     /**
     * @ORM\ManyToMany(targetEntity="UnidadCarga", inversedBy="users")
     * @ORM\JoinTable(name="unidades_users")
+	* @Assert\Count(
+     *      min = "1",
+     *      minMessage = "Seleccione una unidad de carga"
+     * )
     **/
    public $unidades;
 
