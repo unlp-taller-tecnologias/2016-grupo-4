@@ -21,25 +21,26 @@
 								<tr>
 									<th>Nombre de Usuario</th>
 									<th>Email</th>		
-                                <!--     {% if is_granted('ROLE_ADMIN') %}								
+                                    {% if is_granted('ROLE_ADMIN') %}								
 									  <th>Acciones</th>
                                     {% endif %}
 								</tr>
-							</thead> -->
+							</thead> 
 							<tbody>
 								{% for usuario in Usuarios %}
 								<tr class="odd gradeX">
 									<td>{{ usuario.username }}</td>
-									<td>{{ usuario.email }}</td><!-- 
+									<td>{{ usuario.email }}</td> 
                                     {% if is_granted('ROLE_ADMIN') %}   
                						<td>
                    					<ul>
                         			<li>
-                           				<a class="btn btn-info" href="{{ path('fos_user_change_password', { 'id': usuario.id }) }}" title="Ver unidad de carga"> Modificar Contraseña(FALTA HACER)</a>
+                           				<a class="btn btn-info" href="{{ path('user_edit', { 'id': usuario.id }) }}" title="Ver unidad de carga"> Modificar Perfil</a>
+                                        <a class="btn btn-success" href="{{ path('user_edit_password', { 'id': usuario.id }) }}" title="Ver unidad de carga"> Modificar Contraseña</a>
                         			</li>
                     				</ul>
                 					</td>  
-                                    {% endif %}-->
+                                    {% endif %}
 		 						</tr>	
         						{% endfor %}
         					</tbody>

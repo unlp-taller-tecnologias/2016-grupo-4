@@ -266,7 +266,6 @@ class FichaController extends Controller
 		
 			//si no hay ultimo embarazo
 			if ($ue==null) {
-				echo "entró por el null";
 				$ue = new Embarazo();			
 				$p->setEmbarazos($ue);
 				$ue->setPaciente($p);
@@ -282,7 +281,6 @@ class FichaController extends Controller
 
 			//creo un nuevo embarazo y seteo la ficha con él
 			if ($diferencia_meses > 12) {
-				echo "entró por el 12";
 				$ue = new Embarazo();
 				$p->setEmbarazos($ue);
 				$ue->setPaciente($p);
@@ -299,12 +297,10 @@ class FichaController extends Controller
 		
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
-				if( $hijo->getAgregar() == 1)
-				{
 					$hijo->setFicha($ficha);
 					$em->persist($hijo);
 					$em->flush($hijo);	
-				}			
+			
 			}
 
 			$em = $this->getDoctrine()->getManager();
@@ -350,7 +346,7 @@ class FichaController extends Controller
 
 			$phpExcelObject->getProperties()->setCreator("Grupo4")
            ->setLastModifiedBy("Admin")
-           ->setTitle("Exportación de Fichas")
+           ->setTitle("Exportacion de Fichas")
            ->setSubject("Office 2005 XLSX Test Document")
            ->setDescription("Test document for Office 2005 XLSX, generated using PHP classes.")
            ->setKeywords("office 2005 openxml php")
@@ -445,7 +441,7 @@ class FichaController extends Controller
 			->setCellValue('BD1', 'Complicaciones Maternas Hie')
 			->setCellValue('BE1', 'Complicaciones Maternas Preclampsia')
 			->setCellValue('BF1', 'Complicaciones Maternas Otras')
-			->setCellValue('BE1', 'Complicaciones Maternas Cuales');
+			->setCellValue('BG1', 'Complicaciones Maternas Cuales');
 
 	   			//seteo los valores de las fichas
 
@@ -528,7 +524,7 @@ class FichaController extends Controller
 			// create the response
 			$response = $this->get('phpexcel')->createStreamedResponse($writer);
 			// adding headers
-			$dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'cenexa.xlsx');
+			$dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'Exportar'. date("dmY") .'.xlsx');
 			$response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
 			$response->headers->set('Pragma', 'public');
 			$response->headers->set('Cache-Control', 'maxage=1');
