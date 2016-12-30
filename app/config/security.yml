@@ -7,7 +7,7 @@ security:
     role_hierarchy:
         ROLE_DATAENTRY: [ROLE_SESION, ROLE_ABMPACIENTE, ROLE_ABMFICHA]
         ROLE_COORDINADOR: [ROLE_DATAENTRY, ROLE_ABMDATAENTRY]
-        ROLE_ADMIN: [ROLE_COORDINADOR, ROLE_MODPASSDEOTROS, ROLE_ABMUC, ROLE_EXPORTARFICHA, ROLE_ABMCOORDINADOR]
+        ROLE_ADMIN: [ROLE_MODPASSDEOTROS, ROLE_ABMUC, ROLE_EXPORTARFICHA, ROLE_ABMCOORDINADOR]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
@@ -44,11 +44,10 @@ security:
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: [ROLE_ADMIN, ROLE_COORDINADOR]}
+        - { path: ^/paciente, role: [ROLE_DATAENTRY]}
+        - { path: ^/user/[^/]+/edit, role: [ROLE_ADMIN]}
+        - { path: ^/user, role: [ROLE_ADMIN, ROLE_COORDINADOR]}
         - { path: ^/unidadcarga, role: ROLE_ADMIN}
-
-
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-
-
 
