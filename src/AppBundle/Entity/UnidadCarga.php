@@ -26,9 +26,14 @@ class UnidadCarga
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=50)
-      * @Assert\NotBlank()
+     * @Assert\NotBlank()
      */
     private $nombre;
+	/**
+	* @var boolean
+	* @ORM\Column(name="activo", type="integer")
+	*/
+	private $activo;
     /**
      * @var string
      *
@@ -67,6 +72,7 @@ class UnidadCarga
         $this->createdAt= new \DateTime();
         $this->updatedAt= new \DateTime();
         $this->users = new ArrayCollection();
+		$this->setActivo(true);
     }
     
     /**
@@ -135,7 +141,31 @@ class UnidadCarga
     {
         return $this->nombre;
     }
-    
+    /**
+     * @param boolean $boolean
+     *
+     * @return self
+     */
+    public function setActivo($boolean)
+	{
+		$this->activo = $boolean;
+	}    
+	// /**
+	 // * Activa/desactiva los usuarios de la unidad de carga
+     // * @param boolean $boolean
+     // *
+     // * @return self
+     // */
+    // public function setActivoUsers($boolean)
+	// {
+		// foreach($this->getUsers() as $usuario) {
+			// $usuario->setEnabled($boolean);
+			// /* $usuario->setEnabled($boolean);
+			// $em = $this->getDoctrine()->getManager();
+			// $em->flush($unidadCarga); */
+		// }
+		// $this->activo = $boolean;
+	// } 
     
      /**
      * Set localidad

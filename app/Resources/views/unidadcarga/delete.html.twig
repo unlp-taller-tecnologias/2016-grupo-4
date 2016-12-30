@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+          <h3 class="page-header"><i class="icon_house_alt" aria-hidden="true"></i> Eliminar unidad de carga </h3>
+            <a class="btn btn-primary" href="{{ path('unidadcarga_index') }}" title="Volver"><i class="fa fa fa-reply-all" aria-hidden="true"></i>  Volver</a> 
+        </div>
+    </div>
+    <br>
+    <div class="main container">
+		{% if error_borrar %}
+		<div class="alert alert-block alert-danger fade in">
+			<button data-dismiss="alert" class="close close-sm" type="button">
+				<i class="icon-remove"></i>
+			</button>
+			{{ error_borrar }}
+		</div>
+		{% endif %}
+		<div class="row well" >
+			<div class="col-md-12">
+   			{{ form_start(delete_form, { 'attr' : {'role' : 'form'}}) }}
+			<div class="form-group col-lg-6">
+				{{ form_label(delete_form.nombre) }}
+				{{ form_widget(delete_form.nombre, {'attr': {'class': 'form-control'}}) }}
+				<span class="text-danger">{{ form_errors(delete_form.nombre) }}</span>
+			</div>
+
+			<div class="form-group col-lg-6">
+					{{ form_label(delete_form.localidad) }}
+					{{ form_widget(delete_form.localidad, {'attr': {'class': 'form-control'}}) }}
+					<span class="text-danger">{{ form_errors(delete_form.localidad) }}</span>
+			</div>
+						
+	
+				{{ form_widget(delete_form) }}
+					<input type="submit" class="btn btn-danger btn-lg btn-block" value="Eliminar unidad de carga" />			
+				{{ form_end(delete_form) }}
+					
+
+
+				</section>	
+		</div>
+	</div>
+{% endblock %}

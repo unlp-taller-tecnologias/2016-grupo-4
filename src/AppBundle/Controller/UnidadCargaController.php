@@ -56,8 +56,6 @@ class UnidadCargaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //var_dump($_POST[]);
-            //die;
             $em = $this->getDoctrine()->getManager();
             $em->persist($unidadCarga);
             $em->flush($unidadCarga);
@@ -79,7 +77,7 @@ class UnidadCargaController extends Controller
      */
     public function showAction(UnidadCarga $unidadCarga)
     {
-        $deleteForm = $this->createDeleteForm($unidadCarga);
+		$deleteForm = $this->createDeleteForm($unidadCarga);
 
         return $this->render('unidadcarga/show.html.twig', array(
             'unidadCarga' => $unidadCarga,
@@ -126,23 +124,44 @@ class UnidadCargaController extends Controller
     }
 
     /**
-     * Deletes a unidadCarga entity.
+     * Logical erasure a unidadCarga entity.
      *
-     * @Route("/{id}", name="unidadcarga_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="unidadcarga_delete")
+     * @Method({"GET", "DELETE", "POST"})
      */
     public function deleteAction(Request $request, UnidadCarga $unidadCarga)
     {
-        $form = $this->createDeleteForm($unidadCarga);
+		$form = $this->createForm('AppBundle\Form\UnidadCargaType', $unidadCarga);
         $form->handleRequest($request);
+		$error_borrar = null;
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($unidadCarga);
-            $em->flush($unidadCarga);
+			$em = $this->getDoctrine()->getManager();
+			$query = $em->createQueryBuilder();
+ 
+			$paciente = $query->select(['paciente.id'])
+				->from('AppBundle:Paciente', 'paciente')
+				->where($query->expr()->eq('paciente.unidadCarga',':id'))
+				->setParameters(['id' => $unidadCarga])
+				->getQuery()->getResult();
+			if($paciente == null){
+				$unidadCarga->setActivo(false);
+				
+				foreach($unidadCarga->getUsers() as $usuario) {
+					$usuario->setEnabled(false);
+					$em->flush($usuario);
+				}
+				
+				$em->flush($unidadCarga);
+				return $this->redirectToRoute('unidadcarga_index', array('id' => $unidadCarga->getId()));
+			}else $error_borrar = 'Esta unidad tiene pacientes asociados, no se puede borrar.'; //no se puede borrar
         }
 
-        return $this->redirectToRoute('unidadcarga_index');
+        return $this->render('unidadcarga/delete.html.twig', array(
+            'unidadCarga' => $unidadCarga,
+            'delete_form' => $form->createView(),
+			'error_borrar' => $error_borrar,
+        ));
     }
 
     /**
