@@ -15,6 +15,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
+							{% if unidadCargas %}
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
 								<thead>
 									<tr>
@@ -24,25 +25,33 @@
 									</tr>
 								</thead>
 								<tbody>
-								{% for unidadCarga in unidadCargas %}
-								<tr class="odd gradeX">
-								<td>{{ unidadCarga.nombre }}</td>
-								<td>{{ unidadCarga.localidad }}</td>
-                
-                <td>
-                    <ul>
-                        <li>
-                           <a class="btn btn-info" href="{{ path('unidadcarga_show', { 'id': unidadCarga.id }) }}" title="Ver unidad de carga">  Ver</a>
-                           <a class="btn btn-success" href="{{ path('unidadcarga_edit', { 'id': unidadCarga.id }) }}" title="Editar unidad de carga">  Editar</a>
-                           <a class="btn btn-danger" href="{{ path('unidadcarga_delete', { 'id': unidadCarga.id }) }}" title="Eliminar unidad de carga">  Eliminar</a>
-                        </li>
-                    </ul>
-                </td>  
-		 </tr>	
-        {% endfor %}
-        </tbody>
-    </table>
-                            </div>
+									{% for unidadCarga in unidadCargas %}
+									<tr class="odd gradeX">
+										<td>{{ unidadCarga.nombre }}</td>
+										<td>{{ unidadCarga.localidad }}</td>										
+										<td>
+											<ul>
+												<li>
+												   <a class="btn btn-info" href="{{ path('unidadcarga_show', { 'id': unidadCarga.id }) }}" title="Ver unidad de carga">  Ver</a>
+												   <a class="btn btn-success" href="{{ path('unidadcarga_edit', { 'id': unidadCarga.id }) }}" title="Editar unidad de carga">  Editar</a>
+												   <a class="btn btn-danger" href="{{ path('unidadcarga_delete', { 'id': unidadCarga.id }) }}" title="Eliminar unidad de carga">  Eliminar</a>
+												</li>
+											</ul>
+										</td>  
+									</tr>
+									{% else %}
+									<li><em>no hay usuarios</em></li>
+									{% endfor %}
+							</tbody>
+						</table>
+						{% else %}
+							<div class="alert alert-block alert-danger fade in">
+								<button data-dismiss="alert" class="close close-sm" type="button">
+									<i class="icon-remove"></i>
+								</button>Las unidades de carga que se carguen se visulizaran en esta lista.
+							</div>
+						{% endif %}
+                        </div>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->

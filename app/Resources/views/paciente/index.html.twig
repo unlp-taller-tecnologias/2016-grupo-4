@@ -17,8 +17,9 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
+								{% if pacientes %}
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
+									<thead>
                                         <tr>
                                             <th>Número de documento</th>
                                             <th>Apellido</th>
@@ -26,34 +27,37 @@
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+									<tbody>
                                         {% for paciente in pacientes %}
-                                            <tr class="odd gradeX">
-                                                <td>{{ paciente.numeroDocumento }}</td>
-                                                <td>{{ paciente.apellido }}</td>
-                                                <td>{{ paciente.nombre }}</td>
-                                                
-                                                <td>
-                                                    <ul>
-                                                        <li>
-                                                            <a class="btn btn-info" href="{{ path('paciente_show', { 'id': paciente.id }) }}" title="Ver detalle paciente"> Ver detalle paciente</a>
+											<tr class="odd gradeX">
+												<td>{{ paciente.numeroDocumento }}</td>
+												<td>{{ paciente.apellido }}</td>
+												<td>{{ paciente.nombre }}</td>
+												
+												<td>
+													<ul>
+														<li>
+															<a class="btn btn-info" href="{{ path('paciente_show', { 'id': paciente.id }) }}" title="Ver detalle paciente"> Ver detalle paciente</a>
 
-                                                            <!--<a class="btn btn-success" href="{{ path('paciente_edit', { 'id': paciente.id }) }}" title="Editar paciente">  Editar</a> -->
-                                                            <a class="btn btn-success" href="{{ path('ficha_buscar', { 'id': paciente.id }) }}" title="Ver fichas"> Ver fichas</a>
-
+															<!--<a class="btn btn-success" href="{{ path('paciente_edit', { 'id': paciente.id }) }}" title="Editar paciente">  Editar</a> -->
+															<a class="btn btn-success" href="{{ path('ficha_buscar', { 'id': paciente.id }) }}" title="Ver fichas"> Ver fichas</a>
 															<a class="btn btn-warning" href="{{ path('ficha_add', { 'id': paciente.id }) }}" title="Agregar nueva ficha"> Agregar nueva ficha</a>
 															
-                                                            <!-- <a class="btn btn-danger" href="{{ path('paciente_delete', { 'id': paciente.id }) }}" title="Eliminar paciente">  Eliminar</a> -->
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                        
-                                    
-                                        
-                                    </tbody>
+															<!-- <a class="btn btn-danger" href="{{ path('paciente_delete', { 'id': paciente.id }) }}" title="Eliminar paciente">  Eliminar</a> -->
+														</li>
+													</ul>
+												</td>
+											</tr>
+										{% endfor %} 
+									</tbody>
                                 </table>
+								{% else %}
+								<div class="alert alert-block alert-danger fade in">
+									<button data-dismiss="alert" class="close close-sm" type="button">
+										<i class="icon-remove"></i>
+									</button>Esta unidad de carga no tiene pacientes cargadas.
+								</div>
+								{% endif %}
 
                             </div>
                             <!-- /.table-responsive -->
