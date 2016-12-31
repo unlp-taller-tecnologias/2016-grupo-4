@@ -5,6 +5,13 @@
 		<div class="col-lg-12">
 			<h3 class="page-header"><i class="icon_house_alt" aria-hidden="true"></i> Lista de Unidades de Carga</h3>
 			<a class="btn btn-info" href="{{ path('unidadcarga_new') }}" title="Nueva unidad de carga"><i class="fa fa-plus-square" aria-hidden="true"></i>  Nueva unidad de carga</a>		
+			{% if error_borrar != "" %}
+				<div class="alert alert-block alert-danger fade in">
+					<button data-dismiss="alert" class="close close-sm" type="button">
+						<i class="icon-remove"></i>
+					</button>{{error_borrar}}
+				</div>
+			{% endif %}
 		</div>		
 	</div>
 	<br>
@@ -26,6 +33,7 @@
 								</thead>
 								<tbody>
 									{% for unidadCarga in unidadCargas %}
+										{% if unidadCarga.getactivo == 1 %}
 									<tr class="odd gradeX">
 										<td>{{ unidadCarga.nombre }}</td>
 										<td>{{ unidadCarga.localidad }}</td>										
@@ -39,6 +47,7 @@
 											</ul>
 										</td>  
 									</tr>
+									{% endif %}
 									{% else %}
 									<li><em>no hay usuarios</em></li>
 									{% endfor %}
@@ -60,4 +69,6 @@
                 </div>
                 
             </div><!--/.row-->
+
+            
 {% endblock %}

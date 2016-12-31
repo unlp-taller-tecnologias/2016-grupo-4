@@ -141,11 +141,22 @@ class UnidadCarga
     {
         return $this->nombre;
     }
+        /**
+     * Get activo
+     *
+     * @return boolean 
+     */
+    public function getACtivo()
+    {
+        return $this->activo;
+    }
+
     /**
      * @param boolean $boolean
      *
      * @return self
      */
+
     public function setActivo($boolean)
 	{
 		$this->activo = $boolean;

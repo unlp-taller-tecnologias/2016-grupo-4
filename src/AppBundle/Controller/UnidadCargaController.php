@@ -28,6 +28,7 @@ class UnidadCargaController extends Controller
 
         return $this->render('unidadcarga/index.html.twig', array(
             'unidadCargas' => $unidadCargas,
+            'error_borrar' => "",
         ));
     }
 
@@ -131,11 +132,11 @@ class UnidadCargaController extends Controller
      */
     public function deleteAction(Request $request, UnidadCarga $unidadCarga)
     {
-		$form = $this->createForm('AppBundle\Form\UnidadCargaType', $unidadCarga);
+		/*$form = $this->createForm('AppBundle\Form\UnidadCargaType', $unidadCarga);
         $form->handleRequest($request);
 		$error_borrar = null;
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {*/
 			$em = $this->getDoctrine()->getManager();
 			$query = $em->createQueryBuilder();
  
@@ -154,14 +155,16 @@ class UnidadCargaController extends Controller
 				
 				$em->flush($unidadCarga);
 				return $this->redirectToRoute('unidadcarga_index', array('id' => $unidadCarga->getId()));
-			}else $error_borrar = 'Esta unidad tiene pacientes asociados, no se puede borrar.'; //no se puede borrar
-        }
-
-        return $this->render('unidadcarga/delete.html.twig', array(
-            'unidadCarga' => $unidadCarga,
-            'delete_form' => $form->createView(),
-			'error_borrar' => $error_borrar,
-        ));
+			}
+            else{ 
+                $error_borrar = 'Esta unidad tiene pacientes asociados, no se puede borrar.'; //no se puede borrar
+               
+                return $this->render('unidadcarga/index.html.twig', array(
+                    'unidadCargas' => $unidadCargas,
+                    'error_borrar' => $error_borrar,
+                ));
+            }
+        
     }
 
     /**
