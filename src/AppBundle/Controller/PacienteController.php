@@ -57,20 +57,23 @@ class PacienteController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getUsername();			
+			$userid = $user->getId();			
 		
-		$paciente->setUsuarioModificacion($nombreUsuario);
-		$paciente->setUsuarioCreacion($nombreUsuario);
+		$paciente->setUsuarioModificacion($userid);
+		$paciente->setUsuarioCreacion($userid);
 	
 /* 		$ficha = new Ficha();
-		$ficha ->setUsuarioModificacion($nombreUsuario);
-		$ficha ->setUsuarioCreacion($nombreUsuario);	
+		$ficha ->setUsuarioModificacion($userid);
+		$ficha ->setUsuarioCreacion($userid);	
 		
 		$paciente ->setFichas($ficha);
 		$ficha->setPaciente($paciente);		 */
 	
         $form = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $form->handleRequest($request);
+		/*if($form->isSubmitted() && $form->get('cancel')->isClicked()){
+			return $this->redirectToRoute('paciente_index', array('id' => $paciente->getId()));
+		}*/
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($paciente);
@@ -115,14 +118,17 @@ class PacienteController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getUsername();
+			$userid = $user->getId();
 	
-		$paciente->setUsuarioModificacion($nombreUsuario);
+		$paciente->setUsuarioModificacion($userid);
 		
 		
         $deleteForm = $this->createDeleteForm($paciente);
         $editForm = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $editForm->handleRequest($request);
+		if($editForm->get('cancel')->isClicked()){
+			return $this->redirectToRoute('paciente_index', array('id' => $paciente->getId()));
+		}
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 			$this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('paciente_show', array('id' => $paciente->getId()));
@@ -143,6 +149,7 @@ class PacienteController extends Controller
      */
     public function deleteAction(Request $request, Paciente $paciente)
     {
+		// exit("nada");
 		$form = $this->createDeleteForm($paciente);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

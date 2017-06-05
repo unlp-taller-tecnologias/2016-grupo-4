@@ -137,22 +137,29 @@ class FichaController extends Controller
 		if ($user == "anon")
 			$nombreUsuario = "Anonimo";				
 		else
-			$nombreUsuario = $user->getUsername();
+			$userid = $user->getId();
 	
-		$ficha->setUsuarioModificacion($nombreUsuario);
-		$ficha->setUsuarioCreacion($nombreUsuario);
+		$ficha->setUsuarioModificacion($userid);
+		$ficha->setUsuarioCreacion($userid);
 		
         $deleteForm = $this->createDeleteForm($ficha);
         $editForm = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $editForm->handleRequest($request);
+		$em = $this->getDoctrine()->getManager();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
-				$hijo->setUsuarioModificacion($nombreUsuario);
-				$hijo->setUsuarioCreacion($nombreUsuario);									
-				/*
+				$hijo->setUsuarioModificacion($userid);
+				$hijo->setUsuarioCreacion($userid);									
+				
+				$hijo->setFicha($ficha);
+				$em->persist($hijo);
+				$em->flush($hijo);
+				
+				
+				/* ver si se puede borrar
 				if( $hijo->getAgregar() == 1)
 				{
 					$hijo->setFicha($ficha);
@@ -162,9 +169,8 @@ class FichaController extends Controller
 				*/
 			}	
 
-			$this->getDoctrine()->getManager()->flush($ficha);
-			$em = $this->getDoctrine()->getManager();
-            return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
+			$em->flush($ficha);
+			return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
 	
@@ -226,11 +232,11 @@ class FichaController extends Controller
 		//seteo el usuario que creó y modificó
 		
 		$user = $this->container->get('security.context')->getToken()->getUser();	
-		$nombreUsuario = $user->getUsername();
+		$userId = $user->getId();
 
 				
-		$ficha->setUsuarioModificacion($nombreUsuario);
-		$ficha->setUsuarioCreacion($nombreUsuario);
+		$ficha->setUsuarioModificacion($userId);
+		$ficha->setUsuarioCreacion($userId);
 			
 	
 		//seteo el paciente
@@ -245,11 +251,11 @@ class FichaController extends Controller
 		$fh1 = new FichaHijo();
 		$fh2 = new FichaHijo();
 		
-		$fh1->setUsuarioModificacion($nombreUsuario);
-		$fh1->setUsuarioCreacion($nombreUsuario);
+		$fh1->setUsuarioModificacion($userId);
+		$fh1->setUsuarioCreacion($userId);
 		
-		$fh2->setUsuarioModificacion($nombreUsuario);
-		$fh2->setUsuarioCreacion($nombreUsuario);
+		$fh2->setUsuarioModificacion($userId);
+		$fh2->setUsuarioCreacion($userId);
 
 		$ficha->setFichasHijos($fh1);
 		$ficha->setFichasHijos($fh2);
@@ -266,6 +272,7 @@ class FichaController extends Controller
 		
 			//si no hay ultimo embarazo
 			if ($ue==null) {
+				echo "entró por el null";
 				$ue = new Embarazo();			
 				$p->setEmbarazos($ue);
 				$ue->setPaciente($p);
@@ -281,6 +288,7 @@ class FichaController extends Controller
 
 			//creo un nuevo embarazo y seteo la ficha con él
 			if ($diferencia_meses > 12) {
+				echo "entró por el 12";
 				$ue = new Embarazo();
 				$p->setEmbarazos($ue);
 				$ue->setPaciente($p);
@@ -292,15 +300,17 @@ class FichaController extends Controller
 			$ue->setUsuarioCreacion($ficha->getUsuarioCreacion());
 			$ficha->setEmbarazo($ue);
 				
-			//fin seteo embarazo	
+			//fin seteo embarazo
 			$em = $this->getDoctrine()->getManager();			
 		
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
+				if( $hijo->getAgregar() == 1)
+				{
 					$hijo->setFicha($ficha);
 					$em->persist($hijo);
 					$em->flush($hijo);	
-			
+				}			
 			}
 
 			$em = $this->getDoctrine()->getManager();
@@ -346,7 +356,7 @@ class FichaController extends Controller
 
 			$phpExcelObject->getProperties()->setCreator("Grupo4")
            ->setLastModifiedBy("Admin")
-           ->setTitle("Exportacion de Fichas")
+           ->setTitle("Exportación de Fichas")
            ->setSubject("Office 2005 XLSX Test Document")
            ->setDescription("Test document for Office 2005 XLSX, generated using PHP classes.")
            ->setKeywords("office 2005 openxml php")
@@ -441,7 +451,7 @@ class FichaController extends Controller
 			->setCellValue('BD1', 'Complicaciones Maternas Hie')
 			->setCellValue('BE1', 'Complicaciones Maternas Preclampsia')
 			->setCellValue('BF1', 'Complicaciones Maternas Otras')
-			->setCellValue('BG1', 'Complicaciones Maternas Cuales');
+			->setCellValue('BE1', 'Complicaciones Maternas Cuales');
 
 	   			//seteo los valores de las fichas
 
@@ -524,7 +534,7 @@ class FichaController extends Controller
 			// create the response
 			$response = $this->get('phpexcel')->createStreamedResponse($writer);
 			// adding headers
-			$dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'Exportar'. date("dmY") .'.xlsx');
+			$dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'cenexa.xlsx');
 			$response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
 			$response->headers->set('Pragma', 'public');
 			$response->headers->set('Cache-Control', 'maxage=1');
