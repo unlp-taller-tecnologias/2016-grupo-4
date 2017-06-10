@@ -73,9 +73,20 @@ class FichaController extends Controller
         $hijo = new FichaHijo();
         $hijo->setFicha($ficha->getId());
         $ficha->getFichasHijos()->add($hijo);
+		
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+		
+			foreach($ficha->getFichasHijos() as $hijo)
+			{
+				if( empty($hijo->getAgregar()) or $hijo->getAgregar()==0)
+					$ficha->getFichasHijos()->removeElement($hijo);		
+				else 
+					$hijo->setFicha($ficha);
+			}
+
+			$em = $this->getDoctrine()->getManager();
             $em->persist($ficha);
             $em->flush($ficha);
 
@@ -151,25 +162,21 @@ class FichaController extends Controller
             
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
-				$hijo->setUsuarioModificacion($userid);
-				$hijo->setUsuarioCreacion($userid);									
 				
-				$hijo->setFicha($ficha);
-				$em->persist($hijo);
-				$em->flush($hijo);
-				
-				
-				/* ver si se puede borrar
-				if( $hijo->getAgregar() == 1)
+				if( (empty($hijo->getAgregar())) or ($hijo->getAgregar()==0))
 				{
+					$em->remove($hijo);
+					$em->flush();
+				}	
+				else { 
 					$hijo->setFicha($ficha);
-					$em->persist($hijo);
-					$em->flush($hijo);	
+					$hijo->setUsuarioModificacion($userid);
+					$hijo->setUsuarioCreacion($userid);	
 				}
-				*/
-			}	
-
-			$em->flush($ficha);
+			}
+			
+			$em->persist($ficha);
+			$em->flush();
 			return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
@@ -260,8 +267,6 @@ class FichaController extends Controller
 		$ficha->setFichasHijos($fh1);
 		$ficha->setFichasHijos($fh2);
 		
-
-
 		$form = $this->createForm('AppBundle\Form\FichaType', $ficha);
         $form->handleRequest($request);
 		
@@ -301,18 +306,16 @@ class FichaController extends Controller
 			$ficha->setEmbarazo($ue);
 				
 			//fin seteo embarazo
-			$em = $this->getDoctrine()->getManager();			
-		
+			$em = $this->getDoctrine()->getManager();	
+			
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
-				if( $hijo->getAgregar() == 1)
-				{
+				if( empty($hijo->getAgregar()) or $hijo->getAgregar()==0)
+					$ficha->getFichasHijos()->removeElement($hijo);		
+				else 
 					$hijo->setFicha($ficha);
-					$em->persist($hijo);
-					$em->flush($hijo);	
-				}			
 			}
-
+			
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($ficha);
 			$em->flush($ficha);		
@@ -378,18 +381,46 @@ class FichaController extends Controller
 		{
 			
 			$id_unidad_carga = $user->getUnidades()->getId();
-			$fichas = $em->getRepository('AppBundle:Ficha')->findAll();	
-			$query = $em->createQueryBuilder();
- 
+			//$fichas = $em->getRepository('AppBundle:Ficha')->findAll();	
+			$query = $em->createQueryBuilder(); 
 			$fichas = $query->select(['ficha','paciente'])
 			->from('AppBundle:Ficha', 'ficha')
 				->innerJoin('ficha.paciente','paciente')
+				->innerJoin('ficha.fichasHijos','hijos')
 			->where($query->expr()->eq('paciente.unidadCarga',':id'))
 			->setParameters(['id' => $id_unidad_carga])
 			->getQuery()->getResult();			
 		}
 		
+/*
+		foreach($fichas as $fi)
+		{
+			echo "nro ficha ".$fi->getId();
+			echo "tiene hijos :".$fi->getId();
+			
+		}
+		die;
+		
 
+
+		   foreach($fichas as $fi) {	
+
+				echo "<br/> ficha nro ".$fi->getId()."<br/>";
+				
+				
+				if ($fi->tieneHijo1()) {
+					echo "tiene hijo 1: ";
+					print_r($fi->getHijo1()->getId());
+				}	
+
+				if ($fi->tieneHijo2()) {
+					echo "tiene hijo 2: ";
+					print_r($fi->getHijo2()->getId());
+				}
+			}
+	   
+	   die;
+*/		
 		
 	   //seteo encabezados
 	   		$phpExcelObject->setActiveSheetIndex(0)		
@@ -451,12 +482,42 @@ class FichaController extends Controller
 			->setCellValue('BD1', 'Complicaciones Maternas Hie')
 			->setCellValue('BE1', 'Complicaciones Maternas Preclampsia')
 			->setCellValue('BF1', 'Complicaciones Maternas Otras')
-			->setCellValue('BE1', 'Complicaciones Maternas Cuales');
+			->setCellValue('BG1', 'Complicaciones Maternas Cuales')
+			
+			//hijo 1
+			
+			->setCellValue('BH1', 'Hijo 1: RCIU')
+			->setCellValue('BI1', 'Hijo 1: Macrosomia')
+			->setCellValue('BJ1', 'Hijo 1: Sind Distress Prematuro')
+			->setCellValue('BK1', 'Hijo 1: Hipoglucemia')
+			->setCellValue('BL1', 'Hijo 1: Malformaciones fetales')
+			->setCellValue('BM1', 'Hijo 1: Mortalidad prenatal')
+			->setCellValue('BN1', 'Hijo 1: Otras')
+			->setCellValue('BO1', 'Hijo 1: Cuales')
+			->setCellValue('BP1', 'Hijo 1: Peso')
+			->setCellValue('BQ1', 'Hijo 1: Capurro')
 
+			//hijo 2
+			
+			->setCellValue('BR1', 'Hijo 2: RCIU')
+			->setCellValue('BS1', 'Hijo 2: Macrosomia')
+			->setCellValue('BT1', 'Hijo 2: Sind Distress Prematuro')
+			->setCellValue('BU1', 'Hijo 2: Hipoglucemia')
+			->setCellValue('BV1', 'Hijo 2: Malformaciones fetales')
+			->setCellValue('BW1', 'Hijo 2: Mortalidad prenatal')
+			->setCellValue('BX1', 'Hijo 2: Otras')
+			->setCellValue('BY1', 'Hijo 2: Cuales')
+			->setCellValue('BZ1', 'Hijo 2: Peso')
+			->setCellValue('CA1', 'Hijo 2: Capurro');
+
+			
+			
 	   			//seteo los valores de las fichas
 
 	   $f = 2;
 	   $c='A';
+	   
+	   
 		foreach($fichas as $fi) {
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getId());$c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getFechaRegistro()); $c ++;
@@ -517,6 +578,38 @@ class FichaController extends Controller
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmPreclampsia()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmOtras()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmCuales()); $c ++;
+			
+			//hijo 1
+			if ($fi->tieneHijo1())
+			{
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesRciu()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesMacrosomia()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesSindDistressPrematuro()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesHipoglucemia()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesMalformacionesFetales()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesMortalidadPrenatal()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesOtras()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesCuales()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getPeso()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getCapurro()); $c ++;
+
+			}
+			
+
+			if ($fi->tieneHijo2())
+			{
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesRciu()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesMacrosomia()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesSindDistressPrematuro()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesHipoglucemia()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesMalformacionesFetales()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesMortalidadPrenatal()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesOtras()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesCuales()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getPeso()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getCapurro()); $c ++;
+
+			}
 			
 			$f++;			
 			$c='A';			

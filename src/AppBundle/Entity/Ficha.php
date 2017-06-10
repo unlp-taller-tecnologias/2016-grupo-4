@@ -1822,6 +1822,31 @@ class Ficha
 		return $this;
     }
 
+	public function tieneHijo1()
+	{
+		$hijos = $this->getFichasHijos();
+		return count($hijos) > 0 ;
+		
+	}
+	
+	public function tieneHijo2()
+	{
+		$hijos = $this->getFichasHijos();
+		return count($hijos) > 1 ;
+		
+	}
+	
+	public function getHijo1()
+	{
+		return $this->getFichasHijos()->first();
+		
+	}
+
+	public function getHijo2()
+	{
+		return $this->getFichasHijos()->last();
+	}	
+	
 	public function __construct()
     {
         $this->createdAt= new \DateTime();
