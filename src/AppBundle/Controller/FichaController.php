@@ -158,25 +158,28 @@ class FichaController extends Controller
         $editForm->handleRequest($request);
 		$em = $this->getDoctrine()->getManager();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+		if ($editForm->isSubmitted() && $editForm->isValid()) {
+			
+	
             
 			foreach($ficha->getFichasHijos() as $hijo)
 			{
 				
-				if( (empty($hijo->getAgregar())) or ($hijo->getAgregar()==0))
+				if((empty($hijo->getAgregar())) or ($hijo->getAgregar()==0))
 				{
-					$em->remove($hijo);
-					$em->flush();
+					$ficha->getFichasHijos()->removeElement($hijo);						
 				}	
-				else { 
+				else 
+				{ 
 					$hijo->setFicha($ficha);
 					$hijo->setUsuarioModificacion($userid);
-					$hijo->setUsuarioCreacion($userid);	
+					$hijo->setUsuarioCreacion($userid);
 				}
+				
 			}
-			
+	
 			$em->persist($ficha);
-			$em->flush();
+			$em->flush($ficha);
 			return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
