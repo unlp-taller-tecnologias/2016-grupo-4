@@ -3,7 +3,9 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}) }}
-</p>
+	<body class="login-img3-body">
+		<div class="login-form">  
+			<p><i class="fa fa-fw fa fa-users" aria-hidden="true"> </i> {{ 'resetting.check_email'|trans({'%email%': email}) }} </p>
+		</div>
+	</body>	
 {% endblock %}

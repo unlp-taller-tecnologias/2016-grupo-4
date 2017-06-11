@@ -41,7 +41,6 @@ class Paciente
      * @ORM\Column(name="apellido", type="string", length=50)
 	 * @Assert\NotBlank()
 	 * @Assert\Length(min=3, minMessage="El apellido debe tener 3 o mas caracteres."))
-	 * @Assert\Type(type="alpha", message="Este atributo no debe contener numeros.")
      */
     private $apellido;
 
@@ -51,7 +50,6 @@ class Paciente
      * @ORM\Column(name="nombre", type="string", length=50)
 	 * @Assert\NotBlank()
 	 * @Assert\Length(min=3, minMessage="El nombre debe contener 3 o mas caracteres.")
-	 * @Assert\Type(type="alpha", message="Este atributo no debe contener numeros.")
      */
     private $nombre;
 
@@ -71,7 +69,6 @@ class Paciente
 	*@ORM\Column(name="nacionalidad", type="string", length=50)
 	* @Assert\NotBlank()
 	* @Assert\Length(min=3, minMessage="La nacionalidad debe contener 3 o mas caracteres.")
-	* @Assert\Type(type="alpha", message="Este atributo no debe contener numeros.")
 	*/
 	protected $nacionalidad;
 

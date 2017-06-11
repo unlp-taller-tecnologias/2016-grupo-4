@@ -90,7 +90,7 @@ class Ficha
     /**
      * @var int
      *
-     * @ORM\Column(name="hba1c", type="integer", nullable=true)
+     * @ORM\Column(name="hba1c", type="decimal", nullable=true)
      * @Assert\GreaterThan(0)
      * @Assert\LessThan(999) 
      */
@@ -135,7 +135,7 @@ class Ficha
     /**
      * @var int
      *
-     * @ORM\Column(name="creatinina", type="integer", nullable=true)
+     * @ORM\Column(name="creatinina", type="decimal", nullable=true)
      * @Assert\GreaterThan(0)
      * @Assert\LessThan(999) 
      */
@@ -144,7 +144,7 @@ class Ficha
     /**
      * @var int
      *
-     * @ORM\Column(name="proteinuria", type="integer", nullable=true)
+     * @ORM\Column(name="proteinuria", type="decimal", nullable=true)
      * @Assert\GreaterThan(0)
      * @Assert\LessThan(999) 
      */
@@ -323,7 +323,7 @@ class Ficha
     /**
      * @var int
      *
-     * @ORM\Column(name="hipertensionAtenolol", type="integer", nullable=true)
+     * @ORM\Column(name="hipertensionAtenolol", type="decimal", nullable=true)
      * @Assert\GreaterThan(0)
      * @Assert\LessThan(9999)
      */
@@ -332,7 +332,7 @@ class Ficha
     /**
      * @var int
      *
-     * @ORM\Column(name="hipertensionBloqueantesCalcicos", type="integer", nullable=true)
+     * @ORM\Column(name="hipertensionBloqueantesCalcicos", type="decimal", nullable=true)
      * @Assert\GreaterThan(0)
      * @Assert\LessThan(9999)
      */
@@ -341,7 +341,7 @@ class Ficha
     /**
      * @var int
      *
-     * @ORM\Column(name="hipertensionFurosemida", type="integer", nullable=true)
+     * @ORM\Column(name="hipertensionFurosemida", type="decimal", nullable=true)
      * @Assert\GreaterThan(0)
      * @Assert\LessThan(9999)
      */
@@ -350,7 +350,7 @@ class Ficha
     /**
      * @var int
      *
-     * @ORM\Column(name="hipertensionOtro", type="integer", nullable=true)
+     * @ORM\Column(name="hipertensionOtro", type="decimal", nullable=true)
      * @Assert\GreaterThan(0)
      * @Assert\LessThan(9999)
      */
@@ -366,7 +366,7 @@ class Ficha
     /**
      * @var int
      *
-     * @ORM\Column(name="aas", type="integer", nullable=true)
+     * @ORM\Column(name="aas", type="decimal", nullable=true)
      * @Assert\GreaterThan(0)
      * @Assert\LessThan(9999)
      */

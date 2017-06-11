@@ -1,7 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-        
-
 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request login-form">
     <div class="login-wrap">   
             <p class="login-img"><i class="icon_lock_alt"></i>Contraseña</p>
@@ -15,11 +13,8 @@
               </div>
             {% endif %}
             <div class="input-group">
-
-             
                   <span class="input-group-addon"><i class="icon_profile"></i></span>
-                  <input type="text" id="username" name="_username" class="form-control" placeholder="{{ 'resetting.request.username'|trans }}"  autofocus required>
-
+                  <input type="text" id="username" name="username" class="form-control" placeholder="{{ 'resetting.request.username'|trans }}"  autofocus required>
             </div>
              <button class="btn btn-primary btn-lg btn-block" type="submit" id="_submit" name="_submit" value="{{ 'resetting.request.submit'|trans }}">Restablecer contraseña</button>
     </div>
