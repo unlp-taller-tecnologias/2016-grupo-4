@@ -402,7 +402,7 @@ class FichaController extends Controller
 			$fichas = $query->select(['ficha','paciente'])
 			->from('AppBundle:Ficha', 'ficha')
 				->innerJoin('ficha.paciente','paciente')
-				->innerJoin('ficha.fichasHijos','hijos')
+				->leftJoin('ficha.fichasHijos','hijos')
 			->where($query->expr()->eq('paciente.unidadCarga',':id'))
 			->setParameters(['id' => $id_unidad_carga])
 			->getQuery()->getResult();			

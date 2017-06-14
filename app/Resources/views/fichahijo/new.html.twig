@@ -4,7 +4,9 @@
     <h1>Fichahijo creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+ 		    {{ form_widget(form.capurro, { 'attr' :{ 'class' : 'form-control ', 'placeholder' : 'mg/día', 'min' : '0', 'max' : '9999'}}) }}
+            <span class="text-danger">{{ form_errors(form.capurro) }}</span>
+		
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
@@ -14,3 +16,5 @@
         </li>
     </ul>
 {% endblock %}
+
+
