@@ -151,7 +151,9 @@
                         </tr>
                         <tr>
                             <th>Urocultivo</th>
-                            <td>{% if ficha.urocultivo %}Si{% else %}No{% endif %}
+                            <td>{% if ficha.urocultivo is null %}-
+                                {% elseif ficha.urocultivo == 1 %}Si
+                                {% else %}No{% endif %}
                             </td>
                         </tr>
                         <tr>
@@ -168,7 +170,10 @@
                         </tr>
                         <tr>
                             <th>Realiza actividad física</th>
-                            <td>{% if ficha.realizaActividadFisica %}Si{% else %}No{% endif %}</td>
+                            <td>{% if ficha.realizaActividadFisica is null %}-
+                                {% elseif ficha.realizaActividadFisica == 1 %}Si
+                                {% else %}No{% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Número de veces por semana</th>
@@ -192,11 +197,19 @@
                         </tr>
                         <tr>
                             <th>Conoce metas de tratamiento</th>
-                            <td>{% if ficha.conoceMetasDeTratamiento %}Si{% else %}No{% endif %}</td>
+                            <td>
+                                {% if ficha.conoceMetasDeTratamiento is null %}-
+                                {% elseif ficha.conoceMetasDeTratamiento == 1 %}Si
+                                {% else %}No{% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Cumple plan de alimentación</th>
-                            <td>{% if ficha.cumplePlanDeAlimentacion %}Si{% else %}No{% endif %}</td>
+                            <td>
+                                {% if ficha.cumplePlanDeAlimentacion is null %}-
+                                {% elseif ficha.cumplePlanDeAlimentacion == 1 %}Si
+                                {% else %}No{% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Número de porciones de fruta por día</th>
@@ -209,8 +222,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Sabe identificar otra TAR hipoglucemias</th>
-                            <td>{% if ficha.sabeIdentificarOTratarHipoglucemias %}Si{% else %}No{% endif %}</td>
+                            <th>Sabe identificar o tratar hipoglucemias</th>
+                            <td>
+                                 {% if ficha.sabeIdentificarOTratarHipoglucemias is null %}-
+                                {% elseif ficha.sabeIdentificarOTratarHipoglucemias == 1 %}Si
+                                {% else %}No{% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Automonitoreo glucemico</th>
@@ -228,11 +245,18 @@
                         </tr>
                         <tr>
                             <th>Fuma actualmente</th>
-                            <td>{% if ficha.fumaActualmente %}Si{% else %}No{% endif %}</td>
+                            <td>{% if ficha.fumaActualmente is null %}-
+                                {% elseif ficha.fumaActualmente == 1 %}Si
+                                {% else %}No{% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Fumó anteriormente</th>
-                            <td>{% if ficha.fumoAnteriorMente %}Si{% else %}No{% endif %}</td>
+                            <td>
+                                {% if ficha.fumoAnteriorMente is null %}-
+                                {% elseif ficha.fumoAnteriorMente == 1 %}Si
+                                {% else %}No{% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Cigarrillos al día</th>
@@ -414,18 +438,6 @@
                                 {% endif %}
                             </td>
                         </tr>
-                       
-                        <tr>
-                            <th>Número inyecciones por día</th>
-                            <td>
-                                {% if ficha.numeroInyeccionesDia %}
-                                    {{ficha.numeroInyeccionesDia}}
-                                {% else %}
-                                    -
-                                {% endif %}
-                            </td>
-                        </tr>
-                        
                         
                     </tbody>
                 </table>

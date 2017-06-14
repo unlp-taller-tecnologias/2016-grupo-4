@@ -1,8 +1,6 @@
 $(document).ready(function() {
 
 
-    
-
     $( '#appbundle_ficha_realizaActividadFisica' ).on( 'click', function() {
         if( $(this).is(':checked') ){
             // Hacer algo si el checkbox ha sido seleccionado
@@ -98,6 +96,40 @@ $(document).ready(function() {
             $('#appbundle_ficha_fichasHijos_1_complicacionesCuales').attr("value","");
             $('#appbundle_ficha_fichasHijos_1_complicacionesCuales').attr("disabled", "disabled");
             
+        }
+    });
+    //agregado para "Los días de hospitalizaciones sólo se deberían poder marcar si previamente se completó la causa"
+    $( '#appbundle_ficha_causaHospitalizacion1' ).on( 'change', function() {
+        if( $(this).val()  === ''){
+            // Hacer algo si el campo esta vacio
+            $('#appbundle_ficha_diasHospitalizacion1').attr("value",null);
+            $('#appbundle_ficha_diasHospitalizacion1').attr("disabled", "disabled");
+            
+        } else if(!($(this).val()  === '')){
+            // Hacer algo si el campo no esta vacio
+            $('#appbundle_ficha_diasHospitalizacion1').removeAttr("disabled");            
+        }
+    });
+    $( '#appbundle_ficha_causaHospitalizacion2' ).on( 'change', function() {
+        if( $(this).val()  === ''){
+            // Hacer algo si el campo esta vacio
+            $('#appbundle_ficha_diasHospitalizacion1').attr("value",null);
+            $('#appbundle_ficha_diasHospitalizacion2').attr("disabled", "disabled");
+            
+        } else if(!($(this).val()  === '')){
+            // Hacer algo si el campo no esta vacio
+            $('#appbundle_ficha_diasHospitalizacion2').removeAttr("disabled");            
+        }
+    });
+    $( '#appbundle_ficha_causaHospitalizacion3' ).on( 'change', function() {
+        if( $(this).val()  === ''){
+            // Hacer algo si el campo esta vacio
+            $('#appbundle_ficha_diasHospitalizacion1').attr("value",null);
+            $('#appbundle_ficha_diasHospitalizacion3').attr("disabled", "disabled");
+            
+        } else if(!($(this).val()  === '')){
+            // Hacer algo si el campo no esta vacio
+            $('#appbundle_ficha_diasHospitalizacion3').removeAttr("disabled");            
         }
     });
     //hace visible el div del detalle de recien nacidos y deshabilita el boton agregar recien nacido

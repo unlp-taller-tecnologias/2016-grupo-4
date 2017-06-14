@@ -29,6 +29,7 @@ class Ficha
      *
      * @ORM\Column(name="fechaRegistro", type="date", nullable=false)
      * @Assert\Date(message = "El valor ingresado no es una fecha")
+     * @Assert\Range(max = "now",  maxMessage = "La fecha no debe ser posterior a la actual.")
      */
 
 	private $fechaRegistro;

@@ -31,7 +31,7 @@
                     <div class="form-group col-lg-6">
                         <label>Fecha:</label>
                         {{ form_widget(edit_form.fechaRegistro, {'attr': {'class': 'form-control'}}) }}
-
+                        <span class="text-danger">{{ form_errors(edit_form.fechaRegistro) }}</span>
                     </div> 
 					
 				        	<div class="form-group col-lg-6">
@@ -170,9 +170,11 @@
                             {{ form_widget(edit_form.proteinuria, { 'attr' :{ 'class' : 'form-control', 'placeholder' : 'g/día', 'min' : '0', 'max' : '999'}}) }}
                             <span class="text-danger">{{ form_errors(edit_form.proteinuria) }}</span>
                         </div>
-                        <div class="form-group">
+                        <div>
                             {{ form_label(edit_form.urocultivo) }}
-                            {{ form_widget(edit_form.urocultivo) }}
+                            
+                            {{ form_widget(edit_form.urocultivo, { 'attr': { 'class' : 'radButton'}} ) }}
+                           
                         </div>
                     </div>
                     
@@ -193,7 +195,7 @@
                        <div class="col-lg-4">        
                             <div class="form-group">
                                 {{ form_label(edit_form.realizaActividadFisica) }}
-                                {{ form_widget(edit_form.realizaActividadFisica) }}
+                                {{ form_widget(edit_form.realizaActividadFisica, { 'attr': { 'class' : 'radButton'}}) }}
                             </div>
                             <div class="form-group">
                                 <label>Número de veces por semana</label>
@@ -210,11 +212,11 @@
                         <div class="col-lg-4">        
                             <div class="form-group">
                                 {{ form_label(edit_form.conoceMetasDeTratamiento) }}
-                                {{ form_widget(edit_form.conoceMetasDeTratamiento) }}
+                                {{ form_widget(edit_form.conoceMetasDeTratamiento, { 'attr': { 'class' : 'radButton'}}) }}
                             </div>
                             <div class="form-group">
                                 <label>Cumple plan de alimentación</label>
-                                {{ form_widget(edit_form.cumplePlanDeAlimentacion) }}
+                                {{ form_widget(edit_form.cumplePlanDeAlimentacion, { 'attr': { 'class' : 'radButton'}}) }}
                             </div>
                             <div class="form-group">
                                 <label>Número de porciones de fruta por día</label>
@@ -226,11 +228,11 @@
                         <div class="col-lg-4">        
                             <div class="form-group">
                                 {{ form_label(edit_form.sabeIdentificarOTratarHipoglucemias) }}
-                                {{ form_widget(edit_form.sabeIdentificarOTratarHipoglucemias) }}
+                                {{ form_widget(edit_form.sabeIdentificarOTratarHipoglucemias, { 'attr': { 'class' : 'radButton'}}) }}
                             </div>
                             <div class="form-group">
                                 {{ form_label(edit_form.automonitoreoGlucemico) }}
-                                {{ form_widget(edit_form.automonitoreoGlucemico) }}
+                                {{ form_widget(edit_form.automonitoreoGlucemico, { 'attr': { 'class' : 'radButton'}}) }}
                             </div>
                             <div class="form-group">
                                 <label>Número de veces por día</label>
@@ -255,13 +257,13 @@
                     <div class="col-lg-4">        
                             <div class="form-group">
                                 {{ form_label(edit_form.fumaActualmente) }}
-                                {{ form_widget(edit_form.fumaActualmente) }}
+                                {{ form_widget(edit_form.fumaActualmente, { 'attr': { 'class' : 'radButton'}}) }}
                             </div>
                     </div>
                     <div class="col-lg-4"> 
                             <div class="form-group">
                                 {{ form_label(edit_form.fumoAnteriorMente) }}
-                                {{ form_widget(edit_form.fumoAnteriorMente) }}
+                                {{ form_widget(edit_form.fumoAnteriorMente, { 'attr': { 'class' : 'radButton'}}) }}
                             </div>
                     </div>
                     <div class="col-lg-4">

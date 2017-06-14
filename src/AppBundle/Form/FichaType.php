@@ -30,21 +30,94 @@ class FichaType extends AbstractType
             ->add('trigliceridos', null, array('label' => 'Triglicéridos'))
             ->add('creatinina')
             ->add('proteinuria')
-            ->add('urocultivo')
+            ->add('urocultivo', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos'
+            ))
             ->add('hipertensionCronica')
             ->add('obesidad')
             ->add('tabaquismo')
-            ->add('realizaActividadFisica')
+            ->add('realizaActividadFisica', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos'
+            ))
             ->add('numeroDeVecesPorSemana')
             ->add('minutos')
-            ->add('conoceMetasDeTratamiento')
-            ->add('cumplePlanDeAlimentacion')
+            ->add('conoceMetasDeTratamiento', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos'
+            ))
+            ->add('cumplePlanDeAlimentacion', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos'
+            ))
             ->add('numerodePorcionesDeFrutaPorDia')
-            ->add('sabeIdentificarOTratarHipoglucemias')
-            ->add('automonitoreoGlucemico')
+            ->add('sabeIdentificarOTratarHipoglucemias', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos'
+            ))
+            ->add('automonitoreoGlucemico', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos'
+            ))
             ->add('numeroDeVecesPorDia')
-            ->add('fumaActualmente')
-            ->add('fumoAnteriorMente', null, array('label' => 'Fumó anteriormente'))
+            ->add('fumaActualmente', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos'
+            ))
+            //->add('fumoAnteriorMente', null, array('label' => 'Fumó anteriormente'))
+            ->add('fumoAnteriorMente', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos'
+            ))
             ->add('cigarrillosAlDia')
             ->add('causaHospitalizacion1')
             ->add('causaHospitalizacion2')
