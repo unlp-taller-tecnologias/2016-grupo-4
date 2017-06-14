@@ -358,6 +358,19 @@ class FichaController extends Controller
 	
 	public function exportarAction(Request $request)
 	{	   
+	
+	
+		function FalseTrueToZeroOne($boolean)
+		{
+			if($boolean == true)
+				return 1;
+			else 
+				return 0;
+			
+			
+		}
+	
+	
 			$phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
 
 			$phpExcelObject->getProperties()->setCreator("Grupo4")
@@ -394,37 +407,7 @@ class FichaController extends Controller
 			->setParameters(['id' => $id_unidad_carga])
 			->getQuery()->getResult();			
 		}
-		
-/*
-		foreach($fichas as $fi)
-		{
-			echo "nro ficha ".$fi->getId();
-			echo "tiene hijos :".$fi->getId();
-			
-		}
-		die;
-		
-
-
-		   foreach($fichas as $fi) {	
-
-				echo "<br/> ficha nro ".$fi->getId()."<br/>";
-				
-				
-				if ($fi->tieneHijo1()) {
-					echo "tiene hijo 1: ";
-					print_r($fi->getHijo1()->getId());
-				}	
-
-				if ($fi->tieneHijo2()) {
-					echo "tiene hijo 2: ";
-					print_r($fi->getHijo2()->getId());
-				}
-			}
-	   
-	   die;
-*/		
-		
+	
 	   //seteo encabezados
 	   		$phpExcelObject->setActiveSheetIndex(0)		
 			->setCellValue('A1', 'id')
@@ -537,21 +520,21 @@ class FichaController extends Controller
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTrigliceridos()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCreatinina()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getProteinuria()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getUrocultivo()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHipertensionCronica()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getObesidad()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTabaquismo()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getRealizaActividadFisica()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getUrocultivo())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHipertensionCronica())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getObesidad())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getTabaquismo())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getRealizaActividadFisica())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroDeVecesPorSemana()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getMinutos()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getConoceMetasDeTratamiento()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCumplePlanDeAlimentacion()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getConoceMetasDeTratamiento())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCumplePlanDeAlimentacion())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumerodePorcionesDeFrutaPorDia()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getSabeIdentificarOTratarHipoglucemias()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getAutomonitoreoGlucemico()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getSabeIdentificarOTratarHipoglucemias())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getAutomonitoreoGlucemico())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroDeVecesPorDia()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getFumaActualmente()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getFumoAnteriorMente()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getFumaActualmente())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getFumoAnteriorMente())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCigarrillosAlDia()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCausaHospitalizacion1()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCausaHospitalizacion2()); $c ++;
@@ -570,28 +553,28 @@ class FichaController extends Controller
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getInsulinaCorriente()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getInsulinaAspartica()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroInyeccionesDia()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCoberturaPrivado()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCoberturaObraSocial()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCoberturaNinguna()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaPrivado())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaObraSocial())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaNinguna())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroHijos()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getPartoNormal()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getPartoPrematuro()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getPartoCesarea()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmHie()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmPreclampsia()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmOtras()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getPartoNormal())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getPartoPrematuro())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getPartoCesarea())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmHie())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmPreclampsia())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmOtras())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmCuales()); $c ++;
 			
 			//hijo 1
 			if ($fi->tieneHijo1())
 			{
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesRciu()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesMacrosomia()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesSindDistressPrematuro()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesHipoglucemia()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesMalformacionesFetales()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesMortalidadPrenatal()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesOtras()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo1()->getComplicacionesRciu())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo1()->getComplicacionesMacrosomia())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo1()->getComplicacionesSindDistressPrematuro())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo1()->getComplicacionesHipoglucemia())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo1()->getComplicacionesMalformacionesFetales())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo1()->getComplicacionesMortalidadPrenatal())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo1()->getComplicacionesOtras())); $c ++;
 				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getComplicacionesCuales()); $c ++;
 				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getPeso()); $c ++;
 				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo1()->getCapurro()); $c ++;
@@ -601,13 +584,13 @@ class FichaController extends Controller
 
 			if ($fi->tieneHijo2())
 			{
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesRciu()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesMacrosomia()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesSindDistressPrematuro()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesHipoglucemia()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesMalformacionesFetales()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesMortalidadPrenatal()); $c ++;
-				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesOtras()); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo2()->getComplicacionesRciu())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo2()->getComplicacionesMacrosomia())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo2()->getComplicacionesSindDistressPrematuro())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo2()->getComplicacionesHipoglucemia())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo2()->getComplicacionesMalformacionesFetales())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo2()->getComplicacionesMortalidadPrenatal())); $c ++;
+				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHijo2()->getComplicacionesOtras())); $c ++;
 				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getComplicacionesCuales()); $c ++;
 				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getPeso()); $c ++;
 				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getCapurro()); $c ++;
