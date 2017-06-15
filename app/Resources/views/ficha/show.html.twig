@@ -224,14 +224,18 @@
                         <tr>
                             <th>Sabe identificar o tratar hipoglucemias</th>
                             <td>
-                                 {% if ficha.sabeIdentificarOTratarHipoglucemias is null %}-
+                                {% if ficha.sabeIdentificarOTratarHipoglucemias is null %}-
                                 {% elseif ficha.sabeIdentificarOTratarHipoglucemias == 1 %}Si
                                 {% else %}No{% endif %}
                             </td>
                         </tr>
                         <tr>
                             <th>Automonitoreo glucemico</th>
-                            <td>{% if ficha.automonitoreoGlucemico %}Si{% else %}No{% endif %}</td>
+                            <td>
+                                {% if ficha.automonitoreoGlucemico is null %}-
+                                {% elseif ficha.automonitoreoGlucemico == 1 %}Si
+                                {% else %}No{% endif %}
+                            </td>
                         </tr>
                         <tr>
                             <th>Número de veces por día</th>

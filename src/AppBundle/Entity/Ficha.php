@@ -877,7 +877,7 @@ class Ficha
      * @return string 
      */
     public function getUrocultivo()
-    {
+    {   
         return $this->urocultivo;
     }
 

@@ -7,6 +7,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\FormEvents; //Add this line to add FormEvents to the current scope
+use Symfony\Component\Form\FormEvent; //Add this line to add FormEvent to the current scope
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class FichaType extends AbstractType
 {
@@ -14,8 +19,12 @@ class FichaType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {  
         $builder
+            ->addEventListener(
+                FormEvents::POST_SET_DATA,
+                array($this, 'onProSetData')
+            )
             ->add('tas', null, array('label' => 'TAS'))
             ->add('fechaRegistro', 'birthday', array('widget' => 'single_text', 'label' => 'Fecha de nacimiento'))
             ->add('tad', null, array('label' => 'TAD'))
@@ -30,94 +39,14 @@ class FichaType extends AbstractType
             ->add('trigliceridos', null, array('label' => 'Triglicéridos'))
             ->add('creatinina')
             ->add('proteinuria')
-            ->add('urocultivo', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'placeholder' => 'Sin datos'
-            ))
             ->add('hipertensionCronica')
             ->add('obesidad')
             ->add('tabaquismo')
-            ->add('realizaActividadFisica', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'placeholder' => 'Sin datos'
-            ))
             ->add('numeroDeVecesPorSemana')
             ->add('minutos')
-            ->add('conoceMetasDeTratamiento', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'placeholder' => 'Sin datos'
-            ))
-            ->add('cumplePlanDeAlimentacion', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'placeholder' => 'Sin datos'
-            ))
             ->add('numerodePorcionesDeFrutaPorDia')
-            ->add('sabeIdentificarOTratarHipoglucemias', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'placeholder' => 'Sin datos'
-            ))
-            ->add('automonitoreoGlucemico', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'placeholder' => 'Sin datos'
-            ))
             ->add('numeroDeVecesPorDia')
-            ->add('fumaActualmente', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'placeholder' => 'Sin datos'
-            ))
             //->add('fumoAnteriorMente', null, array('label' => 'Fumó anteriormente'))
-            ->add('fumoAnteriorMente', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'placeholder' => 'Sin datos'
-            ))
             ->add('cigarrillosAlDia')
             ->add('causaHospitalizacion1')
             ->add('causaHospitalizacion2')
@@ -152,6 +81,222 @@ class FichaType extends AbstractType
 			;
     }
     
+    public function onProSetData(FormEvent $event)
+    {
+            //por defecto carga null
+            $form = $event->getForm(); //Get current form object
+            $data = $event->getData(); //Get current data 
+           
+            if (!$data || !($data->getId())){   //si es nueva
+                $form->add('urocultivo', 'choice', array(
+                    'choices' => array(
+                        '1' => 'Si',
+                        '0' => 'No',
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
+                    'required' => false,
+                    'placeholder' => 'Sin datos',
+                    'data' => null
+                )); 
+            }else {         //si edita
+                $form->add('urocultivo', 'choice', array(
+                    'choices' => array(
+                        '1' => 'Si',
+                        '0' => 'No',
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
+                    'required' => false,
+                    'placeholder' => 'Sin datos',
+                    'data' => $data->getUrocultivo()
+                )); 
+            };
+            
+            if (!$data || !($data->getId())){   //si es nueva
+                $form->add('realizaActividadFisica', 'choice', array(
+                    'choices' => array(
+                        '1' => 'Si',
+                        '0' => 'No',
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
+                    'required' => false,
+                    'placeholder' => 'Sin datos',
+                    'data' => null
+                ));
+            }else {         //si edita
+                $form->add('realizaActividadFisica', 'choice', array(
+                    'choices' => array(
+                        '1' => 'Si',
+                        '0' => 'No',
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
+                    'required' => false,
+                    'placeholder' => 'Sin datos',
+                    'data' => $data->getRealizaActividadFisica()
+                ));
+            }
+
+            if (!$data || !($data->getId())){   //si es nueva
+                $form->add('conoceMetasDeTratamiento', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => null
+            ));
+            }else {         //si edita
+                $form->add('conoceMetasDeTratamiento', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => $data->getConoceMetasDeTratamiento()
+            ));
+            }
+
+            if (!$data || !($data->getId())){   //si es nueva
+                $form->add('cumplePlanDeAlimentacion', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => null
+            ));
+            }else {         //si edita
+                $form->add('cumplePlanDeAlimentacion', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => $data->getCumplePlanDeAlimentacion()
+            ));
+            }
+
+            if (!$data || !($data->getId())){   //si es nueva
+                $form->add('sabeIdentificarOTratarHipoglucemias', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => null
+            ));
+            }else {         //si edita
+                $form->add('sabeIdentificarOTratarHipoglucemias', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => $data->getSabeIdentificarOTratarHipoglucemias()
+            ));
+            }
+
+            if (!$data || !($data->getId())){   //si es nueva
+                $form->add('automonitoreoGlucemico', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => null
+            ));
+            }else {         //si edita
+                $form->add('automonitoreoGlucemico', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => $data->getAutomonitoreoGlucemico()
+            ));
+            }
+
+            if (!$data || !($data->getId())){   //si es nueva
+                $form->add('fumaActualmente', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => null
+            ));
+            }else {         //si edita
+                $form->add('fumaActualmente', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => $data->getFumaActualmente()
+            ));
+            }
+
+            if (!$data || !($data->getId())){   //si es nueva
+                $form->add('fumoAnteriorMente', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => null
+            ));
+            }else {         //si edita
+                $form->add('fumoAnteriorMente', 'choice', array(
+                'choices' => array(
+                    '1' => 'Si',
+                    '0' => 'No',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'placeholder' => 'Sin datos',
+                'data' => $data->getFumoAnteriorMente()
+            ));
+            }
+                
+    }
+
     /**
      * {@inheritdoc}
      */

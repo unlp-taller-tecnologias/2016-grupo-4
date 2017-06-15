@@ -173,7 +173,7 @@
                         </div>
                         <div class="form-group">
                             {{ form_label(form.urocultivo) }}
-                            {{ form_widget(form.urocultivo) }}
+                            {{ form_widget(form.urocultivo, { 'attr': { 'class' : 'radButton'}} ) }}
                         </div>
                     </div>
                     
@@ -194,7 +194,7 @@
                        <div class="col-lg-4">        
                             <div class="form-group">
                                 {{ form_label(form.realizaActividadFisica) }}
-                                {{ form_widget(form.realizaActividadFisica) }}
+                                {{ form_widget(form.realizaActividadFisica, { 'attr': { 'class' : 'radButton'}} ) }}
                             </div>
                             <div class="form-group">
                                 <label>Número de veces por semana</label>
@@ -211,11 +211,11 @@
                         <div class="col-lg-4">        
                             <div class="form-group">
                                 {{ form_label(form.conoceMetasDeTratamiento) }}
-                                {{ form_widget(form.conoceMetasDeTratamiento) }}
+                                {{ form_widget(form.conoceMetasDeTratamiento, { 'attr': { 'class' : 'radButton'}} ) }}
                             </div>
                             <div class="form-group">
                                 <label>Cumple plan de alimentación</label>
-                                {{ form_widget(form.cumplePlanDeAlimentacion) }}
+                                {{ form_widget(form.cumplePlanDeAlimentacion, { 'attr': { 'class' : 'radButton'}} ) }}
                             </div>
                             <div class="form-group">
                                 <label>Número de porciones de fruta por día</label>
@@ -227,11 +227,11 @@
                         <div class="col-lg-4">        
                             <div class="form-group">
                                 {{ form_label(form.sabeIdentificarOTratarHipoglucemias) }}
-                                {{ form_widget(form.sabeIdentificarOTratarHipoglucemias) }}
+                                {{ form_widget(form.sabeIdentificarOTratarHipoglucemias, { 'attr': { 'class' : 'radButton'}} ) }}
                             </div>
                             <div class="form-group">
                                 {{ form_label(form.automonitoreoGlucemico) }}
-                                {{ form_widget(form.automonitoreoGlucemico) }}
+                                {{ form_widget(form.automonitoreoGlucemico, { 'attr': { 'class' : 'radButton'}} ) }}
                             </div>
                             <div class="form-group">
                                 <label>Número de veces por día</label>
@@ -256,13 +256,13 @@
                     <div class="col-lg-4">        
                             <div class="form-group">
                                 {{ form_label(form.fumaActualmente) }}
-                                {{ form_widget(form.fumaActualmente) }}
+                                {{ form_widget(form.fumaActualmente, { 'attr': { 'class' : 'radButton'}} ) }}
                             </div>
                     </div>
                     <div class="col-lg-4"> 
                             <div class="form-group">
                                 {{ form_label(form.fumoAnteriorMente) }}
-                                {{ form_widget(form.fumoAnteriorMente) }}
+                                {{ form_widget(form.fumoAnteriorMente, { 'attr': { 'class' : 'radButton'}} ) }}
                             </div>
                     </div>
                     <div class="col-lg-4">
@@ -520,12 +520,12 @@
                                   <div class="form-group col-lg-6">
                               
                                      <label>Peso</label>
-                                    {{ form_widget(h.peso, { 'attr' :{ 'class' : 'form-control', 'placeholder' : 'hola'}}) }}
+                                    {{ form_widget(h.peso, { 'attr' :{ 'class' : 'form-control', 'placeholder' : 'gramos'}}) }}
                                     
                                   </div>
                                   <div class="form-group col-lg-6">
                                     <label>Capurro</label>
-                                    {{ form_widget(h.capurro, { 'attr' :{ 'class' : 'form-control ', 'placeholder' : 'unidades/día', 'min' : '0', 'max' : '9999'}}) }}
+                                    {{ form_widget(h.capurro, { 'attr' :{ 'class' : 'form-control ', 'placeholder' : 'semanas', 'min' : '0', 'max' : '9999'}}) }}
 
                                
                                   </div>
