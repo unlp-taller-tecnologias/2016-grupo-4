@@ -362,6 +362,8 @@ class FichaController extends Controller
 	
 		function FalseTrueToZeroOne($boolean)
 		{
+			if($boolean == null)
+				return "s/d";
 			if($boolean == true)
 				return 1;
 			else 
@@ -405,6 +407,7 @@ class FichaController extends Controller
 				->leftJoin('ficha.fichasHijos','hijos')
 			->where($query->expr()->eq('paciente.unidadCarga',':id'))
 			->setParameters(['id' => $id_unidad_carga])
+			->orderBy('ficha.id', 'ASC')
 			->getQuery()->getResult();			
 		}
 	
