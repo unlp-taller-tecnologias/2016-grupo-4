@@ -179,7 +179,7 @@ class FichaController extends Controller
 			}
 	
 			$em->persist($ficha);
-			$em->flush($ficha);
+			$em->flush();
 			return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
