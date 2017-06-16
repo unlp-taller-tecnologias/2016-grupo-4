@@ -362,7 +362,7 @@ class FichaController extends Controller
 	
 		function FalseTrueToZeroOne($boolean)
 		{
-			if($boolean == null)
+			if(is_null($boolean))
 				return "s/d";
 			if($boolean == true)
 				return 1;
