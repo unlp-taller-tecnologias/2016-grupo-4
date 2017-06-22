@@ -126,9 +126,9 @@ class PacienteController extends Controller
         $deleteForm = $this->createDeleteForm($paciente);
         $editForm = $this->createForm('AppBundle\Form\PacienteType', $paciente);
         $editForm->handleRequest($request);
-		if($editForm->get('cancel')->isClicked()){
+		/*if($editForm->get('cancel')->isClicked()){
 			return $this->redirectToRoute('paciente_index', array('id' => $paciente->getId()));
-		}
+		}*/
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 			$this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('paciente_show', array('id' => $paciente->getId()));

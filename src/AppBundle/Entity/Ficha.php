@@ -486,7 +486,7 @@ class Ficha
      */
 	protected $numeroHijos;
 	/**
-     * @var int
+     * @var string
      *
      * @ORM\Column(name="partoNormal", type="boolean", nullable=true)
      */
@@ -496,12 +496,12 @@ class Ficha
      * @ORM\Column(name="partoPrematuro", type="boolean", nullable=true)
      */
 	protected $partoPrematuro=false;
-	/**
-     * @var int
+        /**
+     * @var string
      *
      * @ORM\Column(name="partoCesarea", type="boolean", nullable=true)
      */
-	protected $partoCesarea=false;
+    private $partoCesarea=false;
 	/**
      *
      * @ORM\Column(name="cmHie", type="boolean", nullable=true)

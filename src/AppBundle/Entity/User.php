@@ -47,10 +47,6 @@ class User extends BaseUser
     /**
     * @ORM\ManyToMany(targetEntity="UnidadCarga", inversedBy="users")
     * @ORM\JoinTable(name="unidades_users")
-	* @Assert\Count(
-     *      min = "1",
-     *      minMessage = "Seleccione una unidad de carga"
-     * )
     **/
    public $unidades;
 
@@ -74,6 +70,10 @@ class User extends BaseUser
 
     public function setNombre($nom) {
       return $this->nombre=$nom;
+    }
+
+    public function setEnabled($nom) {
+      return $this->enabled=1;
     }
 
     public function getApellido() {

@@ -423,19 +423,19 @@
                     </div>
                     <div class="col-lg-12">
 
-                        <div class="col-lg-4">  
+                        <div class="col-lg-4 form-group">  
                           {{ form_label(edit_form.partoNormal) }}
-                          {{ form_widget(edit_form.partoNormal) }}             
+                          {{ form_widget(edit_form.partoNormal, { 'attr': { 'class' : 'radButton'}} ) }}             
                         </div>  
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 form-group">
                         
                           {{ form_label(edit_form.partoPrematuro) }}
-                          {{ form_widget(edit_form.partoPrematuro) }}              
+                          {{ form_widget(edit_form.partoPrematuro, { 'attr': { 'class' : 'radButton'}} ) }}              
                         </div>  
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 form-group">
                         
                           {{ form_label(edit_form.partoCesarea) }}
-                          {{ form_widget(edit_form.partoCesarea) }}            
+                          {{ form_widget(edit_form.partoCesarea, { 'attr': { 'class' : 'radButton'}} ) }}            
                         </div>  
                     </div> 
                     <br>

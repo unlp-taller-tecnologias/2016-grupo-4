@@ -99,6 +99,35 @@ $(document).ready(function() {
         }
     });
     //agregado para "Los días de hospitalizaciones sólo se deberían poder marcar si previamente se completó la causa"
+    //dehabilita segun datos iniciales
+    if( $('#appbundle_ficha_causaHospitalizacion1').val()  === ''){
+        // Hacer algo si el campo esta vacio
+        $('#appbundle_ficha_diasHospitalizacion1').attr("value",null);
+        $('#appbundle_ficha_diasHospitalizacion1').attr("disabled", "disabled");
+        
+    } else if(!($('#appbundle_ficha_causaHospitalizacion1').val()  === '')){
+        // Hacer algo si el campo no esta vacio
+        $('#appbundle_ficha_diasHospitalizacion1').removeAttr("disabled");            
+    };
+    if( $('#appbundle_ficha_causaHospitalizacion2').val()  === ''){
+        // Hacer algo si el campo esta vacio
+        $('#appbundle_ficha_diasHospitalizacion2').attr("value",null);
+        $('#appbundle_ficha_diasHospitalizacion2').attr("disabled", "disabled");
+        
+    } else if(!($('#appbundle_ficha_causaHospitalizacion2').val()  === '')){
+        // Hacer algo si el campo no esta vacio
+        $('#appbundle_ficha_diasHospitalizacion2').removeAttr("disabled");            
+    };
+    if( $('#appbundle_ficha_causaHospitalizacion3').val()  === ''){
+        // Hacer algo si el campo esta vacio
+        $('#appbundle_ficha_diasHospitalizacion3').attr("value",null);
+        $('#appbundle_ficha_diasHospitalizacion3').attr("disabled", "disabled");
+        
+    } else if(!($('#appbundle_ficha_causaHospitalizacion3').val()  === '')){
+        // Hacer algo si el campo no esta vacio
+        $('#appbundle_ficha_diasHospitalizacion3').removeAttr("disabled");            
+    };
+
     $( '#appbundle_ficha_causaHospitalizacion1' ).on( 'change', function() {
         if( $(this).val()  === ''){
             // Hacer algo si el campo esta vacio
@@ -113,7 +142,7 @@ $(document).ready(function() {
     $( '#appbundle_ficha_causaHospitalizacion2' ).on( 'change', function() {
         if( $(this).val()  === ''){
             // Hacer algo si el campo esta vacio
-            $('#appbundle_ficha_diasHospitalizacion1').attr("value",null);
+            $('#appbundle_ficha_diasHospitalizacion2').attr("value",null);
             $('#appbundle_ficha_diasHospitalizacion2').attr("disabled", "disabled");
             
         } else if(!($(this).val()  === '')){
@@ -124,7 +153,7 @@ $(document).ready(function() {
     $( '#appbundle_ficha_causaHospitalizacion3' ).on( 'change', function() {
         if( $(this).val()  === ''){
             // Hacer algo si el campo esta vacio
-            $('#appbundle_ficha_diasHospitalizacion1').attr("value",null);
+            $('#appbundle_ficha_diasHospitalizacion3').attr("value",null);
             $('#appbundle_ficha_diasHospitalizacion3').attr("disabled", "disabled");
             
         } else if(!($(this).val()  === '')){

@@ -29,8 +29,8 @@ class RegistrationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombre', null, array('attr' => array('class' => 'form-control','minlength' => '5', 'maxlength' => '50')));
-        $builder->add('apellido', null, array('attr' => array('class' => 'form-control','minlength' => '5', 'maxlength' => '50')));
+        $builder->add('nombre', null, array('attr' => array('class' => 'form-control','minlength' => '3', 'maxlength' => '50')));
+        $builder->add('apellido', null, array('attr' => array('class' => 'form-control','minlength' => '3', 'maxlength' => '50')));
         $user = $this->tokenStorage->getToken()->getUser();
         if ($user->hasRole('ROLE_ADMIN')) {
             $builder->add('unidades', 'entity', array(
