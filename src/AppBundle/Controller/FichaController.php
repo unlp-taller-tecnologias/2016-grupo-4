@@ -151,7 +151,7 @@ class FichaController extends Controller
 			$userid = $user->getId();
 	
 		$ficha->setUsuarioModificacion($userid);
-		$ficha->setUsuarioCreacion($userid);
+
 		
         $deleteForm = $this->createDeleteForm($ficha);
         $editForm = $this->createForm('AppBundle\Form\FichaType', $ficha);
@@ -173,7 +173,6 @@ class FichaController extends Controller
 				{ 
 					$hijo->setFicha($ficha);
 					$hijo->setUsuarioModificacion($userid);
-					$hijo->setUsuarioCreacion($userid);
 				}
 				
 			}
@@ -296,7 +295,6 @@ class FichaController extends Controller
 
 			//creo un nuevo embarazo y seteo la ficha con él
 			if ($diferencia_meses > 12) {
-				echo "entró por el 12";
 				$ue = new Embarazo();
 				$p->setEmbarazos($ue);
 				$ue->setPaciente($p);
@@ -363,7 +361,7 @@ class FichaController extends Controller
 		function FalseTrueToZeroOne($boolean)
 		{
 			if(is_null($boolean))
-				return "s/d";
+				return "s.d.";
 			if($boolean == true)
 				return 1;
 			else 
@@ -413,7 +411,7 @@ class FichaController extends Controller
 	
 	   //seteo encabezados
 	   		$phpExcelObject->setActiveSheetIndex(0)		
-			->setCellValue('A1', 'id')
+			->setCellValue('A1', 'id Ficha')
 			->setCellValue('B1', 'Fecha de Registro')
 			->setCellValue('C1', 'medico')
 			->setCellValue('D1', 'TAS')
@@ -475,29 +473,29 @@ class FichaController extends Controller
 			
 			//hijo 1
 			
-			->setCellValue('BH1', 'Hijo 1: RCIU')
-			->setCellValue('BI1', 'Hijo 1: Macrosomia')
-			->setCellValue('BJ1', 'Hijo 1: Sind Distress Prematuro')
-			->setCellValue('BK1', 'Hijo 1: Hipoglucemia')
-			->setCellValue('BL1', 'Hijo 1: Malformaciones fetales')
-			->setCellValue('BM1', 'Hijo 1: Mortalidad prenatal')
-			->setCellValue('BN1', 'Hijo 1: Otras')
-			->setCellValue('BO1', 'Hijo 1: Cuales')
-			->setCellValue('BP1', 'Hijo 1: Peso')
-			->setCellValue('BQ1', 'Hijo 1: Capurro')
+			->setCellValue('BH1', 'Hijo 1 RCIU')
+			->setCellValue('BI1', 'Hijo 1 Macrosomia')
+			->setCellValue('BJ1', 'Hijo 1 Sind Distress Prematuro')
+			->setCellValue('BK1', 'Hijo 1 Hipoglucemia')
+			->setCellValue('BL1', 'Hijo 1 Malformaciones fetales')
+			->setCellValue('BM1', 'Hijo 1 Mortalidad prenatal')
+			->setCellValue('BN1', 'Hijo 1 Otras')
+			->setCellValue('BO1', 'Hijo 1 Cuales')
+			->setCellValue('BP1', 'Hijo 1 Peso')
+			->setCellValue('BQ1', 'Hijo 1 Capurro')
 
 			//hijo 2
 			
-			->setCellValue('BR1', 'Hijo 2: RCIU')
-			->setCellValue('BS1', 'Hijo 2: Macrosomia')
-			->setCellValue('BT1', 'Hijo 2: Sind Distress Prematuro')
-			->setCellValue('BU1', 'Hijo 2: Hipoglucemia')
-			->setCellValue('BV1', 'Hijo 2: Malformaciones fetales')
-			->setCellValue('BW1', 'Hijo 2: Mortalidad prenatal')
-			->setCellValue('BX1', 'Hijo 2: Otras')
-			->setCellValue('BY1', 'Hijo 2: Cuales')
-			->setCellValue('BZ1', 'Hijo 2: Peso')
-			->setCellValue('CA1', 'Hijo 2: Capurro');
+			->setCellValue('BR1', 'Hijo 2 RCIU')
+			->setCellValue('BS1', 'Hijo 2 Macrosomia')
+			->setCellValue('BT1', 'Hijo 2 Sind Distress Prematuro')
+			->setCellValue('BU1', 'Hijo 2 Hipoglucemia')
+			->setCellValue('BV1', 'Hijo 2 Malformaciones fetales')
+			->setCellValue('BW1', 'Hijo 2 Mortalidad prenatal')
+			->setCellValue('BX1', 'Hijo 2 Otras')
+			->setCellValue('BY1', 'Hijo 2 Cuales')
+			->setCellValue('BZ1', 'Hijo 2 Peso')
+			->setCellValue('CA1', 'Hijo 2 Capurro');
 
 			
 			
@@ -508,6 +506,7 @@ class FichaController extends Controller
 	   
 	   
 		foreach($fichas as $fi) {
+			
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getId());$c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getFechaRegistro()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getMedico()); $c ++;
