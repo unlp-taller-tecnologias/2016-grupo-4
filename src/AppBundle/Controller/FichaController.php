@@ -354,6 +354,8 @@ class FichaController extends Controller
 	*@Method({"GET", "POST"})
 	*/	
 	
+
+
 	public function exportarAction(Request $request)
 	{	   
 	
@@ -374,8 +376,8 @@ class FichaController extends Controller
 			$phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
 
 			$phpExcelObject->getProperties()->setCreator("Grupo4")
-           ->setLastModifiedBy("Admin")
-           ->setTitle("Exportación de Fichas")
+           ->setLastModifiedBy("grupo 4")
+           ->setTitle("Exportacion de Fichas")
            ->setSubject("Office 2005 XLSX Test Document")
            ->setDescription("Test document for Office 2005 XLSX, generated using PHP classes.")
            ->setKeywords("office 2005 openxml php")
@@ -409,9 +411,10 @@ class FichaController extends Controller
 			->getQuery()->getResult();			
 		}
 	
+	
 	   //seteo encabezados
-	   		$phpExcelObject->setActiveSheetIndex(0)		
-			->setCellValue('A1', 'id Ficha')
+			$phpExcelObject->setActiveSheetIndex(0)		
+			->setCellValue('A1', 'id Ficha') 
 			->setCellValue('B1', 'Fecha de Registro')
 			->setCellValue('C1', 'medico')
 			->setCellValue('D1', 'TAS')
@@ -495,7 +498,9 @@ class FichaController extends Controller
 			->setCellValue('BX1', 'Hijo 2 Otras')
 			->setCellValue('BY1', 'Hijo 2 Cuales')
 			->setCellValue('BZ1', 'Hijo 2 Peso')
-			->setCellValue('CA1', 'Hijo 2 Capurro');
+			->setCellValue('CA1', 'Hijo 2 Capurro')
+			
+			;
 
 			
 			
@@ -505,9 +510,10 @@ class FichaController extends Controller
 	   $c='A';
 	   
 	   
+	   
 		foreach($fichas as $fi) {
 			
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getId());$c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getId());$c ++;	
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getFechaRegistro()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getMedico()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTas()); $c ++;
@@ -566,7 +572,7 @@ class FichaController extends Controller
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmPreclampsia())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmOtras())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmCuales()); $c ++;
-			
+
 			//hijo 1
 			if ($fi->tieneHijo1())
 			{
@@ -598,10 +604,14 @@ class FichaController extends Controller
 				$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHijo2()->getCapurro()); $c ++;
 
 			}
+		
 			
 			$f++;			
 			$c='A';			
+			
 		}   
+
+		
 		
 	   //fin seteo valores
 		   
@@ -616,11 +626,12 @@ class FichaController extends Controller
 			$response = $this->get('phpexcel')->createStreamedResponse($writer);
 			// adding headers
 			$dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,'cenexa.xlsx');
-			$response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+			$response->headers->set('Content-Type', 'text/vnd.ms-excel;');
 			$response->headers->set('Pragma', 'public');
 			$response->headers->set('Cache-Control', 'maxage=1');
 			$response->headers->set('Content-Disposition', $dispositionHeader);
 
 			return $response;	
 		}
+		
 }
