@@ -414,65 +414,86 @@ class FichaController extends Controller
 	
 	   //seteo encabezados
 			$phpExcelObject->setActiveSheetIndex(0)		
+
+			// datos del paciente			
 			->setCellValue('A1', 'id Ficha') 
-			->setCellValue('B1', 'Fecha de Registro')
-			->setCellValue('C1', 'medico')
-			->setCellValue('D1', 'TAS')
-			->setCellValue('D1', 'TAD')
-			->setCellValue('E1', 'Talla')
-			->setCellValue('F1', 'Peso')
-			->setCellValue('G1', 'Glucemia')
-			->setCellValue('I1', 'hba1c')
-			->setCellValue('J1', 'Colesterol Total')
-			->setCellValue('K1', 'Colesterol HDL')
-			->setCellValue('L1', 'Colesterol LDL')
-			->setCellValue('M1', 'Trigliceridos')
-			->setCellValue('N1', 'Creatinina')
-			->setCellValue('O1', 'Proteinuria')
-			->setCellValue('P1', 'Urocultivo')
-			->setCellValue('Q1', 'Hipertension Cronica')
-			->setCellValue('R1', 'Obesidad')
-			->setCellValue('S1', 'Tabaquismo')
-			->setCellValue('T1', 'Realiza Actividad Fisica')
-			->setCellValue('U1', 'Cantidad de veces por semana')
-			->setCellValue('V1', 'Minutos')
-			->setCellValue('W1', 'Conoce Metas De Tratamiento')
-			->setCellValue('X1', 'Cumple Plan De Alimentacion')
-			->setCellValue('Y1', 'Cantidad de Porciones De Fruta Por Dia')
-			->setCellValue('Z1', 'Sabe Identificar O Tratar Hipoglucemias')
-			->setCellValue('AA1', 'Automonitoreo Glucemico')
-			->setCellValue('AB1', 'Cantidad de Veces Por Dia')
-			->setCellValue('AC1', 'Fuma Actualmente')
-			->setCellValue('AD1', 'Fumo Anteriormente')
-			->setCellValue('AE1', 'Cigarrillos Al Dia')
-			->setCellValue('AF1', 'Causa Hospitalizacion 1')
-			->setCellValue('AG1', 'Causa Hospitalizacion 2')
-			->setCellValue('AH1', 'Causa Hospitalizacion 3')
-			->setCellValue('AI1', 'Dias Hospitalizacion 1')
-			->setCellValue('AJ1', 'Dias Hospitalizacion 2')
-			->setCellValue('AK1', 'Dias Hospitalizacion 3')
-			->setCellValue('AL1', 'Hipertension Atenolol l')
-			->setCellValue('AM1', 'Hipertension Bloqueantes Calcicos')
-			->setCellValue('AN1', 'Hipertension Furosemida')
-			->setCellValue('AO1', 'Hipertension Otro')
-			->setCellValue('AP1', 'Hipertension Cual')
-			->setCellValue('AQ1', 'aas')
-			->setCellValue('AR1', 'Insulina Nph')
-			->setCellValue('AS1', 'Insulina Detemir')
-			->setCellValue('AT1', 'Insulina Corriente')
-			->setCellValue('AU1', 'Insulina Aspartica')
-			->setCellValue('AV1', 'Cantidad de Inyecciones al Dia')
-			->setCellValue('AW1', 'Cobertura Privado')
-			->setCellValue('AX1', 'Cobertura Obra Social')
-			->setCellValue('AY1', 'Cobertura Ninguna')
-			->setCellValue('AZ1', 'Cantidad de Hijos')
-			->setCellValue('BA1', 'Parto Normal')
-			->setCellValue('BB1', 'Parto Prematuro')
-			->setCellValue('BC1', 'Parto Cesarea')
-			->setCellValue('BD1', 'Complicaciones Maternas Hie')
-			->setCellValue('BE1', 'Complicaciones Maternas Preclampsia')
-			->setCellValue('BF1', 'Complicaciones Maternas Otras')
-			->setCellValue('BG1', 'Complicaciones Maternas Cuales')
+			->setCellValue('B1', 'id Paciente')
+			->setCellValue('C1', 'Fecha de Nacimiento')			
+			->setCellValue('D1', 'Fecha de Registro')
+			
+			// cobertura
+			->setCellValue('E1', 'Cobertura Privado')
+			->setCellValue('F1', 'Cobertura Obra Social')
+			->setCellValue('G1', 'Cobertura No Posee')
+			
+			// Diagnóstico
+			->setCellValue('H1', 'Hipertension Cronica')
+			->setCellValue('I1', 'Obesidad')
+			->setCellValue('J1', 'Tabaquismo')
+			
+			// Exploraciones
+			->setCellValue('K1', 'TAS')
+			->setCellValue('L1', 'Glucemia')
+			->setCellValue('M1', 'Colesterol LDL')
+			->setCellValue('N1', 'TAD')
+			->setCellValue('O1', 'Fructosamina')
+			->setCellValue('P1', 'Trigliceridos')
+			->setCellValue('Q1', 'Talla')
+			->setCellValue('R1', 'Hba1c')
+			->setCellValue('S1', 'Creatinina')
+			->setCellValue('T1', 'Peso')
+			->setCellValue('U1', 'Colesterol total')
+			->setCellValue('V1', 'Proteinuria')
+			->setCellValue('W1', 'Colesterol HDL')
+			->setCellValue('X1', 'Urocultivo')
+			
+			// Educación adquirida durante el proyecto
+			->setCellValue('Y1',  'Realiza actividad fisica')
+			->setCellValue('Z1',  'Numero de veces por semana')
+			->setCellValue('AA1', 'Minutos')
+			->setCellValue('AB1', 'Conoce metas de tratamiento')
+			->setCellValue('AC1', 'Cumple plan de alimentación')
+			->setCellValue('AD1', 'Numero de porciones de fruta por dia')
+			->setCellValue('AE1', 'Sabe identificar o tratar hipoglucemias')
+			->setCellValue('AF1', 'Automonitoreo glucemico')
+			->setCellValue('AG1', 'Numero de veces por dia')
+			
+			// tabaquismo
+			->setCellValue('AH1', 'Fuma actualmente')
+			->setCellValue('AI1', 'Fumo anteriormente')
+			->setCellValue('AJ1', 'Cigarrillos por dia')
+			
+			// Hospitalizaciones en los últimos 6 meses
+			->setCellValue('AK1', 'Causa de hospitalizaciones 1')
+			->setCellValue('AL1', 'Cantidad de dias 1')
+			->setCellValue('AM1', 'Causa de hospitalizaciones 2')
+			->setCellValue('AN1', 'Cantidad de dias 2')
+			->setCellValue('AO1', 'Causa de hospitalizaciones 3')
+			->setCellValue('AP1', 'Cantidad de dias 3')
+			
+			// Tratamiento después del diagnóstico de diabetes gestacional
+			->setCellValue('AQ1', 'HIPERTENSION-Atenolol')
+			->setCellValue('AR1', 'HIPERTENSION-AAS')
+			->setCellValue('AS1', 'HIPERTENSION-Bloqueantes calcicos')
+			->setCellValue('AT1', 'HIPERTENSION-Furosemida')
+			->setCellValue('AU1', 'HIPERTENSION-Otro')
+			->setCellValue('AV1', 'HIPERTENSION-¿Cual?')
+			->setCellValue('AW1', 'INSULINA-NPH')
+			->setCellValue('AX1', 'INSULINA-Detemir')
+			->setCellValue('AY1', 'INSULINA-Corriente')
+			->setCellValue('AZ1', 'INSULINA-Aspartica')
+			->setCellValue('BA1', 'INSULINA-Numero de inyecciones por dia')
+			
+			// Recien Nacido(s)
+			->setCellValue('BB1', 'Numero de hijos')
+			->setCellValue('BC1', 'Forma de Terminación del Embarazo:Parto normal')
+			->setCellValue('BD1', 'Forma de Terminación del Embarazo:Parto prematuro')
+			->setCellValue('BE1', 'Forma de Terminación del Embarazo:Parto cesarea')
+			->setCellValue('BF1', 'Complicaciones Durante el Embarazo:HIE')
+			->setCellValue('BG1', 'Complicaciones Durante el Embarazo:Preclampsia')
+			->setCellValue('BH1', 'Complicaciones Durante el Embarazo:Otras')
+			->setCellValue('BI1', 'Complicaciones Durante el Embarazo:Cuales')
+
 			
 			//hijo 1
 			
@@ -513,25 +534,39 @@ class FichaController extends Controller
 	   
 		foreach($fichas as $fi) {
 			
+			// datos del paciente			
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getId());$c ++;	
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getPaciente()->getId()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getPaciente()->getFechaNacimiento()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getFechaRegistro()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getMedico()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTas()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTad()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTalla()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getPeso()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getGlucemia()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHba1c()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getColesterolTotal()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getColesterolHdl()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getColesterolLdl()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTrigliceridos()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCreatinina()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getProteinuria()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getUrocultivo())); $c ++;
+			
+			//cobertura
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaPrivado())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaObraSocial())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaNinguna())); $c ++;
+			
+			//diagnostico
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getHipertensionCronica())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getObesidad())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getTabaquismo())); $c ++;
+			
+			//Exploraciones
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTas()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getGlucemia()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getColesterolLdl()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTad()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getFructosamina()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTrigliceridos()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getTalla()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHba1c()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCreatinina()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getPeso()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getColesterolTotal()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getProteinuria()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getColesterolHdl()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getUrocultivo())); $c ++;
+			
+			//Educación adquirida durante el proyecto
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getRealizaActividadFisica())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroDeVecesPorSemana()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getMinutos()); $c ++;
@@ -541,29 +576,34 @@ class FichaController extends Controller
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getSabeIdentificarOTratarHipoglucemias())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getAutomonitoreoGlucemico())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroDeVecesPorDia()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getFumaActualmente())); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getFumoAnteriorMente())); $c ++;
+	
+			//tabaquismo
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f,FalseTrueToZeroOne($fi->getFumaActualmente())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f,FalseTrueToZeroOne($fi->getFumoAnteriorMente())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCigarrillosAlDia()); $c ++;
+			
+			//Hospitalizaciones en los últimos 6 meses
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCausaHospitalizacion1()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCausaHospitalizacion2()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCausaHospitalizacion3()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getDiasHospitalizacion1()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCausaHospitalizacion2()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getDiasHospitalizacion2()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCausaHospitalizacion3()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getDiasHospitalizacion3()); $c ++;
+			
+			//Tratamiento después del diagnóstico de diabetes gestacional
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHipertensionAtenolol()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getAas()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHipertensionBloqueantesCalcicos()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHipertensionFurosemida()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHipertensionOtro()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getHipertensionCual()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getAas()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getInsulinaNph()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getInsulinaDetemir()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getInsulinaCorriente()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getInsulinaAspartica()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroInyeccionesDia()); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaPrivado())); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaObraSocial())); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCoberturaNinguna())); $c ++;
+			
+			//Recien Nacido(s)
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroHijos()); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getPartoNormal())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getPartoPrematuro())); $c ++;
@@ -571,7 +611,7 @@ class FichaController extends Controller
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmHie())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmPreclampsia())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmOtras())); $c ++;
-			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmCuales()); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getCmCuales()); $c ++;			
 
 			//hijo 1
 			if ($fi->tieneHijo1())
