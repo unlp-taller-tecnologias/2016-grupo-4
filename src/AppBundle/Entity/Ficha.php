@@ -488,20 +488,9 @@ class Ficha
 	/**
      * @var string
      *
-     * @ORM\Column(name="partoNormal", type="boolean", nullable=true)
+     * @ORM\Column(name="formaTerminacion", type="string", nullable=true)
      */
-	protected $partoNormal=false;
-	/**
-     *
-     * @ORM\Column(name="partoPrematuro", type="boolean", nullable=true)
-     */
-	protected $partoPrematuro=false;
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="partoCesarea", type="boolean", nullable=true)
-     */
-    private $partoCesarea=false;
+	protected $formaTerminacion;
 	/**
      *
      * @ORM\Column(name="cmHie", type="boolean", nullable=true)
@@ -1729,40 +1718,16 @@ class Ficha
 		return $this;		
 	}
 
-	public function getPartoNormal()
+	public function getFormaTerminacion()
 	{
-		return $this->partoNormal;
+		return $this->formaTerminacion;
 	}
 		
-	public function setPartoNormal($partoNormal)
+	public function setFormaTerminacion($formaTerminacion)
 	{
-		$this->partoNormal = $partoNormal;
+		$this->formaTerminacion = $formaTerminacion;
 		return $this;		
 	}
-
-
-	public function getPartoPrematuro()
-	{
-		return $this->partoPrematuro;
-	}
-		
-	public function setPartoPrematuro($partoPrematuro)
-	{
-		$this->partoPrematuro = $partoPrematuro;
-		return $this;		
-	}
-
-	public function getPartoCesarea()
-	{
-		return $this->partoCesarea;
-	}
-		
-	public function setPartoCesarea($partoCesarea)
-	{
-		$this->partoCesarea = $partoCesarea;
-		return $this;		
-	}
-
 
 	public function getCmHie()
 	{

@@ -420,23 +420,7 @@
 
                     <div class="col-lg-12">    
                      <label>Forma de Terminación del Embarazo: </label>
-                    </div>
-                    <div class="col-lg-12">
-
-                        <div class="col-lg-4 form-group">  
-                          {{ form_label(edit_form.partoNormal) }}
-                          {{ form_widget(edit_form.partoNormal, { 'attr': { 'class' : 'radButton'}} ) }}             
-                        </div>  
-                        <div class="col-lg-4 form-group">
-                        
-                          {{ form_label(edit_form.partoPrematuro) }}
-                          {{ form_widget(edit_form.partoPrematuro, { 'attr': { 'class' : 'radButton'}} ) }}              
-                        </div>  
-                        <div class="col-lg-4 form-group">
-                        
-                          {{ form_label(edit_form.partoCesarea) }}
-                          {{ form_widget(edit_form.partoCesarea, { 'attr': { 'class' : 'radButton'}} ) }}            
-                        </div>  
+                          {{ form_widget(edit_form.formaTerminacion, { 'attr': { 'class' : 'radButtonForma'}} ) }}             
                     </div> 
                     <br>
                     <div class="col-lg-12">       

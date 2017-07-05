@@ -294,69 +294,35 @@ class FichaType extends AbstractType
             }
 
              if (!$data || !($data->getId())){   //si es nueva
-                $form->add('partoNormal', 'choice', array(
+                $form->add('formaTerminacion', 'choice', array(
                 'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
+                    'Parto normal' => 'Parto normal',
+                    'Cesarea' => 'Cesárea',
+                    'Parto Prematuro' => 'Parto Prematuro',
                 ),
+                'expanded' => true,
+                'multiple' => false,
                 'required' => false,
                 'placeholder' => 'Sin datos',
                 'data' => null
             ));
             }else {         //si edita
-                $form->add('partoNormal', 'choice', array(
+                $form->add('formaTerminacion', 'choice', array(
                 'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
+                    'Parto normal' => 'Parto normal',
+                    'Cesarea' => 'Cesárea',
+                    'Parto Prematuro' => 'Parto Prematuro',
                 ),
+                'expanded' => true,
+                'multiple' => false,
                 'required' => false,
                 'placeholder' => 'Sin datos'
             ));
             }
 
-           if (!$data || !($data->getId())){   //si es nueva
-                $form->add('partoPrematuro', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'required' => false,
-                'placeholder' => 'Sin datos',
-                'data' => null
-            ));
-            }else {         //si edita
-                $form->add('partoPrematuro', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'required' => false,
-                'placeholder' => 'Sin datos',
-                'data' => $data->getPartoPrematuro()
-            ));
-            }
+           
 
-            if (!$data || !($data->getId())){   //si es nueva
-                $form->add('partoCesarea', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'required' => false,
-                'placeholder' => 'Sin datos',
-                'data' => null
-            ));
-            }else {         //si edita
-                $form->add('partoCesarea', 'choice', array(
-                'choices' => array(
-                    '1' => 'Si',
-                    '0' => 'No',
-                ),
-                'required' => false,
-                'placeholder' => 'Sin datos',
-                'data' => $data->getPartoCesarea()
-            ));
-            }
+            
                 
     }
 
