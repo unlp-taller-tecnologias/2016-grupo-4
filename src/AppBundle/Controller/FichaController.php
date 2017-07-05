@@ -360,10 +360,19 @@ class FichaController extends Controller
 	{	   
 	
 	
+		function nullToSd($string)
+		{
+			if (strlen($string)> 5)
+				return $string;	
+			else
+				return "s.d.";			
+		}
+	
 		function FalseTrueToZeroOne($boolean)
 		{
 			if(is_null($boolean))
 				return "s.d.";
+			
 			if($boolean == true)
 				return 1;
 			else 
@@ -486,13 +495,13 @@ class FichaController extends Controller
 			
 			// Recien Nacido(s)
 			->setCellValue('BB1', 'Numero de hijos')
-			//->setCellValue('BC1', 'Forma de Terminacion del Embarazo: Parto normal')
+			->setCellValue('BC1', 'Forma de Terminacion del Embarazo')
 			//->setCellValue('BD1', 'Forma de Terminacion del Embarazo: Parto prematuro')
 			//->setCellValue('BE1', 'Forma de Terminacion del Embarazo: Parto cesarea')
-			->setCellValue('BF1', 'Complicaciones Durante el Embarazo:HIE')
-			->setCellValue('BG1', 'Complicaciones Durante el Embarazo:Preclampsia')
-			->setCellValue('BH1', 'Complicaciones Durante el Embarazo:Otras')
-			->setCellValue('BI1', 'Complicaciones Durante el Embarazo:Cuales')
+			->setCellValue('BD1', 'Complicaciones Durante el Embarazo:HIE')
+			->setCellValue('BE1', 'Complicaciones Durante el Embarazo:Preclampsia')
+			->setCellValue('BF1', 'Complicaciones Durante el Embarazo:Otras')
+			->setCellValue('BG1', 'Complicaciones Durante el Embarazo:Cuales')
 
 			
 			//hijo 1
@@ -605,7 +614,7 @@ class FichaController extends Controller
 			
 			//Recien Nacido(s)
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, $fi->getNumeroHijos()); $c ++;
-			//$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getPartoNormal())); $c ++;
+			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, nullToSd($fi->getFormaTerminacion())); $c ++;
 			//$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getPartoPrematuro())); $c ++;
 			//$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getPartoCesarea())); $c ++;
 			$phpExcelObject->setActiveSheetIndex(0)->setCellValue($c.$f, FalseTrueToZeroOne($fi->getCmHie())); $c ++;
